@@ -1,0 +1,790 @@
+{
+  "schemaVersion": 1,
+  "assetRoot": "/assets",
+  "globalPromptSource": "docs/3D_ASSET_GENERATION_MASTER.md, section 3",
+  "jobs": [
+    {
+      "id": "01",
+      "filename": "player.glb",
+      "category": "character",
+      "priority": "P0",
+      "prompt": "OUTPUT: /assets/characters/player.glb\nPURPOSE: Main third-person player. Keep the back view clear in motion and flight.\nVISUAL: Young adult traveler with broad player identification. Warm face, dark brown hair tied loosely back, off-white tunic or shirt, dark blue loose trousers, brown boots, simple leather items, and a small brown backpack with a subtle warm symbol. Show curiosity and inner strength.\nGEOMETRY/NODES: Humanoid rig; separate playerBody, hair, tunic, trousers, boots, backpack, backpackSymbol, leftHandGrip, rightHandGrip. Keep the backpack symbol on a controllable material slot. Hands must hold the finance package and market objects.\nSCALE/PIVOT/COLLISION: About 1.7 m. Ground pivot between feet. Leave room for a capsule collider and a carried package.\nANIMATIONS, EXACT: Idle, Walk, Run, WalkBack, StrafeLeft, StrafeRight, Interact, PickUp, CarryIdle, CarryWalk, Give, Receive, Sit, LookAround, FearReaction, Breathe, FlyIdle, FlyForward, Land. Loop idle and travel clips. Keep travel in place.\nBABYLON STATES: Base motion, carrying, giving, receiving, fear reaction, rest, and flight. Game attaches the package at a grip and controls backpack glow.\nOPTIMIZE: Keep face and silhouette. Put fine cloth detail in texture. Share materials where controls allow.\nDO NOT: Add weapons, armor, huge fantasy gear, a fixed package, a floor, or baked glow.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/characters",
+      "animated": true,
+      "requiredAnimations": [
+        "Idle",
+        "Walk",
+        "Run",
+        "WalkBack",
+        "StrafeLeft",
+        "StrafeRight",
+        "Interact",
+        "PickUp",
+        "CarryIdle",
+        "CarryWalk",
+        "Give",
+        "Receive",
+        "Sit",
+        "LookAround",
+        "FearReaction",
+        "Breathe",
+        "FlyIdle",
+        "FlyForward",
+        "Land"
+      ],
+      "requiredNodes": [
+        "playerBody",
+        "hair",
+        "tunic",
+        "trousers",
+        "boots",
+        "backpack",
+        "backpackSymbol",
+        "leftHandGrip",
+        "rightHandGrip"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Existing files are temporary and unapproved."
+      ]
+    },
+    {
+      "id": "02",
+      "filename": "central_tree_outer.glb",
+      "category": "tree",
+      "priority": "P0",
+      "prompt": "OUTPUT: /assets/core/central_tree_outer.glb\nPURPOSE: Iconic city tree and world-state display.\nVISUAL: Ancient broad canopy, strong trunk and main branches, soft leaf masses. Neutral export is healthy. Make the shape clear from across the square.\nGEOMETRY/NODES, EXACT: trunk, branches_left, branches_right, branches_center, leaves_left_01, leaves_left_02, leaves_right_01, leaves_right_02, leaves_center, small_vines, root_surface_left, root_surface_right, root_surface_center. Keep every group independent. Mark the Fear side, Attachment side, and center in metadata.\nSCALE/PIVOT/COLLISION: About 10\u201314 m high. Pivot at trunk base. Use a simple game collider around trunk and large roots.\nANIMATIONS: None required. Game may move leaves lightly.\nBABYLON STATES: Neutral healthy tree; Fear side loses leaves and darkens; Attachment side gains runtime growth; balanced center uses the same geometry.\nOPTIMIZE: Use leaf clusters or careful cards. Check mobile alpha overdraw.\nDO NOT: Merge foliage, create five tree GLBs, include plaza geometry, or bake state effects.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_39.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/core",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "trunk",
+        "branches_left",
+        "branches_right",
+        "branches_center",
+        "leaves_left_01",
+        "leaves_left_02",
+        "leaves_right_01",
+        "leaves_right_02",
+        "leaves_center",
+        "small_vines",
+        "root_surface_left",
+        "root_surface_right",
+        "root_surface_center"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "03",
+      "filename": "central_tree_inner.glb",
+      "category": "tree",
+      "priority": "P0",
+      "prompt": "OUTPUT: /assets/core/central_tree_inner.glb\nPURPOSE: Large symbolic Central Tree with individual roots for story light.\nVISUAL: Same main trunk and branch identity as outer tree, at much larger scale. Huge exposed roots reach out and down toward Source Water. Leave space to walk and fly around them.\nGEOMETRY/NODES, EXACT: trunk, root_center, root_fear_main, root_fear_secondary, root_attachment_main, root_attachment_secondary, root_package, root_background_01, root_background_02, branches_upper, leaf_clusters. Keep each root separate and give each a distinct emissive mask or slot.\nSCALE/PIVOT/COLLISION: About 25\u201340 m overall as a provisional target. Pivot at trunk base. Make selected root tops suitable for simple walking colliders.\nANIMATIONS: None required. Game animates root materials.\nBABYLON STATES: Dark, active Fear root, active Attachment root, active package root, flowing center, and balanced state. Game addresses each root by name.\nOPTIMIZE: Put detail near reachable roots. Simplify high or distant branches.\nDO NOT: Add Source Water, crystals, rocks, particles, an environment shell, or baked light flow.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_39.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/core",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "trunk",
+        "root_center",
+        "root_fear_main",
+        "root_fear_secondary",
+        "root_attachment_main",
+        "root_attachment_secondary",
+        "root_package",
+        "root_background_01",
+        "root_background_02",
+        "branches_upper",
+        "leaf_clusters"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "04",
+      "filename": "finance_package.glb",
+      "category": "object",
+      "priority": "P0",
+      "prompt": "OUTPUT: /assets/core/finance_package.glb\nPURPOSE: Central object to hold, carry, give, and receive.\nVISUAL: Small rectangular travel parcel or wooden package, simple straps, subtle circular front symbol. Ordinary at first, slightly mysterious.\nGEOMETRY/NODES, EXACT: packageBody, straps, symbol, lockPoint, chainAnchor. Add packageGrip if possible. Keep symbol on a controllable emissive slot. Place anchors where hand and chain can attach cleanly.\nSCALE/PIVOT/COLLISION: About 0.35\u20130.5 m wide. Center pivot. Game uses a box collider.\nANIMATIONS: None. Character clips move it.\nBABYLON STATES: neutral, reacting, glowing, transformed via material and emissive values.\nOPTIMIZE: Broad readable straps; texture for small marks.\nDO NOT: Add a chain, particle effect, floor, fixed hand, or baked glow.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/core",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "packageBody",
+        "straps",
+        "symbol",
+        "lockPoint",
+        "chainAnchor"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Existing files are temporary and unapproved."
+      ]
+    },
+    {
+      "id": "05",
+      "filename": "attachment_beetle.glb",
+      "category": "creature",
+      "priority": "P0",
+      "prompt": "OUTPUT: /assets/creatures/attachment_beetle.glb\nPURPOSE: Attachment creature that consumes loose objects and changes into a calm winged form.\nVISUAL: Rounded dark blue-black shell, warm amber lines under segments, expressive silhouette. Initial form is small and calm. Attachment form appears larger and frantic. Later the shell opens and translucent luminous wings appear. Keep it approachable.\nGEOMETRY/NODES, EXACT: body, head, leftWingShell, rightWingShell, leftInnerWing, rightInnerWing, legs, antennae, glowingCore. Give moving parts useful pivots. Inner wings may start hidden.\nSCALE/PIVOT/COLLISION: Initial length about 0.9\u20131.2 m; game can scale it. Body-center pivot near ground. Simple game capsule or box collider.\nANIMATIONS, EXACT: Idle, Crawl, Consume, ConsumeFast, Agitated, Stop, OpenShell, OpenWings, Transform, CalmIdle, Fly. Loop suitable idle, crawl, and fly clips.\nBABYLON STATES: Small calm, larger frantic, shell open, wings visible, core glowing, calm flight. Game spawns collected props.\nOPTIMIZE: Use broad segments, few materials, simple wing shape.\nDO NOT: Fix food or attracted objects to the mesh. Do not make a horror creature or bake aura particles.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/creatures",
+      "animated": true,
+      "requiredAnimations": [
+        "Idle",
+        "Crawl",
+        "Consume",
+        "ConsumeFast",
+        "Agitated",
+        "Stop",
+        "OpenShell",
+        "OpenWings",
+        "Transform",
+        "CalmIdle",
+        "Fly"
+      ],
+      "requiredNodes": [
+        "body",
+        "head",
+        "leftWingShell",
+        "rightWingShell",
+        "leftInnerWing",
+        "rightInnerWing",
+        "legs",
+        "antennae",
+        "glowingCore"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "06",
+      "filename": "merchant.glb",
+      "category": "character",
+      "priority": "P0",
+      "prompt": "OUTPUT: /assets/characters/merchant.glb\nPURPOSE: Food seller for the Give/Receive micro-story.\nVISUAL: Friendly middle-aged merchant, warm face, short beard, practical clothes, apron, head covering. Strong shape without cartoon exaggeration.\nGEOMETRY/NODES: Humanoid rig; merchantBody, apron, headCover, leftHandGrip, rightHandGrip. Hands must lift a loose item, accept help, offer a gift, and pass goods. Goods remain separate game props.\nSCALE/PIVOT/COLLISION: Human scale; pivot between feet; simple game capsule.\nANIMATIONS, EXACT: Idle, TalkGesture, Work, Lift, Carry, StruggleWithObject, ReceiveHelp, OfferGift, Give, Thank, HelpOtherNPC, Walk. Align giving and receiving poses with player grips.\nBABYLON STATES: Work, struggle, receive help, offer gift, thank, help another citizen. Game attaches objects and times actions.\nOPTIMIZE: Put face and cloth detail in textures. Share city cloth palette.\nDO NOT: Attach permanent fruit, a gift, the stall, or dialogue text.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/characters",
+      "animated": true,
+      "requiredAnimations": [
+        "Idle",
+        "TalkGesture",
+        "Work",
+        "Lift",
+        "Carry",
+        "StruggleWithObject",
+        "ReceiveHelp",
+        "OfferGift",
+        "Give",
+        "Thank",
+        "HelpOtherNPC",
+        "Walk"
+      ],
+      "requiredNodes": [
+        "merchantBody",
+        "apron",
+        "headCover",
+        "leftHandGrip",
+        "rightHandGrip"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Existing files are temporary and unapproved."
+      ]
+    },
+    {
+      "id": "07",
+      "filename": "market_stall_A.glb",
+      "category": "market",
+      "priority": "P0",
+      "prompt": "OUTPUT: /assets/market/market_stall_A.glb\nPURPOSE: Merchant location and first reusable food stall.\nVISUAL: Simple wood frame, colorful fabric canopy, clear food display area, warm fantasy palette.\nGEOMETRY/NODES, EXACT: frame, canopy, counter, shelves. Keep canopy material easy to recolor. Leave room for runtime goods on counter and ground.\nSCALE/PIVOT/COLLISION: About 2.5\u20133.5 m wide; pivot at ground center. Counter is reachable by player and merchant. Game uses simple box colliders.\nANIMATIONS: None. Optional fabric motion is runtime work.\nBABYLON STATES: Recolored or restocked using materials and separate props.\nOPTIMIZE: Broad wood pieces and small cloth texture.\nDO NOT: Attach products, merchant, fallen items, baked text, or scene ground.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/market",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "frame",
+        "canopy",
+        "counter",
+        "shelves"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Existing files are temporary and unapproved."
+      ]
+    },
+    {
+      "id": "08",
+      "filename": "inner_platform_kit.glb",
+      "category": "inner-world-kit",
+      "priority": "P0",
+      "prompt": "OUTPUT: /assets/inner_world/inner_platform_kit.glb\nPURPOSE: Reusable walkable floating platforms.\nVISUAL: Soft irregular stone shapes with some moss on top. Undersides taper into floating rock.\nGEOMETRY/NODES, EXACT: platform_small, platform_medium, platform_large, platform_long, platform_round, platform_bridge. Each piece is independent with a pivot at its walkable top center. Share stone and moss materials.\nSCALE/PIVOT/COLLISION: Useful player-scale sizes, such as 2 m, 4 m, and 7 m widths. Keep tops clear for simple game colliders. Record top height from each pivot.\nANIMATIONS: None. Game may move whole platforms.\nBABYLON STATES: Placed, visible, and optionally moving at runtime.\nOPTIMIZE: Simple tops and low-detail undersides. Reuse pieces.\nDO NOT: Add crystals, waterfalls, water, particles, or a full level layout.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_44.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/inner_world",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "platform_small",
+        "platform_medium",
+        "platform_large",
+        "platform_long",
+        "platform_round",
+        "platform_bridge"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "09",
+      "filename": "citizen_female.glb",
+      "category": "character",
+      "priority": "P2",
+      "prompt": "OUTPUT: /assets/characters/citizen_female.glb\nPURPOSE: Reusable female-base city resident for several non-player characters (NPCs).\nVISUAL: Friendly neutral citizen, simple timeless clothes, no ornate gear. Support clothing and material color variants.\nGEOMETRY/NODES: Humanoid rig; citizenBody, clothingPrimary, clothingSecondary, hair, leftHandGrip, rightHandGrip. Recolor clothes without recoloring skin or hair.\nSCALE/PIVOT/COLLISION: Human scale, ground pivot between feet, simple game capsule.\nANIMATIONS, EXACT: Idle, Walk, Talk, Sit, Receive, Give, Carry, LookAround. Keep walk in place. Hands hold a small market prop.\nBABYLON STATES: Color variants, idle, talk, trade, carry, sit.\nOPTIMIZE: One reusable rig and small material set. Put trim in textures.\nDO NOT: Add large unique accessories, fixed goods, dialogue text, or background.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/characters",
+      "animated": true,
+      "requiredAnimations": [
+        "Idle",
+        "Walk",
+        "Talk",
+        "Sit",
+        "Receive",
+        "Give",
+        "Carry",
+        "LookAround"
+      ],
+      "requiredNodes": [
+        "citizenBody",
+        "clothingPrimary",
+        "clothingSecondary",
+        "hair",
+        "leftHandGrip",
+        "rightHandGrip"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "10",
+      "filename": "citizen_male.glb",
+      "category": "character",
+      "priority": "P2",
+      "prompt": "OUTPUT: /assets/characters/citizen_male.glb\nPURPOSE: Reusable male-base city resident for several non-player characters (NPCs).\nVISUAL: Friendly neutral citizen with a distinct base shape and simple timeless clothes. Support easy material and outfit color variants.\nGEOMETRY/NODES: Humanoid rig; citizenBody, clothingPrimary, clothingSecondary, hair, leftHandGrip, rightHandGrip. Recolor clothes independently of skin and hair.\nSCALE/PIVOT/COLLISION: Human scale, ground pivot between feet, simple game capsule.\nANIMATIONS, EXACT: Idle, Walk, Talk, Sit, Receive, Give, Carry, LookAround. Keep travel in place and loops clean. Hands hold a small market prop.\nBABYLON STATES: Color variants, idle, talk, trade, carry, sit.\nOPTIMIZE: Share rig conventions and, if possible, clip timing with citizen_female.\nDO NOT: Add ornate gear, fixed goods, dialogue text, or background.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/characters",
+      "animated": true,
+      "requiredAnimations": [
+        "Idle",
+        "Walk",
+        "Talk",
+        "Sit",
+        "Receive",
+        "Give",
+        "Carry",
+        "LookAround"
+      ],
+      "requiredNodes": [
+        "citizenBody",
+        "clothingPrimary",
+        "clothingSecondary",
+        "hair",
+        "leftHandGrip",
+        "rightHandGrip"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "11",
+      "filename": "fear_child.glb",
+      "category": "character",
+      "priority": "P1",
+      "prompt": "OUTPUT: /assets/characters/fear_child.glb\nPURPOSE: Symbolic child whose pose changes from fear to hope.\nVISUAL: Small child, off-white clothes, bare feet, soft face, short dark hair. Initial body language is closed and small. Later it is upright, open, calm, and hopeful.\nGEOMETRY/NODES: Child humanoid rig; childBody, clothing, hair, leftHandGrip, rightHandGrip. Materials can warm or brighten without a new mesh.\nSCALE/PIVOT/COLLISION: Child scale beside player. Pivot between feet in standing pose. Simple game collider works when seated.\nANIMATIONS, EXACT: CurledUp, CryIdle, LookUp, Sit, ReachHand, StandUp, Walk, HopefulIdle. Loop CryIdle and HopefulIdle. Make StandUp flow from a closed pose.\nBABYLON STATES: Closed fear, cautious response, open hope. Game controls light and materials.\nOPTIMIZE: Preserve face and hands; simple clothes.\nDO NOT: Make the child supernatural, horrific, or a separate transformed mesh.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/characters",
+      "animated": true,
+      "requiredAnimations": [
+        "CurledUp",
+        "CryIdle",
+        "LookUp",
+        "Sit",
+        "ReachHand",
+        "StandUp",
+        "Walk",
+        "HopefulIdle"
+      ],
+      "requiredNodes": [
+        "childBody",
+        "clothing",
+        "hair",
+        "leftHandGrip",
+        "rightHandGrip"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "12",
+      "filename": "dark_district_npc.glb",
+      "category": "character",
+      "priority": "P1",
+      "prompt": "OUTPUT: /assets/characters/dark_district_npc.glb\nPURPOSE: Human resident whose actions the player first misreads.\nVISUAL: Long simple dark clothes with hood or layered cloth. Face partly visible. Strong shape. Scene light and posture may seem tense, but later action must read as protective and human.\nGEOMETRY/NODES: Humanoid rig; npcBody, hood, outerCloth, face, leftHandGrip, rightHandGrip. Keep enough face visible for a calm scene.\nSCALE/PIVOT/COLLISION: Human scale, ground pivot, simple game capsule.\nANIMATIONS, EXACT: Idle, Walk, Approach, DefensiveGesture, PushGesture, FearReaction, ProtectSomeone, Relax, Talk. PushGesture must read clearly without violent contact.\nBABYLON STATES: Tense approach, defense, protection, relaxed talk. Game supplies scene context.\nOPTIMIZE: Use cloth shape and color instead of dense folds.\nDO NOT: Make a monster, an evil caricature, or a fixed hostile face.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/characters",
+      "animated": true,
+      "requiredAnimations": [
+        "Idle",
+        "Walk",
+        "Approach",
+        "DefensiveGesture",
+        "PushGesture",
+        "FearReaction",
+        "ProtectSomeone",
+        "Relax",
+        "Talk"
+      ],
+      "requiredNodes": [
+        "npcBody",
+        "hood",
+        "outerCloth",
+        "face",
+        "leftHandGrip",
+        "rightHandGrip"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "13",
+      "filename": "exchange_guide.glb",
+      "category": "character",
+      "priority": "P1",
+      "prompt": "OUTPUT: /assets/characters/exchange_guide.glb\nPURPOSE: Older guide who receives and returns the finance package.\nVISUAL: Timeless simple robes, warm restrained face, neutral colors, subtle gold detail. Wise without a wizard look.\nGEOMETRY/NODES: Humanoid rig; guideBody, robe, goldDetails, leftHandGrip, rightHandGrip. Grips must work with finance_package.\nSCALE/PIVOT/COLLISION: Human scale, ground pivot, simple game capsule.\nANIMATIONS, EXACT: Idle, Welcome, Point, ReceivePackage, ReturnPackage, OpenHands, Walk. Match receipt and return poses to player Give/Receive.\nBABYLON STATES: Welcome, receive, return, open hands, walk. Game attaches package to the correct hand.\nOPTIMIZE: Put fine gold marks in a small material area.\nDO NOT: Add a staff, fixed package, spell effect, or scene floor.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/characters",
+      "animated": true,
+      "requiredAnimations": [
+        "Idle",
+        "Welcome",
+        "Point",
+        "ReceivePackage",
+        "ReturnPackage",
+        "OpenHands",
+        "Walk"
+      ],
+      "requiredNodes": [
+        "guideBody",
+        "robe",
+        "goldDetails",
+        "leftHandGrip",
+        "rightHandGrip"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "14",
+      "filename": "exchange_house.glb",
+      "category": "building",
+      "priority": "P1",
+      "prompt": "OUTPUT: /assets/city/exchange_house.glb\nPURPOSE: Distant city landmark with a visible delivery hall.\nVISUAL: Two complementary sides meet at one central building. One is a little warm and bright; the other is a little cool and dark. Large central entrance. A small hall is visible through it. Keep the whole building harmonious.\nGEOMETRY/NODES, EXACT: foundation, leftWing, rightWing, centralHall, entranceArch, doors, roof, windows, decorativeDetails. Keep doors separate. Make only the visible hall depth.\nSCALE/PIVOT/COLLISION: Doorway fits player and package. Pivot at ground center. Game uses simple wall and threshold colliders.\nANIMATIONS: None required. Game may rotate doors.\nBABYLON STATES: Open or shut doors; side color or light levels may change at runtime.\nOPTIMIZE: Strong distant outline. Skip tiny ornaments and unseen rooms.\nDO NOT: Add a giant literal Yin-Yang sign, full city square, baked light, or characters.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/city",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "foundation",
+        "leftWing",
+        "rightWing",
+        "centralHall",
+        "entranceArch",
+        "doors",
+        "roof",
+        "windows",
+        "decorativeDetails"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "15",
+      "filename": "market_stall_B.glb",
+      "category": "market",
+      "priority": "P2",
+      "prompt": "OUTPUT: /assets/market/market_stall_B.glb\nPURPOSE: Second market shape for reuse.\nVISUAL: Slightly larger than stall A. Asymmetric canopy, side table, hanging fabric. Match its wood and cloth language.\nGEOMETRY/NODES: frame, canopy, counter, shelves, sideTable, hangingFabric. Keep cloth separate for recolor. Leave space for loose goods.\nSCALE/PIVOT/COLLISION: About 3\u20134 m wide. Ground-center pivot. Game uses simple colliders. Keep trade path open.\nANIMATIONS: None required. Game may move fabric lightly.\nBABYLON STATES: Recolored and stocked through materials and separate props.\nOPTIMIZE: Reuse stall A material palette and textures where possible.\nDO NOT: Attach goods, a merchant, or a ground plane.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/market",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "frame",
+        "canopy",
+        "counter",
+        "shelves",
+        "sideTable",
+        "hangingFabric"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "16",
+      "filename": "market_props.glb",
+      "category": "market-kit",
+      "priority": "P1",
+      "prompt": "OUTPUT: /assets/market/market_props.glb\nPURPOSE: Loose goods for display, help, giving, receiving, and beetle attraction.\nVISUAL: Warm simple fantasy market goods with clear rounded shapes.\nGEOMETRY/NODES, EXACT: wooden_crate, fruit_crate, small_basket, large_basket, apple, orange, bread, ceramic_jug, cloth_roll, small_table, wooden_barrel, wooden_box, fallen_sign. Every item is a separate reusable node with its own render mesh and useful pivot. Add grip nodes to large items if useful.\nSCALE/PIVOT/COLLISION: Hand and stall scale. Pivot at each item's center or base; record which. Game makes simple boxes or spheres. fallen_sign must rotate and lie cleanly.\nANIMATIONS: None. Game moves each prop.\nBABYLON STATES: Displayed, fallen, carried, given, received, drawn toward beetle. Use instancing for repeats.\nOPTIMIZE: Small goods get very low triangle counts and shared materials.\nDO NOT: Merge all goods into one fixed stall display or attach them to the beetle.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/market",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "wooden_crate",
+        "fruit_crate",
+        "small_basket",
+        "large_basket",
+        "apple",
+        "orange",
+        "bread",
+        "ceramic_jug",
+        "cloth_roll",
+        "small_table",
+        "wooden_barrel",
+        "wooden_box",
+        "fallen_sign"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "17",
+      "filename": "city_building_kit.glb",
+      "category": "city-kit",
+      "priority": "P1",
+      "prompt": "OUTPUT: /assets/city/city_building_kit.glb\nPURPOSE: Modular pieces for many city blocks.\nVISUAL: Warm plaster, stone bases, simple tiled roofs, painterly fantasy look.\nGEOMETRY/NODES, EXACT: small_house, medium_house, corner_house, tower, wall_section, window_module, door_module, roof_small, roof_medium, balcony, archway, stairs. Each is independently placeable with its own base or snap pivot. Share a small plaster, stone, wood, and roof material set.\nSCALE/PIVOT/COLLISION: Player-scale doors and stairs. Ground pivot on complete houses. Edge or base pivot on modules. Game builds simple wall and stair colliders.\nANIMATIONS: None.\nBABYLON STATES: Reused, recolored, placed, and hidden by distance.\nOPTIMIZE: Repeat modules. Give doorways visible depth but no full interior.\nDO NOT: Bake a whole city, furnish interiors, or model tiny roof tiles.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/city",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "small_house",
+        "medium_house",
+        "corner_house",
+        "tower",
+        "wall_section",
+        "window_module",
+        "door_module",
+        "roof_small",
+        "roof_medium",
+        "balcony",
+        "archway",
+        "stairs"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "18",
+      "filename": "city_infrastructure.glb",
+      "category": "city-kit",
+      "priority": "P1",
+      "prompt": "OUTPUT: /assets/city/city_infrastructure.glb\nPURPOSE: Reusable public structures and route pieces.\nVISUAL: Match city_building_kit plaster, stone, wood, metal, and banner palette.\nGEOMETRY/NODES, EXACT: city_gate, wall_straight, wall_corner, small_bridge, stone_stairs, stone_arch, street_lamp, bench, wooden_fence, banner_pole, fountain_base. Each is separately placeable. Use base or snap pivots. fountain_base is structure only.\nSCALE/PIVOT/COLLISION: Gate and bridge pass a walking player. Stairs allow a simple ramp collider. Record module widths for connection.\nANIMATIONS: None.\nBABYLON STATES: Placement, lamp light, banner color, and fountain water are runtime work.\nOPTIMIZE: Shared city materials; walls and fences suit instancing.\nDO NOT: Add fountain water, full city layout, particles, or baked night light.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/city",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "city_gate",
+        "wall_straight",
+        "wall_corner",
+        "small_bridge",
+        "stone_stairs",
+        "stone_arch",
+        "street_lamp",
+        "bench",
+        "wooden_fence",
+        "banner_pole",
+        "fountain_base"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "19",
+      "filename": "inner_rock_kit.glb",
+      "category": "inner-world-kit",
+      "priority": "P2",
+      "prompt": "OUTPUT: /assets/inner_world/inner_rock_kit.glb\nPURPOSE: Repeated cavern rocks, cliff, and arch.\nVISUAL: Broad irregular painterly stone facets. Match platform stone but vary silhouette.\nGEOMETRY/NODES, EXACT: rock_small_A, rock_small_B, rock_medium_A, rock_medium_B, rock_large, rock_arch, stalagmite, cliff_wall. Each is separate with a base pivot and shared stone materials.\nSCALE/PIVOT/COLLISION: Several player-scale sizes. Keep arch walk-through open. Game adds simple nearby colliders.\nANIMATIONS: None.\nBABYLON STATES: Placed, rotated, scaled, and hidden by distance.\nOPTIMIZE: Use instancing and simple distant faces.\nDO NOT: Add crystals, Source Water, platforms, or particles.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_44.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/inner_world",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "rock_small_A",
+        "rock_small_B",
+        "rock_medium_A",
+        "rock_medium_B",
+        "rock_large",
+        "rock_arch",
+        "stalagmite",
+        "cliff_wall"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "20",
+      "filename": "inner_crystal_kit.glb",
+      "category": "inner-world-kit",
+      "priority": "P2",
+      "prompt": "OUTPUT: /assets/inner_world/inner_crystal_kit.glb\nPURPOSE: Repeated crystals with game-controlled light response.\nVISUAL: Simple faceted mystical crystals that read on a phone screen.\nGEOMETRY/NODES, EXACT: crystal_small, crystal_medium, crystal_cluster, crystal_tall. Each is separately placeable. Expose base color, emissive color, and emissive intensity through named material slots; report actual names.\nSCALE/PIVOT/COLLISION: From hand height to tall landmarks. Base pivot on each. Game collides only with large pieces.\nANIMATIONS: None; game animates material values.\nBABYLON STATES: Dim, active, calm light and color.\nOPTIMIZE: Few facets and materials; instance repeats.\nDO NOT: Bake glow into textures, add a light per crystal, or add particles.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_44.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/inner_world",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "crystal_small",
+        "crystal_medium",
+        "crystal_cluster",
+        "crystal_tall"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "21",
+      "filename": "vegetation_kit.glb",
+      "category": "world-kit",
+      "priority": "P2",
+      "prompt": "OUTPUT: /assets/world/vegetation_kit.glb\nPURPOSE: Cheap plants for repeated placement.\nVISUAL: Stylized grass, flowers, ferns, bushes, vines, and mushrooms in the warm painterly style.\nGEOMETRY/NODES, EXACT: grass_clump, flower_small, flower_cluster, fern, bush_small, bush_medium, vine_segment, mushroom_small, mushroom_cluster. Each is independent with a base pivot. Give vine_segment a clear repeat direction.\nSCALE/PIVOT/COLLISION: Player-scale vegetation. Small plants have no game collision. Large bushes can use simple blockers.\nANIMATIONS: None; game makes wind.\nBABYLON STATES: Wind, color, growth, and extra plants on the Attachment side.\nOPTIMIZE: Very low geometry. Use alpha cards only when overdraw stays small. Suit thin instancing.\nDO NOT: Build a fixed garden or bake wind and glow.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_44.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/world",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "grass_clump",
+        "flower_small",
+        "flower_cluster",
+        "fern",
+        "bush_small",
+        "bush_medium",
+        "vine_segment",
+        "mushroom_small",
+        "mushroom_cluster"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Runtime uses an explicit placeholder."
+      ]
+    },
+    {
+      "id": "22",
+      "filename": "package_chain.glb",
+      "category": "object",
+      "priority": "P1",
+      "prompt": "OUTPUT: /assets/core/package_chain.glb\nPURPOSE: Reusable links between package, player, and Inner World roots.\nVISUAL: Broad rounded stylized metal links that read at game distance. No heavy industrial look.\nGEOMETRY/NODES: One reusable chain_link. Optional short chain_preview. Add linkStart and linkEnd transforms so Babylon.js can repeat links on a curve and join finance_package.chainAnchor.\nSCALE/PIVOT/COLLISION: Pivot at chain link center. Align repeated length on +Z. Record link length in meters. Game uses one broad interaction zone rather than per-link collision.\nANIMATIONS: None; game places and moves the links.\nBABYLON STATES: Visible, taut, loose, released, joined to roots.\nOPTIMIZE: One low-detail link for instancing. Hide or omit preview during game use.\nDO NOT: Export a fixed 10 m chain, attach package, or include roots.",
+      "referenceImages": [
+        "ChatGPT Image 1 Oct 2026, 15_47_32.png"
+      ],
+      "allowTextOnly": false,
+      "outputFolder": "/assets/core",
+      "animated": false,
+      "requiredAnimations": [],
+      "requiredNodes": [
+        "chain_link",
+        "linkStart",
+        "linkEnd"
+      ],
+      "status": "pending",
+      "attempts": 0,
+      "providerJobId": null,
+      "finalPath": null,
+      "validationReport": null,
+      "notes": [
+        "No paid job started. Existing files are temporary and unapproved."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+import {describe,it,expect,vi} from 'vitest';
+import {mkdtemp,writeFile,rm} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {NullEngine} from '@babylonjs/core/Engines/nullEngine';
+import {Scene} from '@babylonjs/core/scene';
+import {AssetContainer} from '@babylonjs/core/assetContainer';
+import {TransformNode} from '@babylonjs/core/Meshes/transformNode';
+import {CreateBox} from '@babylonjs/core/Meshes/Builders/boxBuilder';
+import '@babylonjs/core/Meshes/instancedMesh';
+import {createAssetService} from '../src/assets/feature';
+import {registry} from '../src/assets/registry';
+const mocked=vi.hoisted(()=>({load:vi.fn()}));
+vi.mock('@babylonjs/core/Loading/sceneLoader',()=>({LoadAssetContainerAsync:mocked.load}));
+vi.mock('@babylonjs/loaders/glTF/2.0/glTFLoader',()=>({}));
+describe('Asset contract',()=>{
+  it('all assets have a fallback and player run maps to walk',()=>{expect(Object.values(registry).every(e=>e.placeholder)).toBe(true);expect(registry.Player.clips.run.fallback).toBe('walk');expect(registry.Player.clips.walk.authoredSpeed).toBe(1.3);});
+  it('creates all placeholders with no file fetch',async()=>{const engine=new NullEngine();const scene=new Scene(engine);const assets=createAssetService(true);for(const item of assets.status()){const v=await assets.create(item.id,scene);expect(v.root.metadata.status).toBe('placeholder');v.dispose();}const player=await assets.create('Player',scene);expect(player.socket('socket.handR')).not.toBeNull();scene.dispose();engine.dispose();});
+  it('normalizes before world placement and caches the source',async()=>{const engine=new NullEngine();const scene=new Scene(engine);const container=new AssetContainer(scene);const box=CreateBox('parcel',{size:2},scene);container.meshes.push(box);container.rootNodes.push(box);container.removeAllFromScene();mocked.load.mockReset().mockResolvedValue(container);const assets=createAssetService();const parent=new TransformNode('world-entity',scene);parent.position.set(26,0,4);const first=await assets.create('FinancePackage',scene,parent);const second=await assets.create('FinancePackage',scene,parent);expect(mocked.load).toHaveBeenCalledTimes(1);const b=first.root.getHierarchyBoundingVectors(true);expect((b.min.x+b.max.x)/2).toBeCloseTo(26);expect((b.min.z+b.max.z)/2).toBeCloseTo(4);expect(b.max.x-b.min.x).toBeCloseTo(.46);first.dispose();second.dispose();scene.dispose();engine.dispose();});
+  it('warns once and falls back after a file failure',async()=>{mocked.load.mockReset().mockRejectedValue(Error('Missing file'));const warning=vi.spyOn(console,'warn').mockImplementation(()=>{});const engine=new NullEngine();const scene=new Scene(engine);try{const assets=createAssetService();const first=await assets.create('FinancePackage',scene);const second=await assets.create('FinancePackage',scene);expect(first.root.metadata.status).toBe('placeholder');expect(second.root.metadata.status).toBe('placeholder');expect(warning).toHaveBeenCalledTimes(1);expect(mocked.load).toHaveBeenCalledTimes(1);}finally{warning.mockRestore();scene.dispose();engine.dispose();}});
+  it('rejects truncated GLB files',async()=>{const dir=await mkdtemp(resolve('.asset-check-'));try{const file=resolve(dir,'bad.bin');await writeFile(file,Buffer.from('glTF'));const {readGlb}=await import('../tools/assets/glb.mjs');await expect(readGlb(file)).rejects.toThrow('Invalid GLB');}finally{await rm(dir,{recursive:true,force:true});}});
+});
