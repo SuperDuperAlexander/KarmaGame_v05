@@ -11,6 +11,7 @@ const frame={x:0,z:1,run:false,pressed:false,held:false,lookX:0,lookY:0,zoom:0};
 function setup() {
   const engine=new NullEngine();const scene=new Scene(engine);scene.collisionsEnabled=true;
   const ground=CreateBox('ground',{width:20,height:.2,depth:20},scene);ground.position.y=-.1;ground.checkCollisions=true;
+  ground.computeWorldMatrix(true);
   const root=new TransformNode('entity',scene);
   const motor=createCharacterMotor(scene,root,placeholder('Player',scene,root),Vector3.Zero(),-10);
   return {scene,engine,motor,ground};
@@ -18,11 +19,11 @@ function setup() {
 describe('movement and camera against physical blockers',()=>{
   it('walks and runs at the stated speeds on the collision ground',()=>{
     const {scene,engine,motor}=setup();
-    for(let i=0;i<20;i++)motor.update({...frame,z:0},0,.05);
-    for(let i=0;i<20;i++)motor.update(frame,0,.05);
+    for(let i=0;i<20;i++){motor.collider.computeWorldMatrix(true);motor.update({...frame,z:0},0,.05);}
+    for(let i=0;i<20;i++){motor.collider.computeWorldMatrix(true);motor.update(frame,0,.05);}
     expect(motor.position().z).toBeCloseTo(2.8,1);
     const before=motor.position().z;
-    for(let i=0;i<20;i++)motor.update({...frame,run:true},0,.05);
+    for(let i=0;i<20;i++){motor.collider.computeWorldMatrix(true);motor.update({...frame,run:true},0,.05);}
     expect(motor.position().z-before).toBeCloseTo(4.6,1);
     expect(Math.abs(motor.position().y)).toBeLessThan(.04);
     scene.dispose();engine.dispose();
@@ -30,10 +31,11 @@ describe('movement and camera against physical blockers',()=>{
   it('blocks a 0.3 metre ledge and restores a fall',()=>{
     const {scene,engine,motor,ground}=setup();
     const ledge=CreateBox('ledge',{width:4,height:.3,depth:.8},scene);ledge.position.set(0,.15,2);ledge.checkCollisions=true;
-    for(let i=0;i<50;i++)motor.update(frame,0,.05);
+    ledge.computeWorldMatrix(true);
+    for(let i=0;i<50;i++){motor.collider.computeWorldMatrix(true);motor.update(frame,0,.05);}
     expect(motor.position().z).toBeLessThan(1.65);
     ground.checkCollisions=false;ledge.checkCollisions=false;
-    for(let i=0;i<60;i++)motor.update({...frame,z:0},0,.05);
+    for(let i=0;i<60;i++){motor.collider.computeWorldMatrix(true);motor.update({...frame,z:0},0,.05);}
     expect(motor.position().y).toBeGreaterThan(-10);
     scene.dispose();engine.dispose();
   });
@@ -42,6 +44,14 @@ describe('movement and camera against physical blockers',()=>{
     const wall=CreateBox('camera-blocker',{width:8,height:8,depth:.3},scene);wall.position.set(0,2,-3);wall.metadata={cameraBlocker:true};wall.computeWorldMatrix(true);
     camera.update({...frame,z:0},Vector3.Zero());expect(camera.camera.position.z).toBeGreaterThan(-3);
     wall.setEnabled(false);camera.update({...frame,z:0},Vector3.Zero());expect(camera.camera.position.z).toBeLessThan(-4);
+    scene.dispose();engine.dispose();
+  });
+  it('walks up a simple ramp',()=>{
+    const {scene,engine,motor}=setup();
+    const ramp=CreateBox('ramp',{width:4,height:.2,depth:4},scene);ramp.position.set(0,.4,4);ramp.rotation.x=-.2;ramp.checkCollisions=true;ramp.computeWorldMatrix(true);
+    for(let i=0;i<37;i++){motor.collider.computeWorldMatrix(true);motor.update(frame,0,.05);}
+    expect(motor.position().z).toBeGreaterThan(4.7);
+    expect(motor.position().y).toBeGreaterThan(.45);
     scene.dispose();engine.dispose();
   });
 });

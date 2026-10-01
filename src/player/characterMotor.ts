@@ -3,6 +3,7 @@ import '@babylonjs/core/Collisions/collisionCoordinator';
 import {CreateCapsule} from '@babylonjs/core/Meshes/Builders/capsuleBuilder';
 import {TransformNode} from '@babylonjs/core/Meshes/transformNode';
 import {Vector3, Quaternion} from '@babylonjs/core/Maths/math.vector';
+import {Ray} from '@babylonjs/core/Culling/ray';
 import type {Scene} from '@babylonjs/core/scene';
 import type {Visual} from '../contracts/visual';
 import type {InputFrame} from '../contracts/input';
@@ -26,9 +27,21 @@ export function createCharacterMotor(scene:Scene,root:TransformNode,visual:Visua
       const amount=Math.min(1,direction.length());
       if(amount>0) direction.normalize();
       const speed=(frame.run?4.6:2.8)*amount;
+      const horizontal=direction.scale(speed*dt);
+      if(amount>.01) {
+        // A low side probe stops the rounded capsule from climbing a step.
+        const probe=new Ray(root.position.add(new Vector3(0,.28,0)),direction,.34+speed*dt);
+        const hit=scene.pickWithRay(probe,mesh=>mesh!==body&&mesh.isEnabled()&&mesh.checkCollisions);
+        const normal=hit?.getNormal(true);
+        if(hit?.hit&&normal&&Math.abs(normal.y)<.35) {
+          normal.y=0;normal.normalize();const into=Vector3.Dot(horizontal,normal);
+          if(into<0)horizontal.subtractInPlace(normal.scale(into));
+        }
+      }
       gravity=Math.max(-20,gravity-9.81*dt);
       const before=body.position.clone();
-      body.moveWithCollisions(direction.scale(speed*dt).add(new Vector3(0,gravity*dt,0)));
+      body.computeWorldMatrix(true);
+      body.moveWithCollisions(horizontal.add(new Vector3(0,gravity*dt,0)));
       const grounded=Math.abs(body.position.y-before.y)<.002 && gravity<0;
       if(grounded) gravity=0;
       root.position.copyFrom(body.position);root.position.y-=.825;

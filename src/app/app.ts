@@ -14,12 +14,13 @@ import {createInteraction} from '../interaction/interaction';
 import {createTransition} from '../transition/transition';
 import {createDebug} from '../debug/debug';
 import {strings} from '../content/strings.en';
+import {setPresentationQuality,type PresentationQuality} from '../presentation/quality';
 import type {Effect,SignalType} from '../contracts/state';
 
 export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
   const params=new URLSearchParams(location.search);
   const engine=new Engine(canvas,true,{stencil:false,preserveDrawingBuffer:false,adaptToDeviceRatio:false});
-  engine.setHardwareScalingLevel(Math.max(1,devicePixelRatio/1.5));
+  engine.setHardwareScalingLevel(1);
   const store=createWorldStore();const save=createSaveService(store);
   const loaded=save.load();if(loaded)store.update(draft=>Object.assign(draft,loaded));
   const touchRoot=document.createElement('div');document.body.append(touchRoot);
@@ -29,6 +30,8 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
   const debug=createDebug(engine,params.has('debug'));
   let pauseRelease:(()=>void)|undefined;let reflectionRelease:(()=>void)|undefined;
   let frameReady=false;let failed=false;let busyEffects=0;
+  let quality:PresentationQuality=params.has('safe')?'low':'medium';
+  let storageWarning=false;
   let queue=Promise.resolve();
   const wavesShown:string[]=[];
   function positionToStore() {
@@ -40,6 +43,7 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
     positionToStore();save.request();
     const deadline=performance.now()+1500;
     while(!save.flush() && performance.now()<deadline) await new Promise(resolve=>setTimeout(resolve,60));
+    if(!save.flush()&&!storageWarning){storageWarning=true;ui.hint(strings.storageNotice);}
   }
   function closeReflection() {ui.closeReflection();reflectionRelease?.();reflectionRelease=undefined;}
   const ui=createUiService(uiRoot,{
@@ -47,7 +51,7 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
     skipReflection() {skipReflection(store);closeReflection();rules.dispatch({type:'reflection-done'});ui.hint(strings.skippedHelp);},
     deleteReflections() {deleteReflections(store);try{localStorage.removeItem(RECOVERY_KEY);}catch{/* The game also works without storage. */}save.request();},
     newGame() {frameReady=false;store.reset();save.clear();location.reload();},
-    pause(paused) {if(paused&&!pauseRelease)pauseRelease=input.lock('pause');if(!paused){pauseRelease?.();pauseRelease=undefined;}},
+    pause(paused) {if(paused&&!pauseRelease)pauseRelease=input.lock('pause');if(!paused){pauseRelease?.();pauseRelease=undefined;}if(frameReady)manager.current.world.scene.animationsEnabled=!paused;},
   },input);
   ui.loading(true,strings.loading);const bootRelease=input.lock('boot');
   const manager=await createSceneManager(engine,assets,createWorldFactory(),store,scene=>{
@@ -57,7 +61,7 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
   const interaction=createInteraction(ui,signal=>dispatch(signal));
   const transition=createTransition({
     lock:()=>input.lock('transition'),veil:on=>ui.loading(on,strings.loading),save:flushSave,
-    async prepare(id) {frameReady=false;await manager.activate(id);},
+    async prepare(id) {frameReady=false;await manager.activate(id);setPresentationQuality(manager.current.world.scene,quality);},
     switch(id) {store.update(state=>{state.world=id;});interaction.reset();ui.world(id==='outer'?strings.outer:strings.inner);},
     activated(id) {frameReady=true;save.request();if(id==='inner')dispatch('inner-active');ui.hint(id==='inner'?strings.innerHelp:store.get().facts.includes('ATTACHMENT_TRIGGERED')?strings.nextInner:strings.nextMarket);},
     reset:()=>interaction.reset()
@@ -80,6 +84,13 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
   const rules=createRuleEngine(store,sliceRules,onEffect);
   function dispatch(type:SignalType) {rules.dispatch({type});}
   await manager.activate(store.get().world);frameReady=true;
+  setPresentationQuality(manager.current.world.scene,quality);
+  const qualityControl=document.createElement('select');qualityControl.setAttribute('aria-label',strings.quality);
+  qualityControl.style.cssText='pointer-events:auto;min-height:48px;max-width:110px;color:#fff7e8;background:#182727b8;border:1px solid #fff5d650;border-radius:10px;padding:8px;font:inherit';
+  for(const [value,label] of [['low',strings.simple],['medium',strings.full]]) {const option=document.createElement('option');option.value=value;option.textContent=label;qualityControl.append(option);}
+  qualityControl.value=quality;
+  qualityControl.addEventListener('change',()=>{quality=qualityControl.value as PresentationQuality;engine.setHardwareScalingLevel(quality==='low'?1.3:1);for(const entry of manager.entries.values())setPresentationQuality(entry.world.scene,quality);});
+  uiRoot.querySelector('.lw-top')?.insertBefore(qualityControl,uiRoot.querySelector('.lw-top button'));
   if(store.get().world==='inner')dispatch('inner-active');
   ui.world(store.get().world==='outer'?strings.outer:strings.inner);
   ui.hint(store.get().facts.includes('ATTACHMENT_SEEN')?strings.end:store.get().facts.includes('PACKAGE_RECEIVED')?strings.carrying:strings.welcome);
@@ -121,7 +132,12 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
   }
   if(params.has('viewer')) {
     const panel=document.createElement('div');panel.id='asset-viewer';panel.style.cssText='position:fixed;inset:90px 16px auto;max-height:50vh;overflow:auto;background:#142522ee;color:#fff;padding:16px;z-index:5;font:12px monospace';
-    panel.textContent=assets.status().map(asset=>`${asset.id}: ${asset.status} ${asset.file??'code placeholder'}`).join('\n');panel.style.whiteSpace='pre-wrap';document.body.append(panel);
+    panel.textContent=assets.status().map(asset=>{
+      const nodes=[...manager.entries.values()].flatMap(entry=>entry.world.scene.transformNodes).filter(node=>node.metadata?.assetId===asset.id);
+      const missingNodes=[...new Set(nodes.flatMap(node=>node.metadata?.missingNodes??[]))];
+      const missingClips=[...new Set(nodes.flatMap(node=>node.metadata?.missingClips??[]))];
+      return `${asset.id}: ${asset.status} ${asset.file??'code placeholder'}\n  Missing nodes: ${missingNodes.join(', ')||'none found'}; missing clips: ${missingClips.join(', ')||'none found'}; instances: ${nodes.length}`;
+    }).join('\n');panel.style.whiteSpace='pre-wrap';document.body.append(panel);
   }
   return {dispose(){engine.stopRenderLoop();window.removeEventListener('resize',resize);window.removeEventListener('pagehide',pagehide,true);save.dispose();input.dispose();ui.dispose();debug.dispose();manager.dispose();engine.dispose();}};
 }
