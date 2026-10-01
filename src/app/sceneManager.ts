@@ -19,8 +19,10 @@ export async function createSceneManager(engine:Engine,assets:AssetService,facto
     const visual=await assets.create('Player',scene,root);
     const saved=store.get().positions[id];
     const spawn=new Vector3(saved.x,saved.y,saved.z);
+    if(id==='outer'&&(spawn.x<-30||spawn.x>38||spawn.z<-50||spawn.z>22||Math.abs(spawn.y)>2))spawn.copyFrom(world.spawn);
+    if(id==='inner'&&(Math.hypot(spawn.x,spawn.z)>10||Math.abs(spawn.y)>2))spawn.copyFrom(world.spawn);
     const player=createCharacterMotor(scene,root,visual,spawn,id==='inner'?-12:-10);
-    const camera=createFollowCamera(scene);
+    const camera=createFollowCamera(scene,id==='inner'?.45:0);
     const waves=makeWaves(scene);
     const socket=visual.socket('socket.handR');
     const carry=(await assets.create('FinancePackage',scene,socket??root)).root;
@@ -40,6 +42,6 @@ export async function createSceneManager(engine:Engine,assets:AssetService,facto
       for(const entry of entries.values()) if(entry!==current) entry.waves.update(100,entry.player.position());
       return current;
     },
-    dispose(){for(const entry of entries.values()) {entry.waves.dispose();entry.player.dispose();entry.world.dispose();}entries.clear();}
+    dispose(){for(const entry of entries.values()) {entry.waves.dispose();entry.player.dispose();entry.world.dispose();entry.world.scene.dispose();}entries.clear();}
   };
 }

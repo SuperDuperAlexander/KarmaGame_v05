@@ -9,7 +9,7 @@ export function solid(scene:Scene,name:string,position:Vector3,size:Vector3,colo
   if(color)box.material=material(scene,color);else box.isVisible=false;
   return box;
 }
-export function disk(scene:Scene,name:string,x:number,z:number,r:number,color:string,y=-.06){
+export function disk(scene:Scene,name:string,x:number,z:number,r:number,color:string,y=-.052){
   const d=CreateCylinder(name,{height:.12,diameter:r*2,tessellation:48},scene);d.position.set(x,y,z);d.material=material(scene,color);d.isPickable=false;return d;
 }
 export function entity(scene:Scene,name:string,x:number,z:number):TransformNode{const root=new TransformNode(name,scene);root.position.set(x,0,z);return root;}

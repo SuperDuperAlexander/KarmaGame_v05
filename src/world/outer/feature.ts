@@ -10,8 +10,8 @@ import {merchantMotion} from '../../npc/merchant';
 export async function createOuterWorld(scene:Scene,assets:AssetService):Promise<WorldView>{
   scene.collisionsEnabled=true;const light=atmosphere(scene,'outer');const water=sourceWater(scene,false);
   solid(scene,'outer-ground',new Vector3(4,-.15,-14),new Vector3(72,.3,76),'#819577');
-  solid(scene,'arrival-path',new Vector3(0,-.04,-36),new Vector3(5,.08,30),'#C4B492');
-  disk(scene,'central-square',0,0,15,'#C7B99C');solid(scene,'market-path',new Vector3(23,-.04,0),new Vector3(30,.08,6),'#C7B99C');
+  const arrivalPath=solid(scene,'arrival-path',new Vector3(0,-.028,-36),new Vector3(5,.08,30),'#C4B492');arrivalPath.checkCollisions=false;arrivalPath.metadata={cameraBlocker:false};
+  disk(scene,'central-square',0,0,15,'#C7B99C');const marketPath=solid(scene,'market-path',new Vector3(23,-.024,0),new Vector3(30,.08,6),'#C7B99C');marketPath.checkCollisions=false;marketPath.metadata={cameraBlocker:false};
   for(const [x,z,w,d] of [[-32,-14,1,76],[40,-14,1,76],[4,-52,72,1],[4,24,72,1]])solid(scene,'world-edge',new Vector3(x,3,z),new Vector3(w,6,d),'#87987A');
   for(const [x,w]of [[-17,30],[21,38]])solid(scene,'city-wall',new Vector3(x,2,-26),new Vector3(w,4,1.3),'#B2A083');
   await assets.create('CityGate',scene,entity(scene,'city-gate-shell',0,-26));
