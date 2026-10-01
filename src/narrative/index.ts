@@ -1,0 +1,1 @@
+export {sliceRules} from './sliceRules';
