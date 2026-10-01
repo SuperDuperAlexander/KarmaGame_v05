@@ -1,0 +1,57 @@
+{
+  "status": "temporary",
+  "humanBendReview": false,
+  "sourceSHA256": "2579140ac11703dcf6705528501a05f6763150d1847b370c51cc216083c6204e",
+  "outputSHA256": "f33a1e3f6db9c2b35bc4efec6c0067e3e82933eb356a0e99e41abf02afd6f48c",
+  "bytes": 2771448,
+  "bones": 17,
+  "vertices": 46588,
+  "triangles": 34315,
+  "materials": 1,
+  "grips": [
+    "leftHandGrip",
+    "rightHandGrip"
+  ],
+  "clips": [
+    {
+      "name": "Idle",
+      "seconds": 2.0,
+      "keys": 17,
+      "loop": true
+    },
+    {
+      "name": "Walk",
+      "seconds": 0.44285714626312256,
+      "keys": 65,
+      "loop": true,
+      "authoredSpeed": 2.8,
+      "halfReach": 0.31,
+      "stepsPerSecond": 4.516128997524869,
+      "maxKneeDegrees": 59.71962871384482,
+      "maxContactError": 6.181891992751432e-08
+    },
+    {
+      "name": "Run",
+      "seconds": 0.33043476939201355,
+      "keys": 65,
+      "loop": true,
+      "authoredSpeed": 4.6,
+      "halfReach": 0.38,
+      "stepsPerSecond": 6.05263182103965,
+      "maxKneeDegrees": 70.91343328863093,
+      "maxContactError": 6.727577034348897e-08
+    },
+    {
+      "name": "Interact",
+      "seconds": 1.0,
+      "keys": 65,
+      "loop": false
+    },
+    {
+      "name": "LookAround",
+      "seconds": 3.0,
+      "keys": 93,
+      "loop": true
+    }
+  ]
+}
