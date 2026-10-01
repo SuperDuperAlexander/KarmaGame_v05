@@ -12,4 +12,12 @@ export const strings = {
   confirmDelete:'Delete your saved words? Your game progress stays.',
   controls:'W A S D: move · Shift: run · E: act or hold · Drag: look · Esc: pause',
   loading:'Loading the world...', bootError:'The world could not start. Reload to try again.',
+  act:'Act', run:'Run', cancel:'Cancel', confirm:'Confirm', words:'Your words',
+  touchMove:'Move', touchLook:'Drag the view to look', reflectionCount:'characters',
+  nextMarket:'Return to the city. Visit the market to the right of the tree.',
+  nextInner:'Return to the tree. Look within once more.',
+  treeHelp:'Hold E at the light by the tree.',
+  innerHelp:'Go to the package by the root. Press Reflect.',
+  savedHelp:'Your words are saved. Hold at the light by the trunk to return.',
+  skippedHelp:'You can return at the light by the trunk.',
 };
