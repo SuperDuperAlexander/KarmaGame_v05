@@ -1,0 +1,251 @@
+{
+  "ready": true,
+  "busy": false,
+  "paused": false,
+  "world": "inner",
+  "position": {
+    "x": 5.120281937551873,
+    "y": 0.0005260048688110475,
+    "z": -2.4980297517171834
+  },
+  "state": {
+    "schemaVersion": 1,
+    "facts": [
+      "ATTACHMENT_SEEN",
+      "ATTACHMENT_TRIGGERED",
+      "CITY_ENTERED",
+      "INNER_WORLD_ENTERED",
+      "MARKET_VISITED",
+      "MONEY_REFLECTION_SAVED",
+      "PACKAGE_RECEIVED",
+      "TREE_DISCOVERED"
+    ],
+    "firedRules": [
+      "R1-package",
+      "R2-city",
+      "R3-tree",
+      "R5-inner",
+      "R7-reflection",
+      "R9-market",
+      "R10-desire",
+      "R11-beetle",
+      "R12-stop"
+    ],
+    "traits": {
+      "attachment": 0.44999999999999996,
+      "fear": 0,
+      "trust": 0,
+      "contentment": 0
+    },
+    "counters": {},
+    "world": "inner",
+    "positions": {
+      "outer": {
+        "x": 0.21355246166060998,
+        "y": 0.00825000664151121,
+        "z": -3.852766414425736
+      },
+      "inner": {
+        "x": 5.120281937551873,
+        "y": 0.0005260048688110475,
+        "z": -2.4980297517171834
+      }
+    },
+    "reflections": {
+      "money": "<b>Money means room to rest.</b> & time with family."
+    },
+    "waveIds": [
+      "attachment-desire"
+    ]
+  },
+  "camera": {
+    "yaw": 0.45,
+    "pitch": 0.3490658503988659,
+    "distance": 5.8,
+    "position": [
+      2.7496253018888313,
+      3.1842428361576895,
+      -7.405662037152595
+    ]
+  },
+  "stats": {
+    "fps": 60.01200240043549,
+    "drawCalls": 23,
+    "meshes": 23,
+    "triangles": 7622,
+    "textures": 0,
+    "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "waves": 0,
+  "wavesShown": [
+    "attachment-desire"
+  ],
+  "beetle": true,
+  "animation": {
+    "groups": []
+  },
+  "transitions": [
+    {
+      "world": "outer",
+      "step": "lock",
+      "time": 3269.4000000003725
+    },
+    {
+      "world": "outer",
+      "step": "fade-out",
+      "time": 3269.5
+    },
+    {
+      "world": "outer",
+      "step": "save",
+      "time": 3269.5999999996275
+    },
+    {
+      "world": "outer",
+      "step": "prepare",
+      "time": 3336.2000000011176
+    },
+    {
+      "world": "outer",
+      "step": "switch",
+      "time": 3399.4000000003725
+    },
+    {
+      "world": "outer",
+      "step": "state",
+      "time": 3399.7000000011176
+    },
+    {
+      "world": "outer",
+      "step": "fade-in",
+      "time": 3399.7000000011176
+    },
+    {
+      "world": "outer",
+      "step": "unlock",
+      "time": 3399.800000000745
+    },
+    {
+      "world": "inner",
+      "step": "lock",
+      "time": 27353.300000000745
+    },
+    {
+      "world": "inner",
+      "step": "fade-out",
+      "time": 27353.400000000373
+    },
+    {
+      "world": "inner",
+      "step": "save",
+      "time": 27353.599999999627
+    },
+    {
+      "world": "inner",
+      "step": "prepare",
+      "time": 27484.700000001118
+    },
+    {
+      "world": "inner",
+      "step": "switch",
+      "time": 27484.900000000373
+    },
+    {
+      "world": "inner",
+      "step": "state",
+      "time": 27485.300000000745
+    },
+    {
+      "world": "inner",
+      "step": "fade-in",
+      "time": 27485.599999999627
+    },
+    {
+      "world": "inner",
+      "step": "unlock",
+      "time": 27485.599999999627
+    }
+  ],
+  "crossings": {
+    "city:enter": 1,
+    "tree:enter": 2,
+    "tree:exit": 1,
+    "market:enter": 1,
+    "market:exit": 1
+  },
+  "assets": [
+    {
+      "id": "Player",
+      "status": "placeholder",
+      "file": "/assets/characters/player_rigged_v2.glb"
+    },
+    {
+      "id": "Merchant",
+      "status": "placeholder",
+      "file": "/assets/characters/merchant.glb"
+    },
+    {
+      "id": "FinancePackage",
+      "status": "placeholder",
+      "file": "/assets/core/finance_package.glb"
+    },
+    {
+      "id": "ChainLink",
+      "status": "placeholder",
+      "file": "/assets/core/package_chain.glb"
+    },
+    {
+      "id": "MarketStallA",
+      "status": "placeholder",
+      "file": "/assets/market/market_stall_A.glb"
+    },
+    {
+      "id": "MarketStallB",
+      "status": "placeholder"
+    },
+    {
+      "id": "CentralTreeOuter",
+      "status": "placeholder"
+    },
+    {
+      "id": "CentralTreeInner",
+      "status": "placeholder"
+    },
+    {
+      "id": "AttachmentBeetle",
+      "status": "placeholder"
+    },
+    {
+      "id": "CityGate",
+      "status": "placeholder"
+    },
+    {
+      "id": "CityWall",
+      "status": "placeholder"
+    },
+    {
+      "id": "CityBuilding",
+      "status": "placeholder"
+    },
+    {
+      "id": "Citizen",
+      "status": "placeholder"
+    },
+    {
+      "id": "InnerPlatform",
+      "status": "placeholder"
+    },
+    {
+      "id": "Rock",
+      "status": "placeholder"
+    },
+    {
+      "id": "Crystal",
+      "status": "placeholder"
+    },
+    {
+      "id": "Vegetation",
+      "status": "placeholder"
+    }
+  ]
+}

@@ -8,7 +8,8 @@
       "needs": "–",
       "model": "ChatGPT session model",
       "status": "done",
-      "acceptance": "git + ignores + docs committed"
+      "acceptance": "git + ignores + docs committed",
+      "report": "docs/reports/WP-00.md"
     },
     {
       "id": "01",
@@ -16,8 +17,9 @@
       "wave": "0",
       "needs": "00",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "checks pass; rigged player Idle/Walk, turns correctly; initial JS ≤1 MB gzip; worktree node_modules junction verified"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "checks pass; rigged player Idle/Walk, turns correctly; initial JS ≤1 MB gzip; worktree node_modules junction verified",
+      "report": "docs/reports/WP-01.md"
     },
     {
       "id": "01R",
@@ -25,8 +27,9 @@
       "wave": "0",
       "needs": "01",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "review notes fixed, tag set"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "review notes fixed, tag set",
+      "report": "docs/reports/WP-01R.md"
     },
     {
       "id": "02",
@@ -34,8 +37,9 @@
       "wave": "1",
       "needs": "01R",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "all Condition types tested; once-rule survives save/load; harness turns signals into facts"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "all Condition types tested; once-rule survives save/load; harness turns signals into facts",
+      "report": "docs/reports/WP-02.md"
     },
     {
       "id": "03",
@@ -43,8 +47,9 @@
       "wave": "1",
       "needs": "01R",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "corrupt save → recovery key; ≤1 write/s; pagehide flush; delete reflections keeps facts"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "corrupt save → recovery key; ≤1 write/s; pagehide flush; delete reflections keeps facts",
+      "report": "docs/reports/WP-03.md"
     },
     {
       "id": "04",
@@ -52,8 +57,9 @@
       "wave": "1",
       "needs": "01R",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "`?assets=placeholder` plays the same; missing file → placeholder + 1 warning; Run falls back to Walk"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "`?assets=placeholder` plays the same; missing file → placeholder + 1 warning; Run falls back to Walk",
+      "report": "docs/reports/WP-04.md"
     },
     {
       "id": "05",
@@ -61,8 +67,9 @@
       "wave": "1",
       "needs": "01R",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "stick only after first touch, dead zone, no page scroll, targets ≥48 px, stacked input locks"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "stick only after first touch, dead zone, no page scroll, targets ≥48 px, stacked input locks",
+      "report": "docs/reports/WP-05.md"
     },
     {
       "id": "06",
@@ -70,8 +77,9 @@
       "wave": "1",
       "needs": "01R",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "Save/Skip send commands; HTML stays literal text; confirms for New Game + Delete; nothing covers controls at 390×844"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "Save/Skip send commands; HTML stays literal text; confirms for New Game + Delete; nothing covers controls at 390×844",
+      "report": "docs/reports/WP-06.md"
     },
     {
       "id": "07",
@@ -79,8 +87,9 @@
       "wave": "1",
       "needs": "01R",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "overlay shows all stats; `__lw` absent in production build"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "overlay shows all stats; `__lw` absent in production build",
+      "report": "docs/reports/WP-07.md"
     },
     {
       "id": "08",
@@ -88,8 +97,9 @@
       "wave": "1",
       "needs": "01R",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "max 2 waves; >64 chars rejected; edge clamp tested; reduced-motion fade"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "max 2 waves; >64 chars rejected; edge clamp tested; reduced-motion fade",
+      "report": "docs/reports/WP-08.md"
     },
     {
       "id": "10",
@@ -97,8 +107,9 @@
       "wave": "1 (early)",
       "needs": "05 stub",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "clamps hold (4.5–6.5 m, 1.2 m, 20–55°); never inside a wall in a wall-hug test"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "clamps hold (4.5–6.5 m, 1.2 m, 20–55°); never inside a wall in a wall-hug test",
+      "report": "docs/reports/WP-10.md"
     },
     {
       "id": "11",
@@ -106,8 +117,9 @@
       "wave": "1 (early)",
       "needs": "02/05/06 stubs",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "one ENTER/EXIT per crossing; hold resets on release; E and touch button each give one interact"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "one ENTER/EXIT per crossing; hold resets on release; E and touch button each give one interact",
+      "report": "docs/reports/WP-11.md"
     },
     {
       "id": "17",
@@ -115,8 +127,9 @@
       "wave": "1 (early)",
       "needs": "stub scenes",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "8 steps logged both ways; save before switch; ≤2 s after cache; hold spam cannot double-trigger; reload in inner resumes there"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "8 steps logged both ways; save before switch; ≤2 s after cache; hold spam cannot double-trigger; reload in inner resumes there",
+      "report": "docs/reports/WP-17.md"
     },
     {
       "id": "09",
@@ -124,8 +137,9 @@
       "wave": "2",
       "needs": "04, 05",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "2.8/4.6 m/s ±5%; no turning flip; ramps OK, 0.3 m ledge blocks; kill-plane works"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "2.8/4.6 m/s ±5%; no turning flip; ramps OK, 0.3 m ledge blocks; kill-plane works",
+      "report": "docs/reports/WP-09.md"
     },
     {
       "id": "12",
@@ -133,8 +147,9 @@
       "wave": "2",
       "needs": "04",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "path walkable, gate blocked before package, tree crown visible from spawn, ≤80 draw calls"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "path walkable, gate blocked before package, tree crown visible from spawn, ≤80 draw calls",
+      "report": "docs/reports/WP-12.md"
     },
     {
       "id": "13",
@@ -142,8 +157,9 @@
       "wave": "2",
       "needs": "04",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "arrival view shows package root + beetle spot at 390×844; water `highp`, ≤60 particles"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "arrival view shows package root + beetle spot at 390×844; water `highp`, ≤60 particles",
+      "report": "docs/reports/WP-13.md"
     },
     {
       "id": "14",
@@ -151,8 +167,9 @@
       "wave": "2",
       "needs": "02, 04",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "mood right after reload; presets switch live; `?safe` works; fog never hides the path"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "mood right after reload; presets switch live; `?safe` works; fog never hides the path",
+      "report": "docs/reports/WP-14.md"
     },
     {
       "id": "15",
@@ -160,8 +177,9 @@
       "wave": "2",
       "needs": "04",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "merchant idle sway, turns to player within 4 m, far animation off"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "merchant idle sway, turns to player within 4 m, far animation off",
+      "report": "docs/reports/WP-15.md"
     },
     {
       "id": "16",
@@ -169,8 +187,9 @@
       "wave": "2",
       "needs": "02, 04",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "package on hand-bone socket; chain/beetle states right after reload; chain = 1 draw call"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "package on hand-bone socket; chain/beetle states right after reload; chain = 1 draw call",
+      "report": "docs/reports/WP-16.md"
     },
     {
       "id": "18a",
@@ -178,8 +197,9 @@
       "wave": "2",
       "needs": "02",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "journey passes in both orders (tree first / market first); one wave after reload"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "journey passes in both orders (tree first / market first); one wave after reload",
+      "report": "docs/reports/WP-18a.md"
     },
     {
       "id": "19a",
@@ -187,8 +207,9 @@
       "wave": "2",
       "needs": "07",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "harness + smoke pass desktop + mobile viewport"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "harness + smoke pass desktop + mobile viewport",
+      "report": "docs/reports/WP-19a.md"
     },
     {
       "id": "21",
@@ -196,8 +217,9 @@
       "wave": "2",
       "needs": "01 strings",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "checklist passes, no diagnosis/karma/money promises"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "checklist passes, no diagnosis/karma/money promises",
+      "report": "docs/reports/WP-21.md"
     },
     {
       "id": "18b",
@@ -205,8 +227,9 @@
       "wave": "3",
       "needs": "09–17, 18a",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "full slice by hand, desktop + 390×844 touch, no debug commands, no console errors"
+      "status": "integrated_real_input_browser_checks_pass; human_play_check_pending",
+      "acceptance": "full slice by hand, desktop + 390×844 touch, no debug commands, no console errors",
+      "report": "docs/reports/WP-18b.md"
     },
     {
       "id": "19b",
@@ -214,8 +237,9 @@
       "wave": "3",
       "needs": "18b, 19a",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "15 steps with real input; one wave after reload; beetle `attached`; 0 errors; no network POST"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "15 steps with real input; one wave after reload; beetle `attached`; 0 errors; no network POST",
+      "report": "docs/reports/WP-19b.md"
     },
     {
       "id": "20",
@@ -223,8 +247,9 @@
       "wave": "3",
       "needs": "18b, D2",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "phone: <120 draw calls, <250k tris, ≥30 FPS or documented reason; start download ≤12 MB"
+      "status": "pc_checks_pass; real_phone_pending",
+      "acceptance": "phone: <120 draw calls, <250k tris, ≥30 FPS or documented reason; start download ≤12 MB",
+      "report": "docs/reports/WP-20.md"
     },
     {
       "id": "22",
@@ -232,8 +257,9 @@
       "wave": "4",
       "needs": "19b, 20, 21",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "every spec §21 criterion has evidence; README + decisions updated"
+      "status": "report_done; milestone_human_and_device_checks_pending",
+      "acceptance": "every spec §21 criterion has evidence; README + decisions updated",
+      "report": "docs/reports/WP-22.md"
     },
     {
       "id": "A1",
@@ -241,8 +267,9 @@
       "wave": "1",
       "needs": "see plan",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "`assets:sync` idempotent; `assets:check` prints table, non-zero exit on broken `final` asset"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "`assets:sync` idempotent; `assets:check` prints table, non-zero exit on broken `final` asset",
+      "report": "docs/reports/WP-A1.md"
     },
     {
       "id": "A2",
@@ -250,8 +277,9 @@
       "wave": "0",
       "needs": "see plan",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "all 22 jobs + conflicts listed; manifest matches 3D doc §11"
+      "status": "implemented_code_checks_pass",
+      "acceptance": "all 22 jobs + conflicts listed; manifest matches 3D doc §11",
+      "report": "docs/reports/WP-A2.md"
     },
     {
       "id": "A3",
@@ -259,8 +287,9 @@
       "wave": "0",
       "needs": "see plan",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "clips pass checks; a person reviews the bends"
+      "status": "integrated_file_and_browser_checks_pass; human_motion_review_pending",
+      "acceptance": "clips pass checks; a person reviews the bends",
+      "report": "docs/reports/WP-A3.md"
     },
     {
       "id": "A4",
@@ -268,8 +297,16 @@
       "wave": "later",
       "needs": "see plan",
       "model": "ChatGPT session model",
-      "status": "pending",
-      "acceptance": "diff = one registry entry + one GLB"
+      "status": "deferred_until_final_art_exists",
+      "acceptance": "diff = one registry entry + one GLB",
+      "report": "docs/reports/WP-A4.md"
     }
-  ]
+  ],
+  "updated": "2026-10-02",
+  "milestoneStatus": "code_checks_pass; real_phone_and_human_rig_review_pending",
+  "report": "docs/reports/WP-22.md",
+  "deviceChecks": {
+    "D1": "real_phone_pending",
+    "D2": "real_phone_pending"
+  }
 }

@@ -1,0 +1,170 @@
+{
+  "initialScriptGzip": 294590,
+  "startupDecodedBytes": 7670033,
+  "probeMilliseconds": 4395,
+  "noProductionHook": true,
+  "debug": "FPS [frames per second]: 60\nDraw calls: 30\nMeshes: 32\nTriangles: 41356\nTextures: 3\nGPU [graphics processor]: ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "simpleDebug": "FPS [frames per second]: 60\nDraw calls: 29\nMeshes: 31\nTriangles: 39756\nTextures: 3\nGPU [graphics processor]: ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "fullDraws": 30,
+  "simpleDraws": 29,
+  "errors": [],
+  "posts": [],
+  "responses": [
+    {
+      "path": "/",
+      "bytes": 479
+    },
+    {
+      "path": "/assets/index-CV9nBPxN.css",
+      "bytes": 523
+    },
+    {
+      "path": "/assets/index-Cs4CnXXq.js",
+      "bytes": 1188907
+    },
+    {
+      "path": "/assets/sceneLoader-Du1Xer02.js",
+      "bytes": 12147
+    },
+    {
+      "path": "/assets/glTFLoader-lIaHQZPb.js",
+      "bytes": 193146
+    },
+    {
+      "path": "/assets/core/finance_package.glb",
+      "bytes": 565780
+    },
+    {
+      "path": "/assets/effectRenderer.pure-BmNBIxyJ.js",
+      "bytes": 8098
+    },
+    {
+      "path": "/assets/pbrMaterialLoadingAdapter-Cnn5fBbi.js",
+      "bytes": 12498
+    },
+    {
+      "path": "/assets/postProcess.pure-yG2DK9Ef.js",
+      "bytes": 18282
+    },
+    {
+      "path": "/assets/brdfTextureTools-dbfudTPK.js",
+      "bytes": 61316
+    },
+    {
+      "path": "/assets/pbrMaterial.pure-DRI-ETUI.js",
+      "bytes": 135425
+    },
+    {
+      "path": "/assets/rgbdDecode.fragment-Bz2kZlrP.js",
+      "bytes": 529
+    },
+    {
+      "path": "/assets/helperFunctions-DuYKohn-.js",
+      "bytes": 6815
+    },
+    {
+      "path": "/assets/postprocess.vertex-DJKamJFZ.js",
+      "bytes": 460
+    },
+    {
+      "path": "/assets/market/market_stall_A.glb",
+      "bytes": 941476
+    },
+    {
+      "path": "/assets/characters/merchant.glb",
+      "bytes": 1392208
+    },
+    {
+      "path": "/assets/characters/player_rigged_v2.glb",
+      "bytes": 2771448
+    },
+    {
+      "path": "/assets/animationGroup.pure-x7INWo_G.js",
+      "bytes": 42638
+    },
+    {
+      "path": "/assets/glTFLoaderAnimation.pure-CokYg9lY.js",
+      "bytes": 1826
+    },
+    {
+      "path": "/assets/default.vertex-D2SW6qvc.js",
+      "bytes": 7940
+    },
+    {
+      "path": "/assets/sceneUboDeclaration-C5LRFCTL.js",
+      "bytes": 364
+    },
+    {
+      "path": "/assets/logDepthVertex-DhSZruLF.js",
+      "bytes": 7820
+    },
+    {
+      "path": "/assets/logDepthDeclaration-SEyHkJUq.js",
+      "bytes": 737
+    },
+    {
+      "path": "/assets/bumpVertexDeclaration-CaIVm_Pu.js",
+      "bytes": 341
+    },
+    {
+      "path": "/assets/bumpVertex-DlhHjsKO.js",
+      "bytes": 522
+    },
+    {
+      "path": "/assets/defaultUboDeclaration-olEi6raa.js",
+      "bytes": 1263
+    },
+    {
+      "path": "/assets/clipPlaneVertex-BtYOWr1E.js",
+      "bytes": 14048
+    },
+    {
+      "path": "/assets/default.fragment-yr_b07A8.js",
+      "bytes": 25274
+    },
+    {
+      "path": "/assets/clipPlaneFragment-BeeOywnG.js",
+      "bytes": 6222
+    },
+    {
+      "path": "/assets/lightFragment-DEtcXL76.js",
+      "bytes": 20576
+    },
+    {
+      "path": "/assets/bumpFragment-Cvf0Stz8.js",
+      "bytes": 6870
+    },
+    {
+      "path": "/assets/oitFragment-Uu2v0etH.js",
+      "bytes": 54462
+    },
+    {
+      "path": "/assets/pbr.vertex-BDmdXJK4.js",
+      "bytes": 16811
+    },
+    {
+      "path": "/assets/harmonicsFunctions-CH2tfPzM.js",
+      "bytes": 1126
+    },
+    {
+      "path": "/assets/pbrBRDFFunctions-Cgopr62G.js",
+      "bytes": 11931
+    },
+    {
+      "path": "/assets/pbrDebug-BFGb7Z_B.js",
+      "bytes": 38081
+    },
+    {
+      "path": "/assets/pbrUboDeclaration-Dn0EF5yK.js",
+      "bytes": 1802
+    },
+    {
+      "path": "/assets/pbrIBLFunctions-xI8ixETm.js",
+      "bytes": 2524
+    },
+    {
+      "path": "/assets/pbr.fragment-DSzpAyVF.js",
+      "bytes": 97318
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+import {chromium} from '@playwright/test';
+import {readFile,readdir,writeFile,mkdir} from 'node:fs/promises';
+import {gzipSync} from 'node:zlib';
+const main=(await readdir('dist/assets')).find(file=>/^index-.*\.js$/.test(file));
+const initialScriptGzip=gzipSync(await readFile('dist/assets/'+main)).length;
+const browser=await chromium.launch({headless:true,args:process.platform==='win32'?['--use-angle=d3d11']:[]});
+try {
+  const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+  const errors=[];const posts=[];const sizes=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+  page.on('request',r=>{if(r.method()==='POST')posts.push(r.url());});
+  page.on('response',r=>{if(r.url().startsWith('http://127.0.0.1:5187/'))sizes.push(r.body().then(body=>({path:new URL(r.url()).pathname,bytes:body.length})).catch(()=>null));});
+  const start=Date.now();
+  await page.goto('http://127.0.0.1:5187/?debug&test');
+  await page.waitForFunction(()=>document.querySelector('.lw-world')?.textContent==='The City'&&document.querySelector('.lw-loading')?.hidden===true);
+  await page.waitForTimeout(2200);
+  const debug=await page.locator('#debug').textContent();
+  const noHook=await page.evaluate(()=>typeof window.__lw==='undefined');
+  const fullDraws=Number(debug.match(/Draw calls: (\d+)/)?.[1]);
+  await page.getByRole('combobox',{name:'View detail'}).selectOption('low');
+  await page.waitForTimeout(700);
+  const simpleDebug=await page.locator('#debug').textContent();
+  const simpleDraws=Number(simpleDebug.match(/Draw calls: (\d+)/)?.[1]);
+  await page.getByRole('combobox',{name:'View detail'}).selectOption('medium');
+  await page.touchscreen.tap(195,400);
+  await page.waitForTimeout(400);
+  await mkdir('docs/evidence',{recursive:true});
+  await page.screenshot({path:'docs/evidence/production-start-mobile.png'});
+  const responses=(await Promise.all(sizes)).filter(Boolean);
+  const bytes=responses.reduce((sum,r)=>sum+r.bytes,0);
+  const report={initialScriptGzip,startupDecodedBytes:bytes,probeMilliseconds:Date.now()-start,noProductionHook:noHook,debug,simpleDebug,fullDraws,simpleDraws,errors,posts,responses};
+  await writeFile('docs/evidence/production.json',JSON.stringify(report,null,2)+'\n');
+  console.log(JSON.stringify({initialScriptGzip,startupDecodedBytes:bytes,noProductionHook:noHook,fullDraws,simpleDraws,errors,posts,debug}));
+  if(!noHook||errors.length||posts.length||initialScriptGzip>1_000_000||bytes>12_000_000||simpleDraws>=fullDraws)process.exitCode=1;
+}finally{await browser.close();}

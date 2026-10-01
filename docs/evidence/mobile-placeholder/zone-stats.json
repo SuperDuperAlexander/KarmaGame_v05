@@ -1,0 +1,104 @@
+[
+  {
+    "name": "arrival",
+    "world": "outer",
+    "position": {
+      "x": 0,
+      "y": 0.008250002614533125,
+      "z": -47
+    },
+    "stats": {
+      "fps": 46.83840749445167,
+      "drawCalls": 37,
+      "meshes": 37,
+      "triangles": 5302,
+      "textures": 0,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    }
+  },
+  {
+    "name": "city",
+    "world": "outer",
+    "position": {
+      "x": 0.010644987014788544,
+      "y": 0.0060132328630433385,
+      "z": -23.462772720982287
+    },
+    "stats": {
+      "fps": 60.09615384624356,
+      "drawCalls": 32,
+      "meshes": 32,
+      "triangles": 5862,
+      "textures": 0,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    }
+  },
+  {
+    "name": "outer-tree",
+    "world": "outer",
+    "position": {
+      "x": 0.00015973371869866117,
+      "y": 0.005738618458729805,
+      "z": -4.095093820956404
+    },
+    "stats": {
+      "fps": 59.88023952095807,
+      "drawCalls": 24,
+      "meshes": 24,
+      "triangles": 5714,
+      "textures": 0,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    }
+  },
+  {
+    "name": "inner-package",
+    "world": "inner",
+    "position": {
+      "x": 3.810253056161383,
+      "y": 0.005514110132265881,
+      "z": -3.189746963920934
+    },
+    "stats": {
+      "fps": 60.024009603975756,
+      "drawCalls": 19,
+      "meshes": 19,
+      "triangles": 6598,
+      "textures": 0,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    }
+  },
+  {
+    "name": "market",
+    "world": "outer",
+    "position": {
+      "x": 24.677100327158612,
+      "y": 0.00481951856753049,
+      "z": -1.677905172538364
+    },
+    "stats": {
+      "fps": 59.85634477263499,
+      "drawCalls": 28,
+      "meshes": 28,
+      "triangles": 2880,
+      "textures": 0,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    }
+  },
+  {
+    "name": "attached-beetle",
+    "world": "inner",
+    "position": {
+      "x": 5.120281937551873,
+      "y": 0.008250005799597115,
+      "z": -2.4980297517171834
+    },
+    "stats": {
+      "fps": 59.65400676074335,
+      "drawCalls": 23,
+      "meshes": 23,
+      "triangles": 7622,
+      "textures": 0,
+      "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    }
+  }
+]

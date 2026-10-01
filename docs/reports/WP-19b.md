@@ -1,5 +1,17 @@
 # WP-19b: Full browser journey
 
+## Final merged run (2026-10-02)
+
+- All six browser checks passed in 4.8 minutes after the final view fixes.
+- All four full cases now keep state, speed and end-view files in `docs/evidence/`.
+- Normal desktop steady samples used at most 43 draw calls and 74,819 triangles.
+- Normal touch steady samples used at most 25 draw calls and 66,194 triangles.
+- No case had a page error, console error or POST [send-data] request.
+- `docs/evidence/journey-summary.json` holds the final case totals.
+- Earlier run numbers and pending rerun notes below are history.
+- The final run used a PC graphics chip.
+- Real phone checks remain open.
+
 - Added `tests/e2e/journey.spec.ts`.
 - The suite runs normal and placeholder assets on desktop and a 390 by 844 touch screen.
 - The test receives the package, enters the city, finds the tree and holds to enter the inner world.

@@ -1,5 +1,17 @@
 # WP-A3 [Work Package A3]
 
+## Final integration update (2026-10-02)
+
+- The registry now uses `player_rigged_v2.glb`.
+- Normal desktop and touch journeys load the new rig.
+- Idle, Walk and Run play in the game.
+- End images show the carried package and chain.
+- The final merged build and all 71 tests pass.
+- Asset checks confirm five clips, two hand grips and 17 bones.
+- A human must still review moving bends and hand grip.
+- Earlier work-folder check notes below are history.
+- The current full report is `docs/reports/WP-22.md`.
+
 - Added a repeatable local rig runner.
 - Used `character-rig-test/rig_character.py` as the local math and clip writer.
 - Used the local `check_asset.py` rules for the new file checks.

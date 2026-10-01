@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-02",
+  "browserChecks": 6,
+  "passed": 6,
+  "cases": [
+    {
+      "view": "desktop",
+      "assets": "normal",
+      "device": "PC Intel Iris Xe D3D11; not a real phone",
+      "steadyMinFps": 59.95203836925984,
+      "steadyMaxDrawCalls": 43,
+      "steadyMaxTriangles": 74819,
+      "facts": [
+        "ATTACHMENT_SEEN",
+        "ATTACHMENT_TRIGGERED",
+        "CITY_ENTERED",
+        "INNER_WORLD_ENTERED",
+        "MARKET_VISITED",
+        "MONEY_REFLECTION_SAVED",
+        "PACKAGE_RECEIVED",
+        "TREE_DISCOVERED"
+      ],
+      "beetle": true,
+      "wavesShown": [
+        "attachment-desire"
+      ],
+      "evidence": "docs/evidence/desktop-normal"
+    },
+    {
+      "view": "desktop",
+      "assets": "placeholder",
+      "device": "PC Intel Iris Xe D3D11; not a real phone",
+      "steadyMinFps": 60.03602161283356,
+      "steadyMaxDrawCalls": 56,
+      "steadyMaxTriangles": 10814,
+      "facts": [
+        "ATTACHMENT_SEEN",
+        "ATTACHMENT_TRIGGERED",
+        "CITY_ENTERED",
+        "INNER_WORLD_ENTERED",
+        "MARKET_VISITED",
+        "MONEY_REFLECTION_SAVED",
+        "PACKAGE_RECEIVED",
+        "TREE_DISCOVERED"
+      ],
+      "beetle": true,
+      "wavesShown": [
+        "attachment-desire"
+      ],
+      "evidence": "docs/evidence/desktop-placeholder"
+    },
+    {
+      "view": "mobile",
+      "assets": "normal",
+      "device": "PC Intel Iris Xe D3D11; not a real phone",
+      "steadyMinFps": 59.71337579635539,
+      "steadyMaxDrawCalls": 25,
+      "steadyMaxTriangles": 66194,
+      "facts": [
+        "ATTACHMENT_SEEN",
+        "ATTACHMENT_TRIGGERED",
+        "CITY_ENTERED",
+        "INNER_WORLD_ENTERED",
+        "MARKET_VISITED",
+        "MONEY_REFLECTION_SAVED",
+        "PACKAGE_RECEIVED",
+        "TREE_DISCOVERED"
+      ],
+      "beetle": true,
+      "wavesShown": [
+        "attachment-desire"
+      ],
+      "evidence": "docs/evidence/mobile-normal"
+    },
+    {
+      "view": "mobile",
+      "assets": "placeholder",
+      "device": "PC Intel Iris Xe D3D11; not a real phone",
+      "steadyMinFps": 59.65400676074335,
+      "steadyMaxDrawCalls": 32,
+      "steadyMaxTriangles": 7622,
+      "facts": [
+        "ATTACHMENT_SEEN",
+        "ATTACHMENT_TRIGGERED",
+        "CITY_ENTERED",
+        "INNER_WORLD_ENTERED",
+        "MARKET_VISITED",
+        "MONEY_REFLECTION_SAVED",
+        "PACKAGE_RECEIVED",
+        "TREE_DISCOVERED"
+      ],
+      "beetle": true,
+      "wavesShown": [
+        "attachment-desire"
+      ],
+      "evidence": "docs/evidence/mobile-placeholder"
+    }
+  ]
+}

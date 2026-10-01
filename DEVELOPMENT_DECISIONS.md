@@ -26,3 +26,47 @@
 - The older 8.x player proof is evidence only. Test the current 9.x runtime.
 - A3 rig work and final art may stay a separate track when the fallback clips meet the slice needs.
 - Real phone checks need the user device. Browser touch tests are separate evidence.
+
+## Integration record, 2026-10-02
+
+- Babylon.js 9.29.0 loads the local rig in the game. Keep 9.x.
+- The boot stage uses a loading panel. It does not need a third render scene.
+- Module entry functions replace empty feature stubs.
+- Three task groups use separate worktrees. Each node_modules path is a junction to the root install.
+- Helpers used the same ChatGPT session model. No Claude service was used.
+- The shared type review ran after the first feature merge. This differs from the old gate order.
+- Review fixes passed before the final full browser suite.
+- The reviewed types are tagged contracts-v1.
+- Use modern model containers to cache one file per scene and clone or instance its visuals.
+- Normalize visuals at the origin before attaching them to the game entity.
+- Player imported facing needs zero registry yaw in this local file.
+- The outer player carries a separate package and a one-draw loose or tense chain.
+- V2 Walk and Run use their own authored speed. A fallback uses its actual clip's speed.
+- The rounded collision shape can climb short steps. A low side ray blocks a 0.3 metre ledge but permits a ramp.
+- A camera ray must skip disabled colliders. Invisible enabled walls still block it.
+- Pause stops scene clips as well as game movement.
+- Save before wave and world change uses a queued effect chain. Normal writes stay at one per second.
+- Page hide and service dispose can flush the final state at once.
+- Delete also removes the corrupt-save recovery copy, which can contain old words.
+- The wave rule reserves its name before save. The app shows only that fresh effect.
+- New Game stops rendering, resets the store and clears the save before reload.
+- Low and medium view choices change visual detail without changing play.
+- Safe mode starts with low-cost effects. No heavy post effect is used in this slice.
+- Thought layers from the idle scene stay hidden.
+- Restored positions must fit their world map. Bad positions use the spawn point.
+- World changes use an opaque loading veil. Logged fade phases are stage names; this is not a timed art dissolve.
+- Initial test launches forced software graphics. Slow reads made long held-key tests unreliable.
+- Final tests use Intel Iris Xe through native D3D11 [Direct3D 11].
+- Input pulses end before each read so a slow reply cannot move the player past a target.
+- Software mode stays available with LW_SOFTWARE=1. It is not phone-speed proof.
+- Keep all v0.1 story scope at the attached beetle. Final art and later story remain separate.
+
+## Hand-off choices
+
+- Each owned package has its detailed choices in docs/decisions/.
+- State, save and reflection choices: WP-02 and WP-03.
+- Asset and scene choices: WP-04, WP-12, WP-13, WP-14, WP-15 and WP-16.
+- Input and screen choices: WP-05, WP-06 and WP-08.
+- Shared types, motion, camera and world change: WP-01, WP-01R, WP-09, WP-10, WP-11 and WP-17.
+- Slice and checks: WP-18a, WP-18b, WP-19a, WP-19b and WP-21.
+- Local file track: WP-A1, WP-A2 and WP-A3.

@@ -3,6 +3,19 @@
 This copy replaces the old model assignments. All agents use ChatGPT.
 The source plan stays unchanged for traceability.
 
+## Current result (2026-10-02)
+
+- The first part works through the attached beetle.
+- All active work packages use ChatGPT.
+- Type check, lint, 71 tests, build and six browser checks pass.
+- The code uses temporary models and replaceable code shapes.
+- PC checks at phone size pass.
+- Real phone checks D1 and D2 remain open.
+- A human must still check walk, run and hand grip.
+- A4 waits for final art.
+- Read `docs/reports/WP-22.md` for the final evidence and limits.
+- Read `docs/work-packages.json` for current task status.
+
 # Light Within — Plan: Vertical Slice v0.1 + Work Packages for parallel agents
 
 ## Context
