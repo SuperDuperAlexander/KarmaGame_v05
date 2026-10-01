@@ -32,13 +32,16 @@ export function createUiService(root: HTMLElement, commands: UiCommands, input: 
   prompt.className = 'lw-prompt';
   prompt.hidden = true;
   const promptText = document.createElement('span');
+  const actionKey = document.createElement('kbd');
+  actionKey.textContent = strings.actionKey;
+  actionKey.style.cssText = 'border:1px solid #fff5d650;border-radius:5px;padding:2px 8px;font:600 13px system-ui';
   const hold = document.createElement('span');
   hold.className = 'lw-hold';
   hold.hidden = true;
   hold.setAttribute('role', 'progressbar');
   hold.setAttribute('aria-valuemin', '0');
   hold.setAttribute('aria-valuemax', '100');
-  prompt.append(hold, promptText);
+  prompt.append(hold, promptText, actionKey);
   const backdrop = document.createElement('div');
   backdrop.className = 'lw-modal-backdrop';
   backdrop.hidden = true;
@@ -150,7 +153,7 @@ export function createUiService(root: HTMLElement, commands: UiCommands, input: 
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
   }, options);
   return {
-    prompt(text, isHold = false) { prompt.hidden = text === null; promptText.textContent = text ?? ''; hold.hidden = !isHold; hold.style.setProperty('--progress', '0'); },
+    prompt(text, isHold = false) { prompt.hidden = text === null; promptText.textContent = text ?? ''; actionKey.hidden = input.isTouch(); hold.hidden = !isHold; hold.style.setProperty('--progress', '0'); },
     hold(progress) { const value = Math.max(0, Math.min(1, progress)); hold.style.setProperty('--progress', String(value)); hold.setAttribute('aria-valuenow', String(Math.round(value * 100))); },
     reflection(text) {
       if (modal === 'reflection') return;

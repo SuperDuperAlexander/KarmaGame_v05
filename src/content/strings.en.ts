@@ -22,4 +22,5 @@ export const strings = {
   skippedHelp:'You can return at the light by the trunk.',
   quality:'View detail', simple:'Simple', full:'Full',
   storageNotice:'This device cannot save your game. Keep this tab open.',
+  actionKey:'E',
 };

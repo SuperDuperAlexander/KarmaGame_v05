@@ -63,7 +63,7 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
     lock:()=>input.lock('transition'),veil:on=>ui.loading(on,strings.loading),save:flushSave,
     async prepare(id) {frameReady=false;await manager.activate(id);setPresentationQuality(manager.current.world.scene,quality);},
     switch(id) {store.update(state=>{state.world=id;});interaction.reset();ui.world(id==='outer'?strings.outer:strings.inner);},
-    activated(id) {frameReady=true;save.request();if(id==='inner')dispatch('inner-active');ui.hint(id==='inner'?strings.innerHelp:store.get().facts.includes('ATTACHMENT_TRIGGERED')?strings.nextInner:strings.nextMarket);},
+    activated(id) {frameReady=true;save.request();if(id==='inner')dispatch('inner-active');ui.hint(store.get().facts.includes('ATTACHMENT_SEEN')?strings.end:id==='inner'?strings.innerHelp:store.get().facts.includes('ATTACHMENT_TRIGGERED')?strings.nextInner:strings.nextMarket);},
     reset:()=>interaction.reset()
   });
   function onEffect(effect:Effect) {
