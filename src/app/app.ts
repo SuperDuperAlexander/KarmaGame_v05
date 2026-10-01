@@ -1,0 +1,125 @@
+import {Engine} from '@babylonjs/core/Engines/engine';
+import {Vector3} from '@babylonjs/core/Maths/math.vector';
+import {createWorldStore} from '../state';
+import {createSaveService} from '../save';
+import {createRuleEngine} from '../rules';
+import {sliceRules} from '../narrative';
+import {saveReflection,skipReflection,deleteReflections} from '../reflection';
+import {createInputService} from '../input';
+import {createUiService} from '../ui';
+import {createWaveService} from '../thought-waves';
+import {createAssetService} from '../assets/feature';
+import {createWorldFactory} from '../world/feature';
+import {createSceneManager} from './sceneManager';
+import {createInteraction} from '../interaction/interaction';
+import {createTransition} from '../transition/transition';
+import {createDebug} from '../debug/debug';
+import {strings} from '../content/strings.en';
+import type {Effect,SignalType,WorldId} from '../contracts/state';
+import type {UiService} from '../contracts/ui';
+
+export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
+  const params=new URLSearchParams(location.search);
+  const engine=new Engine(canvas,true,{stencil:false,preserveDrawingBuffer:false,adaptToDeviceRatio:false});
+  engine.setHardwareScalingLevel(Math.max(1,devicePixelRatio/1.5));
+  const store=createWorldStore();const save=createSaveService(store);
+  const loaded=save.load();if(loaded)store.update(draft=>Object.assign(draft,loaded));
+  const touchRoot=document.createElement('div');document.body.append(touchRoot);
+  const waveRoot=document.createElement('div');document.body.append(waveRoot);
+  const input=createInputService(canvas,touchRoot);
+  const assets=createAssetService(params.get('assets')==='placeholder');
+  const debug=createDebug(engine,params.has('debug'));
+  let pauseRelease:(()=>void)|undefined;let reflectionRelease:(()=>void)|undefined;
+  let ui:UiService;let frameReady=false;let failed=false;let busyEffects=0;
+  let queue=Promise.resolve();
+  const wavesShown:string[]=[];
+  function positionToStore() {
+    if(!frameReady)return;
+    const p=manager.current.player.position();
+    store.update(state=>{state.positions[state.world]={x:p.x,y:p.y,z:p.z};});
+  }
+  async function flushSave() {
+    positionToStore();save.request();
+    const deadline=performance.now()+1500;
+    while(!save.flush() && performance.now()<deadline) await new Promise(resolve=>setTimeout(resolve,60));
+  }
+  function closeReflection() {ui.closeReflection();reflectionRelease?.();reflectionRelease=undefined;}
+  ui=createUiService(uiRoot,{
+    saveReflection(text) {saveReflection(store,text);closeReflection();rules.dispatch({type:'reflection-done'});ui.hint(strings.savedHelp);},
+    skipReflection() {skipReflection(store);closeReflection();rules.dispatch({type:'reflection-done'});ui.hint(strings.skippedHelp);},
+    deleteReflections() {deleteReflections(store);save.request();},
+    newGame() {save.clear();location.reload();},
+    pause(paused) {if(paused&&!pauseRelease)pauseRelease=input.lock('pause');if(!paused){pauseRelease?.();pauseRelease=undefined;}},
+  },input);
+  ui.loading(true,strings.loading);const bootRelease=input.lock('boot');
+  const manager=await createSceneManager(engine,assets,createWorldFactory(),store,scene=>createWaveService(scene,waveRoot));
+  const interaction=createInteraction(ui,signal=>dispatch(signal));
+  const transition=createTransition({
+    lock:()=>input.lock('transition'),veil:on=>ui.loading(on,strings.loading),save:flushSave,
+    async prepare(id) {frameReady=false;await manager.activate(id);},
+    switch(id) {store.update(state=>{state.world=id;});interaction.reset();ui.world(id==='outer'?strings.outer:strings.inner);},
+    activated(id) {frameReady=true;save.request();if(id==='inner')dispatch('inner-active');ui.hint(id==='inner'?strings.innerHelp:store.get().facts.includes('ATTACHMENT_TRIGGERED')?strings.nextInner:strings.nextMarket);},
+    reset:()=>interaction.reset()
+  });
+  function onEffect(effect:Effect) {
+    if(effect.kind==='fact'||effect.kind==='trait')return;
+    busyEffects++;
+    queue=queue.then(async()=>{
+      if(effect.kind==='save') await flushSave();
+      if(effect.kind==='transition') await transition.go(effect.world);
+      if(effect.kind==='panel') {reflectionRelease??=input.lock('reflection');ui.reflection(store.get().reflections.money??'');}
+      if(effect.kind==='wave') {
+        // The rule fact and fired rule are saved before any thought is shown.
+        if(!store.get().waveIds.includes(effect.id)) {
+          store.update(state=>{state.waveIds.push(effect.id);});await flushSave();
+          if(manager.current.waves.show(effect.id,effect.text,manager.current.player.position().add(new Vector3(0,2,0))))wavesShown.push(effect.id);
+        }
+      }
+      if(effect.kind==='hint')ui.hint(effect.text);
+    }).catch(error=>{failed=true;console.error(error);ui.loading(true,strings.bootError);}).finally(()=>busyEffects--);
+  }
+  const rules=createRuleEngine(store,sliceRules,onEffect);
+  function dispatch(type:SignalType) {rules.dispatch({type});}
+  await manager.activate(store.get().world);frameReady=true;
+  if(store.get().world==='inner')dispatch('inner-active');
+  ui.world(store.get().world==='outer'?strings.outer:strings.inner);
+  ui.hint(store.get().facts.includes('ATTACHMENT_SEEN')?strings.end:store.get().facts.includes('PACKAGE_RECEIVED')?strings.carrying:strings.welcome);
+  ui.loading(false);bootRelease();
+  let saveClock=0;
+  engine.runRenderLoop(()=>{
+    if(!frameReady||failed)return;
+    const dt=Math.min(engine.getDeltaTime()/1000,.05);
+    const current=manager.current;const frame=input.read();
+    if(!pauseRelease) {
+      current.player.update(frame,current.camera.yaw,dt);
+      current.camera.update(frame,current.player.position());
+      const state=store.get();
+      current.world.update(state,dt,current.player.position());
+      current.carry.setEnabled(state.world==='outer'&&state.facts.includes('PACKAGE_RECEIVED'));
+      if(!transition.busy&&!reflectionRelease&&!busyEffects)interaction.update(state.world,state,current.player.position().x,current.player.position().z,frame,dt);
+      current.waves.update(dt,current.player.position());
+      saveClock+=dt;if(saveClock>1){saveClock=0;positionToStore();save.request();}
+    }
+    current.world.scene.render();debug.update(current.world.scene,dt);
+  });
+  const resize=()=>engine.resize();window.addEventListener('resize',resize);
+  const pagehide=()=>{positionToStore();save.request();save.flush();};window.addEventListener('pagehide',pagehide);
+  if(import.meta.env.DEV && (params.has('test')||params.has('debug'))) {
+    const read=()=>{
+      const current=manager.current;const p=current.player.position();
+      return {ready:frameReady,busy:transition.busy||busyEffects>0,paused:Boolean(pauseRelease),world:store.get().world,
+        position:{x:p.x,y:p.y,z:p.z},state:JSON.parse(JSON.stringify(store.get())),
+        camera:{yaw:current.camera.yaw,pitch:current.camera.pitch,distance:current.camera.distance,position:current.camera.camera.position.asArray()},
+        stats:debug.read(current.world.scene),waves:current.waves.count(),wavesShown:[...wavesShown],
+        beetle:current.world.beetle?.isEnabled()??false,
+        animation:{groups:current.world.scene.animationGroups.map(g=>({name:g.name,playing:g.isPlaying}))},
+        transitions:[...transition.logs],crossings:{...interaction.crossings},assets:assets.status()};
+    };
+    Object.defineProperty(window,'__lw',{value:{read},configurable:true});
+  }
+  if(params.has('viewer')) {
+    const panel=document.createElement('div');panel.id='asset-viewer';panel.style.cssText='position:fixed;inset:90px 16px auto;max-height:50vh;overflow:auto;background:#142522ee;color:#fff;padding:16px;z-index:5;font:12px monospace';
+    panel.textContent=assets.status().map(asset=>`${asset.id}: ${asset.status} ${asset.file??'code placeholder'}`).join('\n');panel.style.whiteSpace='pre-wrap';document.body.append(panel);
+  }
+  return {dispose(){engine.stopRenderLoop();window.removeEventListener('resize',resize);window.removeEventListener('pagehide',pagehide);save.dispose();input.dispose();ui.dispose();debug.dispose();manager.dispose();engine.dispose();}};
+}

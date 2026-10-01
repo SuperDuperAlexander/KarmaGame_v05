@@ -1,0 +1,8 @@
+:root {font-family:system-ui,sans-serif;color:#fff;background:#172d2b;font-synthesis:none;}
+* {box-sizing:border-box;}
+html,body {width:100%;height:100%;margin:0;overflow:hidden;overscroll-behavior:none;}
+#game {display:block;width:100%;height:100%;touch-action:none;outline:none;}
+button,textarea {font:inherit;}
+button {cursor:pointer;}
+button:focus-visible,textarea:focus-visible {outline:3px solid #f2cd87;outline-offset:3px;}
+@media(prefers-reduced-motion:reduce){* {animation-duration:.01ms!important;transition-duration:.01ms!important;}}
