@@ -1,0 +1,18 @@
+{
+  "name": "light-within-v01",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5186 --strictPort",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests && node tools/lint-guards.mjs",
+    "test": "vitest run",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 5187 --strictPort",
+    "assets:sync": "node tools/assets/sync.mjs",
+    "assets:check": "node tools/assets/check.mjs",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {"@babylonjs/core": "^9.0.0", "@babylonjs/loaders": "^9.0.0"},
+  "devDependencies": {"typescript": "^5.9.0", "vite": "^7.0.0", "vitest": "^3.2.0", "@playwright/test": "^1.56.0", "eslint": "^9.0.0", "typescript-eslint": "^8.0.0", "@types/node": "^22.0.0"}
+}

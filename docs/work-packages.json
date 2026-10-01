@@ -1,0 +1,275 @@
+{
+  "modelPolicy": "ChatGPT only",
+  "packages": [
+    {
+      "id": "00",
+      "name": "Repo setup + docs + briefs",
+      "wave": "0",
+      "needs": "–",
+      "model": "ChatGPT session model",
+      "status": "done",
+      "acceptance": "git + ignores + docs committed"
+    },
+    {
+      "id": "01",
+      "name": "Foundation: toolchain, contracts, SceneManager, feature stubs, working minimal stubs, layout seed, strings seed, lint guards",
+      "wave": "0",
+      "needs": "00",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "checks pass; rigged player Idle/Walk, turns correctly; initial JS ≤1 MB gzip; worktree node_modules junction verified"
+    },
+    {
+      "id": "01R",
+      "name": "Contract review → tag `contracts-v1`",
+      "wave": "0",
+      "needs": "01",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "review notes fixed, tag set"
+    },
+    {
+      "id": "02",
+      "name": "World State + RuleEngine + selectors + headless journey harness",
+      "wave": "1",
+      "needs": "01R",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "all Condition types tested; once-rule survives save/load; harness turns signals into facts"
+    },
+    {
+      "id": "03",
+      "name": "Save + Reflection store",
+      "wave": "1",
+      "needs": "01R",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "corrupt save → recovery key; ≤1 write/s; pagehide flush; delete reflections keeps facts"
+    },
+    {
+      "id": "04",
+      "name": "Asset system: registry entries, loader, placeholders, VisualComponent, animation driver, `?viewer`",
+      "wave": "1",
+      "needs": "01R",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "`?assets=placeholder` plays the same; missing file → placeholder + 1 warning; Run falls back to Walk"
+    },
+    {
+      "id": "05",
+      "name": "Input + mobile controls",
+      "wave": "1",
+      "needs": "01R",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "stick only after first touch, dead zone, no page scroll, targets ≥48 px, stacked input locks"
+    },
+    {
+      "id": "06",
+      "name": "UI shell: prompt, hold ring, reflection panel, pause, loading veil",
+      "wave": "1",
+      "needs": "01R",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "Save/Skip send commands; HTML stays literal text; confirms for New Game + Delete; nothing covers controls at 390×844"
+    },
+    {
+      "id": "07",
+      "name": "Debug overlay + test hook `__lw`",
+      "wave": "1",
+      "needs": "01R",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "overlay shows all stats; `__lw` absent in production build"
+    },
+    {
+      "id": "08",
+      "name": "Thought Wave system",
+      "wave": "1",
+      "needs": "01R",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "max 2 waves; >64 chars rejected; edge clamp tested; reduced-motion fade"
+    },
+    {
+      "id": "10",
+      "name": "Follow camera",
+      "wave": "1 (early)",
+      "needs": "05 stub",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "clamps hold (4.5–6.5 m, 1.2 m, 20–55°); never inside a wall in a wall-hug test"
+    },
+    {
+      "id": "11",
+      "name": "Interaction: press, hold, zones",
+      "wave": "1 (early)",
+      "needs": "02/05/06 stubs",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "one ENTER/EXIT per crossing; hold resets on release; E and touch button each give one interact"
+    },
+    {
+      "id": "17",
+      "name": "Look Within transition (both ways)",
+      "wave": "1 (early)",
+      "needs": "stub scenes",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "8 steps logged both ways; save before switch; ≤2 s after cache; hold spam cannot double-trigger; reload in inner resumes there"
+    },
+    {
+      "id": "09",
+      "name": "Player controller + animation states",
+      "wave": "2",
+      "needs": "04, 05",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "2.8/4.6 m/s ±5%; no turning flip; ramps OK, 0.3 m ledge blocks; kill-plane works"
+    },
+    {
+      "id": "12",
+      "name": "Outer World greybox",
+      "wave": "2",
+      "needs": "04",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "path walkable, gate blocked before package, tree crown visible from spawn, ≤80 draw calls"
+    },
+    {
+      "id": "13",
+      "name": "Inner World greybox + Source Water",
+      "wave": "2",
+      "needs": "04",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "arrival view shows package root + beetle spot at 390×844; water `highp`, ≤60 particles"
+    },
+    {
+      "id": "14",
+      "name": "Atmosphere, WorldStatePresenter, quality presets",
+      "wave": "2",
+      "needs": "02, 04",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "mood right after reload; presets switch live; `?safe` works; fog never hides the path"
+    },
+    {
+      "id": "15",
+      "name": "NPC basics (merchant, citizens)",
+      "wave": "2",
+      "needs": "04",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "merchant idle sway, turns to player within 4 m, far animation off"
+    },
+    {
+      "id": "16",
+      "name": "Package, chain, beetle controllers",
+      "wave": "2",
+      "needs": "02, 04",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "package on hand-bone socket; chain/beetle states right after reload; chain = 1 draw call"
+    },
+    {
+      "id": "18a",
+      "name": "Slice rule data + headless journey test",
+      "wave": "2",
+      "needs": "02",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "journey passes in both orders (tree first / market first); one wave after reload"
+    },
+    {
+      "id": "19a",
+      "name": "E2E harness + autopilot (real keys) + smoke test",
+      "wave": "2",
+      "needs": "07",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "harness + smoke pass desktop + mobile viewport"
+    },
+    {
+      "id": "21",
+      "name": "Content + safety review (strings, rules §1/§4)",
+      "wave": "2",
+      "needs": "01 strings",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "checklist passes, no diagnosis/karma/money promises"
+    },
+    {
+      "id": "18b",
+      "name": "Slice integration",
+      "wave": "3",
+      "needs": "09–17, 18a",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "full slice by hand, desktop + 390×844 touch, no debug commands, no console errors"
+    },
+    {
+      "id": "19b",
+      "name": "E2E journeys desktop + mobile",
+      "wave": "3",
+      "needs": "18b, 19a",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "15 steps with real input; one wave after reload; beetle `attached`; 0 errors; no network POST"
+    },
+    {
+      "id": "20",
+      "name": "Performance pass",
+      "wave": "3",
+      "needs": "18b, D2",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "phone: <120 draw calls, <250k tris, ≥30 FPS or documented reason; start download ≤12 MB"
+    },
+    {
+      "id": "22",
+      "name": "Milestone review + report → **STOP**",
+      "wave": "4",
+      "needs": "19b, 20, 21",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "every spec §21 criterion has evidence; README + decisions updated"
+    },
+    {
+      "id": "A1",
+      "name": "Asset validator + sync (seed: `check_asset.py`)",
+      "wave": "1",
+      "needs": "see plan",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "`assets:sync` idempotent; `assets:check` prints table, non-zero exit on broken `final` asset"
+    },
+    {
+      "id": "A2",
+      "name": "Asset status doc + generation manifest (22 jobs, name conflicts)",
+      "wave": "0",
+      "needs": "see plan",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "all 22 jobs + conflicts listed; manifest matches 3D doc §11"
+    },
+    {
+      "id": "A3",
+      "name": "Rig v2: Walk@2.8, Run@4.6, Interact, LookAround; grips under hand bones; multi-mesh `player.glb` later",
+      "wave": "0",
+      "needs": "see plan",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "clips pass checks; a person reviews the bends"
+    },
+    {
+      "id": "A4",
+      "name": "Final asset swap (repeat per asset)",
+      "wave": "later",
+      "needs": "see plan",
+      "model": "ChatGPT session model",
+      "status": "pending",
+      "acceptance": "diff = one registry entry + one GLB"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+html,body{margin:0;width:100%;height:100%;overflow:hidden;font:14px/1.45 Arial,sans-serif;background:#9eafbb;color:#fff}
+#view{display:block;width:100%;height:100%;touch-action:none;outline:none}
+#debug{position:absolute;top:14px;left:14px;padding:10px 12px;min-width:178px;background:#16222ddb;border:1px solid #ffffff40;border-radius:5px;white-space:pre-line;pointer-events:none}
+#hint{position:absolute;bottom:14px;left:14px;padding:7px 10px;background:#16222dbb;border-radius:4px;pointer-events:none}
+#walk-preview{position:absolute;right:14px;bottom:14px;padding:8px 12px;border:1px solid #ffffff66;border-radius:5px;background:#16222ddd;color:#fff;cursor:pointer}
+#touch{display:none;position:absolute;bottom:18px;left:18px;text-align:center;touch-action:none}
+#touch button{width:55px;height:55px;margin:2px;border:1px solid #ffffff66;border-radius:9px;background:#16222dcc;color:white;font-size:22px;touch-action:none}
+#touch button:active{background:#42617b}
+@media(pointer:coarse){#touch{display:block}#hint{display:none}#debug{font-size:12px;min-width:150px}}

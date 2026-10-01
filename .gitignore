@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.npm-cache/
+_worktrees/
+Temporary Assets/
+public/assets/
+test-results/
+playwright-report/
+__pycache__/
+*.mkv
+write_probe_root.txt
+character-rig-test/validation/*.glb

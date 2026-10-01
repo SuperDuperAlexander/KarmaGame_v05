@@ -1,0 +1,15 @@
+export const strings = {
+  title:'Light Within', outer:'The City', inner:'Within',
+  receive:'Receive package', look:'Hold to look within', reflect:'Reflect',
+  return:'Hold to return', desire:'Look at the shining object',
+  question:'What does money mean to you?', wave:'I want more...',
+  end:'You have seen the attachment beetle. This is the end of this first part.',
+  welcome:'Follow the path. Take the package at the stone.',
+  carrying:'The gate is open. Follow the path to the tree.',
+  reflectionHelp:'Your words stay on this device. There is no right answer.',
+  save:'Save', skip:'Skip', pause:'Pause', resume:'Resume', newGame:'New Game',
+  delete:'Delete reflections', confirmNew:'Start a new game? This removes this saved game.',
+  confirmDelete:'Delete your saved words? Your game progress stays.',
+  controls:'W A S D: move · Shift: run · E: act or hold · Drag: look · Esc: pause',
+  loading:'Loading the world...', bootError:'The world could not start. Reload to try again.',
+};
