@@ -6,8 +6,9 @@ import type {AssetService,WorldFactory,WorldView,WaveService} from '../contracts
 import type {WorldId,WorldStore} from '../contracts/state';
 import {createCharacterMotor} from '../player/characterMotor';
 import {createFollowCamera} from '../camera/followCamera';
+import {createChain} from '../props/chain';
 export async function createSceneManager(engine:Engine,assets:AssetService,factory:WorldFactory,store:WorldStore,makeWaves:(scene:Scene)=>WaveService) {
-  type Entry={world:WorldView;player:ReturnType<typeof createCharacterMotor>;camera:ReturnType<typeof createFollowCamera>;waves:WaveService;carry:TransformNode};
+  type Entry={world:WorldView;player:ReturnType<typeof createCharacterMotor>;camera:ReturnType<typeof createFollowCamera>;waves:WaveService;carry:TransformNode;chainLoose:TransformNode;chainTense:TransformNode};
   const entries=new Map<WorldId,Entry>();
   let current:Entry;
   async function get(id:WorldId) {
@@ -25,7 +26,10 @@ export async function createSceneManager(engine:Engine,assets:AssetService,facto
     const carry=(await assets.create('FinancePackage',scene,socket??root)).root;
     carry.position.copyFromFloats(socket?0:.5,socket?-.10:1.0,socket?.15:.1);
     carry.scaling.scaleInPlace(.85);
-    const entry={world,player,camera,waves,carry};entries.set(id,entry);return entry;
+    const chainLoose=createChain(scene,new Vector3(-.38,.7,.05),new Vector3(-.12,.45,-.12));chainLoose.parent=root;
+    const chainTense=createChain(scene,new Vector3(-.38,.7,.05),new Vector3(0,.8,-.2));chainTense.parent=root;
+    chainLoose.setEnabled(false);chainTense.setEnabled(false);
+    const entry={world,player,camera,waves,carry,chainLoose,chainTense};entries.set(id,entry);return entry;
   }
   return {
     get current(){return current;},get entries(){return entries;},

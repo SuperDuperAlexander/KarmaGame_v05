@@ -12,7 +12,7 @@ export function createFollowCamera(scene:Scene) {
     update(frame:InputFrame,player:Vector3) {
       yaw-=frame.lookX*.005;
       pitch=Math.max(20*Math.PI/180,Math.min(55*Math.PI/180,pitch+frame.lookY*.004));
-      distance=Math.max(4.5,Math.min(6.5,distance+frame.zoom*.004));
+      distance=Math.max(4.5,Math.min(6.5,distance+frame.zoom*.25));
       const target=player.add(new Vector3(0,1.2,0));
       const away=new Vector3(-Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch));
       const hit=scene.pickWithRay(new Ray(target,away,distance+.3),mesh=>Boolean(mesh.metadata?.cameraBlocker));

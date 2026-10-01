@@ -1,4 +1,5 @@
 import {Mesh} from '@babylonjs/core/Meshes/mesh';
+import '@babylonjs/core/Collisions/collisionCoordinator';
 import {CreateCapsule} from '@babylonjs/core/Meshes/Builders/capsuleBuilder';
 import {TransformNode} from '@babylonjs/core/Meshes/transformNode';
 import {Vector3, Quaternion} from '@babylonjs/core/Maths/math.vector';
