@@ -1,0 +1,380 @@
+[
+  {
+    "character": "merchant",
+    "file": "merchant_rigged.glb",
+    "status": "temporary",
+    "humanBendReview": false,
+    "sourceSHA256": "3d4a177439446d52889c2b61b57be476a8e768cbbaed50dc55b300c7ad308a2e",
+    "outputSHA256": "e9de90802b0749761b250a5d4ee166a46e4cffd522e89eb74b5b4b2a317e066e",
+    "bytes": 1696052,
+    "bones": 17,
+    "vertices": 23822,
+    "triangles": 19651,
+    "weightsPerVertex": 4,
+    "materials": 1,
+    "measuredHeight": 1.75,
+    "targetHeight": 1.75,
+    "legScale": 1.0572972972972974,
+    "grips": [
+      "leftHandGrip",
+      "rightHandGrip"
+    ],
+    "clips": [
+      {
+        "name": "Idle",
+        "seconds": 2.0,
+        "keys": 17,
+        "loop": true
+      },
+      {
+        "name": "Walk",
+        "seconds": 0.4682316482067108,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 2.8,
+        "halfReach": 0.3277621621621622,
+        "stepsPerSecond": 4.271390043069147,
+        "maxKneeDegrees": 59.6213196190283,
+        "maxContactError": 8.678691620911394e-08
+      },
+      {
+        "name": "Run",
+        "seconds": 0.34936779737472534,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 4.6,
+        "halfReach": 0.401772972972973,
+        "stepsPerSecond": 5.724626067510274,
+        "maxKneeDegrees": 70.86021501177125,
+        "maxContactError": 8.678691620911394e-08
+      },
+      {
+        "name": "Interact",
+        "seconds": 1.0,
+        "keys": 65,
+        "loop": false
+      },
+      {
+        "name": "LookAround",
+        "seconds": 3.0,
+        "keys": 93,
+        "loop": true
+      }
+    ]
+  },
+  {
+    "character": "citizen_female",
+    "file": "citizen_female_rigged.glb",
+    "status": "temporary",
+    "humanBendReview": false,
+    "sourceSHA256": "9d61c9f71ef2fbe1ec3d6727c973b83346ad4dbabc552ed129c9d4c224dd179c",
+    "outputSHA256": "40bb05569c7155d43d22b5755f55b50143c6327aa813c0218b1a20a978b2624b",
+    "bytes": 761332,
+    "bones": 17,
+    "vertices": 8591,
+    "triangles": 10988,
+    "weightsPerVertex": 4,
+    "materials": 1,
+    "measuredHeight": 1.65,
+    "targetHeight": 1.68,
+    "legScale": 1.009864864864865,
+    "grips": [
+      "leftHandGrip",
+      "rightHandGrip"
+    ],
+    "clips": [
+      {
+        "name": "Idle",
+        "seconds": 2.0,
+        "keys": 17,
+        "loop": true
+      },
+      {
+        "name": "Walk",
+        "seconds": 0.45535725355148315,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 2.8,
+        "halfReach": 0.31305810810810814,
+        "stepsPerSecond": 4.392155795040779,
+        "maxKneeDegrees": 61.01838624544765,
+        "maxContactError": 8.06455072999146e-08
+      },
+      {
+        "name": "Run",
+        "seconds": 0.3397616446018219,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 4.6,
+        "halfReach": 0.38374864864864866,
+        "stepsPerSecond": 5.88647962998845,
+        "maxKneeDegrees": 72.31881725613016,
+        "maxContactError": 7.4212196971013e-08
+      },
+      {
+        "name": "Interact",
+        "seconds": 1.0,
+        "keys": 65,
+        "loop": false
+      },
+      {
+        "name": "LookAround",
+        "seconds": 3.0,
+        "keys": 93,
+        "loop": true
+      }
+    ]
+  },
+  {
+    "character": "citizen_male",
+    "file": "citizen_male_rigged.glb",
+    "status": "temporary",
+    "humanBendReview": false,
+    "sourceSHA256": "526c75fdc31a69623b6069f51ce2f1d8380bde1458ec50d0d6799840f0ed49e5",
+    "outputSHA256": "100c057e2174bee9b45ce3d4cbec06558695fa20a786b92d66548c7b6e51baa3",
+    "bytes": 793004,
+    "bones": 17,
+    "vertices": 9685,
+    "triangles": 13039,
+    "weightsPerVertex": 4,
+    "materials": 1,
+    "measuredHeight": 1.75,
+    "targetHeight": 1.78,
+    "legScale": 0.9459459459459459,
+    "grips": [
+      "leftHandGrip",
+      "rightHandGrip"
+    ],
+    "clips": [
+      {
+        "name": "Idle",
+        "seconds": 2.0,
+        "keys": 17,
+        "loop": true
+      },
+      {
+        "name": "Walk",
+        "seconds": 0.42610037326812744,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 2.8,
+        "halfReach": 0.29324324324324325,
+        "stepsPerSecond": 4.693729753532701,
+        "maxKneeDegrees": 59.742836010721234,
+        "maxContactError": 7.260509760076417e-08
+      },
+      {
+        "name": "Run",
+        "seconds": 0.3179318308830261,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 4.6,
+        "halfReach": 0.35945945945945945,
+        "stepsPerSecond": 6.290656693433891,
+        "maxKneeDegrees": 70.94945838645292,
+        "maxContactError": 6.409483224723012e-08
+      },
+      {
+        "name": "Interact",
+        "seconds": 1.0,
+        "keys": 65,
+        "loop": false
+      },
+      {
+        "name": "LookAround",
+        "seconds": 3.0,
+        "keys": 93,
+        "loop": true
+      }
+    ]
+  },
+  {
+    "character": "fear_child",
+    "file": "fear_child_rigged.glb",
+    "status": "temporary",
+    "humanBendReview": false,
+    "sourceSHA256": "8de978e6e3d130c8406cbd762755a4a4a896b741aaa394364ecb36b3fb60982b",
+    "outputSHA256": "9d510c2a187451d839050f697d2f8eba1858776bb377b3d816b47f5d0a5b3f91",
+    "bytes": 1209872,
+    "bones": 17,
+    "vertices": 16596,
+    "triangles": 19998,
+    "weightsPerVertex": 4,
+    "materials": 1,
+    "measuredHeight": 1.1,
+    "targetHeight": 1.25,
+    "legScale": 0.5067567567567568,
+    "grips": [
+      "leftHandGrip",
+      "rightHandGrip"
+    ],
+    "clips": [
+      {
+        "name": "Idle",
+        "seconds": 2.0,
+        "keys": 17,
+        "loop": true
+      },
+      {
+        "name": "Walk",
+        "seconds": 0.25502368807792664,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 2.8,
+        "halfReach": 0.1570945945945946,
+        "stepsPerSecond": 7.8424087388653385,
+        "maxKneeDegrees": 59.35310511289049,
+        "maxContactError": 3.043194952978556e-08
+      },
+      {
+        "name": "Run",
+        "seconds": 0.19028416275978088,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 4.6,
+        "halfReach": 0.1925675675675676,
+        "stepsPerSecond": 10.510596210389018,
+        "maxKneeDegrees": 70.45251394591745,
+        "maxContactError": 3.811587483137924e-08
+      },
+      {
+        "name": "Interact",
+        "seconds": 1.0,
+        "keys": 65,
+        "loop": false
+      },
+      {
+        "name": "LookAround",
+        "seconds": 3.0,
+        "keys": 93,
+        "loop": true
+      }
+    ]
+  },
+  {
+    "character": "dark_npc",
+    "file": "dark_npc_rigged.glb",
+    "status": "temporary",
+    "humanBendReview": false,
+    "sourceSHA256": "02d1295a330e3f1e0d19994c0795b369cdbb1fcbd9b48aa3bafe45809c36d67e",
+    "outputSHA256": "8a1ca9ce76e74f3a3d680e3c6c993742c2dd63bc6f46c6f29028641a99e8a06a",
+    "bytes": 725656,
+    "bones": 17,
+    "vertices": 9281,
+    "triangles": 12350,
+    "weightsPerVertex": 4,
+    "materials": 1,
+    "measuredHeight": 1.8,
+    "targetHeight": 1.82,
+    "legScale": 0.9729729729729729,
+    "grips": [
+      "leftHandGrip",
+      "rightHandGrip"
+    ],
+    "clips": [
+      {
+        "name": "Idle",
+        "seconds": 2.0,
+        "keys": 17,
+        "loop": true
+      },
+      {
+        "name": "Walk",
+        "seconds": 0.4356756806373596,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 2.8,
+        "halfReach": 0.3016216216216216,
+        "stepsPerSecond": 4.5905706673233535,
+        "maxKneeDegrees": 57.58839772289727,
+        "maxContactError": 8.133781992381017e-08
+      },
+      {
+        "name": "Run",
+        "seconds": 0.3250763714313507,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 4.6,
+        "halfReach": 0.36972972972972973,
+        "stepsPerSecond": 6.15240040730662,
+        "maxKneeDegrees": 68.58350170991,
+        "maxContactError": 7.150466369010289e-08
+      },
+      {
+        "name": "Interact",
+        "seconds": 1.0,
+        "keys": 65,
+        "loop": false
+      },
+      {
+        "name": "LookAround",
+        "seconds": 3.0,
+        "keys": 93,
+        "loop": true
+      }
+    ]
+  },
+  {
+    "character": "exchange_guide",
+    "file": "exchange_guide_rigged.glb",
+    "status": "temporary",
+    "humanBendReview": false,
+    "sourceSHA256": "70bebf9c440d793c9dc442ecfc655031a28db0dd0964d49a188777a04c02b554",
+    "outputSHA256": "81e8805de6813bea064b7e30af13f1f3b8eeb0e325355a31b4f7505324545846",
+    "bytes": 964820,
+    "bones": 17,
+    "vertices": 12984,
+    "triangles": 18074,
+    "weightsPerVertex": 4,
+    "materials": 1,
+    "measuredHeight": 1.8,
+    "targetHeight": 1.76,
+    "legScale": 1.058918918918919,
+    "grips": [
+      "leftHandGrip",
+      "rightHandGrip"
+    ],
+    "clips": [
+      {
+        "name": "Idle",
+        "seconds": 2.0,
+        "keys": 17,
+        "loop": true
+      },
+      {
+        "name": "Walk",
+        "seconds": 0.45852869749069214,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 2.8,
+        "halfReach": 0.3282648648648649,
+        "stepsPerSecond": 4.36177716017567,
+        "maxKneeDegrees": 60.073780160340704,
+        "maxContactError": 6.920537909405056e-08
+      },
+      {
+        "name": "Run",
+        "seconds": 0.3421280086040497,
+        "keys": 65,
+        "loop": true,
+        "authoredWorldSpeed": 4.6,
+        "halfReach": 0.4023891891891892,
+        "stepsPerSecond": 5.845765180583717,
+        "maxKneeDegrees": 71.36979246821525,
+        "maxContactError": 8.022066572133113e-08
+      },
+      {
+        "name": "Interact",
+        "seconds": 1.0,
+        "keys": 65,
+        "loop": false
+      },
+      {
+        "name": "LookAround",
+        "seconds": 3.0,
+        "keys": 93,
+        "loop": true
+      }
+    ]
+  }
+]
