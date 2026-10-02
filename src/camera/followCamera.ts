@@ -10,7 +10,7 @@ export function createFollowCamera(scene:Scene,initialYaw=0) {
   let yaw=initialYaw;let pitch=20*Math.PI/180;let distance=5.8;
   return {camera,get yaw(){return yaw;},get pitch(){return pitch;},get distance(){return distance;},
     update(frame:InputFrame,player:Vector3) {
-      yaw-=frame.lookX*.005;
+      yaw+=frame.lookX*.005;
       pitch=Math.max(20*Math.PI/180,Math.min(55*Math.PI/180,pitch+frame.lookY*.004));
       distance=Math.max(4.5,Math.min(6.5,distance+frame.zoom*.25));
       const target=player.add(new Vector3(0,1.2,0));
