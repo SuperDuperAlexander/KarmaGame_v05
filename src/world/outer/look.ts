@@ -29,7 +29,7 @@ export function warmKits(scene:Scene){
     if(!/^city_(building_kit|infrastructure)Mat$/.test(mat.name))continue;
     const m=mat as unknown as Pbr;if(!m.albedoTexture)continue;
     m.albedoColor=new Color3(1.16,1.02,.84);
-    if(!m.emissiveTexture)m.emissiveTexture=m.albedoTexture;m.emissiveColor=new Color3(.2,.12,.06);
+    if(!m.emissiveTexture)m.emissiveTexture=m.albedoTexture;m.emissiveColor=mat.name.includes('infrastructure')?new Color3(.36,.23,.12):new Color3(.2,.12,.06);
   }
 }
 

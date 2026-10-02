@@ -60,12 +60,12 @@ function paving(scene:Scene){
     const r=rng(37);const cx=w/2,cy=h/2,R=w/2;
     c.fillStyle='#8f7c5c';c.fillRect(0,0,w,h);
     // Stones: rows of changing height, stones of changing width, each with its own warm or cool tone and a soft bevel.
-    const tones:[number,number,number][]=[[214,192,152],[204,170,120],[210,166,138],[188,182,168],[222,200,160],[196,160,112]];
+    const tones:[number,number,number][]=[[222,200,160],[212,182,138],[216,180,148],[200,192,176],[226,206,166],[204,170,124]];
     let py=0;
     while(py<h){
-      const rowH=26+r()*22;let px=-r()*40;
+      const rowH=18+r()*16;let px=-r()*40;
       while(px<w){
-        const sw=30+r()*38;const t=tones[(r()*tones.length)|0];const k=.86+r()*.3;
+        const sw=20+r()*30;const t=tones[(r()*tones.length)|0];const k=.92+r()*.18;
         const x=px+1.3,y=py+1.3,ww=sw-2.6,hh=rowH-2.6;
         c.fillStyle=rgba(t[0]*k,t[1]*k,t[2]*k);c.fillRect(x,y,ww,hh);
         c.fillStyle='rgba(255,245,215,.22)';c.fillRect(x,y,ww,2);c.fillRect(x,y,2,hh);
@@ -77,7 +77,7 @@ function paving(scene:Scene){
       py+=rowH;
     }
     // Soft colour patches break the repeat of the stones.
-    for(let i=0;i<34;i++){const a=r()*6.3,d=Math.sqrt(r())*R;const col=[rgba(214,128,80),rgba(235,190,90),rgba(120,150,170),rgba(150,120,90)][(r()*4)|0];blob(c,cx+Math.cos(a)*d,cy+Math.sin(a)*d,50+r()*110,col,.1+r()*.12);}
+    for(let i=0;i<34;i++){const a=r()*6.3,d=Math.sqrt(r())*R;const col=[rgba(214,128,80),rgba(235,190,90),rgba(120,150,170),rgba(150,120,90)][(r()*4)|0];blob(c,cx+Math.cos(a)*d,cy+Math.sin(a)*d,50+r()*110,col,.07+r()*.08);}
     // Rings around the tree and a warm, worn centre.
     c.lineWidth=14;c.strokeStyle='rgba(112,86,60,.55)';c.beginPath();c.arc(cx,cy,R*.34,0,6.3);c.stroke();
     c.lineWidth=7;c.strokeStyle='rgba(240,214,150,.5)';c.beginPath();c.arc(cx,cy,R*.62,0,6.3);c.stroke();

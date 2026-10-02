@@ -64,7 +64,7 @@ export async function createOuterWorld(scene:Scene,assets:AssetService):Promise<
   ];
   for(const [part,x,z,yaw,s] of props)later.push(()=>place('MarketProps',part,x,z,{yaw:part==='sign'?yaw:yaw+x,scale:s,decor:true}));
   // Street furniture.
-  const lampGlow=createLampGlow(scene);(window as any).__sc=scene;
+  const lampGlow=createLampGlow(scene);
   for(const [x,z] of LAMPS)queue(place('CityWall','lamp',x,z,{scale:1.3,decor:true}).then(v=>{if(!v)return;const b=v.root.getHierarchyBoundingVectors(true);lampGlow.add(x,b.max.y*.82,z,1.3);}));
   for(const [x,z] of [[-9,0],[9,-2]])queue(place('CityWall','bench',x,z,{scale:.8,yaw:Math.atan2(-x,-z)+Math.PI,decor:true}));
   queue(place('CityWall','fountain',-8,7,{scale:1.7,decor:true}));solid(scene,'fountain-blocker',new Vector3(-8,.7,7),new Vector3(4.6,1.4,4.6));
