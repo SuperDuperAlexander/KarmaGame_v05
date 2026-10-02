@@ -98,3 +98,14 @@ Wave 3: 36            → lead merge → 38 → 37 → user phone check (D1, D2)
 | B4 | Citizens who give too much / cannot receive; water between two basins | Sonnet | citizens |
 | B5 | Exchange House and Guide, beetle transformation, end image at Source Water | Sonnet | exchange_house, exchange_guide |
 | B6 | Content and safety review (§1, §4, §21) | Haiku draft, Opus final | – |
+
+## Lead notes after WP-33 merge (input for WP-35 and lead follow-ups)
+
+- WP-33 merged. Checks on `main`: type check, lint, 74 tests pass. Helper e2e: 6 of 6.
+- Inner view: 25–30 draw calls, 92k–137k triangles. Inside budget.
+- WP-35: the inner floor is a flat grey code disk. Give it a painted stone look with root seams. Use platform kit parts at the edge.
+- WP-35: the inner scene is too dark. The tree roots read as a dark ceiling. Light the roots from below.
+- WP-35: the Source Water strip cuts through the fear roots in the west. Move or shorten the strip.
+- Lead: the outer carry chain in `src/app/sceneManager.ts` still uses the code torus. Switch it to the new link.
+- Lead: kit parts keep their X offset from the file. WP-33 resets it in its code. Decide in the WP-32 merge if the loader centers parts.
+- Open: the chain ends at the beetle head. The beetle file has no anchor node.
