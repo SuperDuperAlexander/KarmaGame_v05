@@ -8,7 +8,7 @@ import {MAX_REFLECTION_LENGTH} from '../state/worldStore';
 import {createInputService} from '../input';
 import {createUiService} from '../ui';
 import {runStoryEffect,wavePosition} from '../ui/storyEffects';
-import {createWaveService,type ToneWaveService} from '../thought-waves';
+import {createWaveService} from '../thought-waves';
 import {createAssetService} from '../assets/feature';
 import {createWorldFactory} from '../world/feature';
 import {createSceneManager} from './sceneManager';
@@ -102,7 +102,7 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
         // The rule fact and fired rule are saved before any thought is shown.
         await flushSave();
         const at=wavePosition(manager.current.world,effect.actor,manager.current.player.position());
-        if((manager.current.waves as ToneWaveService).show(effect.id,effect.text,at,effect.tone))wavesShown.push(effect.id);
+        if(manager.current.waves.show(effect.id,effect.text,at,effect.tone))wavesShown.push(effect.id);
       }
       if(effect.kind==='hint')ui.hint(effect.text);
     }).catch(error=>{failed=true;console.error(error);ui.loading(true,strings.bootError);}).finally(()=>busyEffects--);

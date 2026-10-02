@@ -13,4 +13,6 @@ export interface WorldView {scene:Scene;spawn:Vector3;gate:TransformNode|null;be
   /** World position of an actor, for thought waves. Null when the actor is not in this world. */
   actorPosition?(actor:ActorId):Vector3|null}
 export interface WorldFactory {create(world:WorldId,scene:Scene,assets:AssetService):Promise<WorldView>}
-export interface WaveService {show(id:string,text:string,position:Vector3):boolean;update(dt:number,position:Vector3):void;dispose():void;count():number}
+/** Colour shows the theme, never good or bad (spec 10.2). */
+export type WaveTone = 'attachment'|'fear'|'service'|'calm';
+export interface WaveService {show(id:string,text:string,position:Vector3,tone?:WaveTone):boolean;update(dt:number,position:Vector3):void;dispose():void;count():number}
