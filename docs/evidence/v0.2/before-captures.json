@@ -1,0 +1,1367 @@
+[
+  {
+    "id": "01-start",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 0,
+      "z": -45
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.008249984608788008,
+      "z": -45
+    },
+    "camera": {
+      "yaw": 0,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        0,
+        3.3287748732279336,
+        -50.826094248872636
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-01-start-medium.png",
+    "errors": []
+  },
+  {
+    "id": "02-gate",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 0,
+      "z": -24
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.008249978835092486,
+      "z": -24
+    },
+    "camera": {
+      "yaw": 0,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        0,
+        3.3287748674542383,
+        -29.826094248872632
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-02-gate-medium.png",
+    "errors": []
+  },
+  {
+    "id": "03-square-wide",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 0,
+      "z": -12
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.00009075362407195975,
+      "z": -12
+    },
+    "camera": {
+      "yaw": 0,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        0,
+        3.320615642243218,
+        -17.826094248872632
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-03-square-wide-medium.png",
+    "errors": []
+  },
+  {
+    "id": "03-square-wide",
+    "phase": "before",
+    "world": "outer",
+    "quality": "low",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 0,
+      "z": -12
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.008249976336385911,
+      "z": -12
+    },
+    "camera": {
+      "yaw": 0,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        0,
+        3.3287748649555318,
+        -17.826094248872632
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-03-square-wide-low.png",
+    "errors": []
+  },
+  {
+    "id": "03-square-wide",
+    "angle": "reverse",
+    "phase": "before",
+    "world": "outer",
+    "viewport": "1280x720 desktop",
+    "quality": "low",
+    "camera": {
+      "yaw": 3.1415927124023435,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        3.426474608479077e-7,
+        3.328774908586389,
+        -6.173905751127378
+      ]
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.00825001996724306,
+      "z": -12
+    },
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-03-square-wide-reverse.png",
+    "errors": []
+  },
+  {
+    "id": "03-square-wide",
+    "angle": "corner",
+    "phase": "before",
+    "world": "outer",
+    "viewport": "1280x720 desktop",
+    "quality": "low",
+    "camera": {
+      "yaw": 1.5707963943481453,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        -5.826094248872619,
+        3.3287749137772664,
+        -11.999999606428407
+      ]
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.008250025158120566,
+      "z": -12
+    },
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-03-square-wide-corner.png",
+    "errors": []
+  },
+  {
+    "id": "04-tree-close",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 0,
+      "z": -3.8
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.0054812015934853076,
+      "z": -3.8
+    },
+    "camera": {
+      "yaw": 0,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        0,
+        3.326006090212631,
+        -9.626094248872633
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-04-tree-close-medium.png",
+    "errors": []
+  },
+  {
+    "id": "05-tree-market",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 18,
+      "z": 0
+    },
+    "actualPosition": {
+      "x": 18,
+      "y": 0.008250019736378178,
+      "z": 0
+    },
+    "camera": {
+      "yaw": -1.5707963562011718,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        23.82609424887263,
+        3.3287749083555243,
+        1.7132373042395392e-7
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-05-tree-market-medium.png",
+    "errors": []
+  },
+  {
+    "id": "06-market-entry",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 19,
+      "z": -5
+    },
+    "actualPosition": {
+      "x": 19,
+      "y": 0.0009964016307383305,
+      "z": -5
+    },
+    "camera": {
+      "yaw": 0.65,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        15.47412696204536,
+        3.3215212902498843,
+        -9.638059240347333
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-06-market-entry-medium.png",
+    "errors": []
+  },
+  {
+    "id": "07-market-counter",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 25,
+      "z": -1.5
+    },
+    "actualPosition": {
+      "x": 25,
+      "y": 0.005414887765772702,
+      "z": -1.5
+    },
+    "camera": {
+      "yaw": 0.5499999999999999,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        21.954774941567912,
+        3.3259397763849186,
+        -6.4668882149937765
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-07-market-counter-medium.png",
+    "errors": []
+  },
+  {
+    "id": "07-market-counter",
+    "phase": "before",
+    "world": "outer",
+    "quality": "low",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 25,
+      "z": -1.5
+    },
+    "actualPosition": {
+      "x": 25,
+      "y": 0.008249983014714801,
+      "z": -1.5
+    },
+    "camera": {
+      "yaw": 0.5499999999999999,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        21.954774941567912,
+        3.3287748716338608,
+        -6.4668882149937765
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-07-market-counter-low.png",
+    "errors": []
+  },
+  {
+    "id": "07-market-counter",
+    "angle": "reverse",
+    "phase": "before",
+    "world": "outer",
+    "viewport": "1280x720 desktop",
+    "quality": "low",
+    "camera": {
+      "yaw": 3.6915927124023433,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        28.045225350547444,
+        3.3261363664379795,
+        3.466888035896317
+      ]
+    },
+    "actualPosition": {
+      "x": 25,
+      "y": 0.005611477818833754,
+      "z": -1.5
+    },
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-07-market-counter-reverse.png",
+    "errors": []
+  },
+  {
+    "id": "07-market-counter",
+    "angle": "corner",
+    "phase": "before",
+    "world": "outer",
+    "viewport": "1280x720 desktop",
+    "quality": "low",
+    "camera": {
+      "yaw": 2.120796394348146,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        20.033111990721082,
+        3.3264180583281617,
+        1.545225393961518
+      ]
+    },
+    "actualPosition": {
+      "x": 25,
+      "y": 0.0058931697090159885,
+      "z": -1.5
+    },
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-07-market-counter-corner.png",
+    "errors": []
+  },
+  {
+    "id": "08-dark-entry",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": -17,
+      "z": 4
+    },
+    "actualPosition": {
+      "x": -17,
+      "y": 0.008249992212525203,
+      "z": 4
+    },
+    "camera": {
+      "yaw": -1.5707963562011718,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        -11.173905751127371,
+        3.328774880831671,
+        4.00000017132373
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-08-dark-entry-medium.png",
+    "errors": []
+  },
+  {
+    "id": "09-dark-court",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": -27,
+      "z": 4
+    },
+    "actualPosition": {
+      "x": -27,
+      "y": -0.008249923586859276,
+      "z": 4
+    },
+    "camera": {
+      "yaw": -1,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        -23.655179455802553,
+        2.6385202432156003,
+        1.8523154269453705
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-09-dark-court-medium.png",
+    "errors": []
+  },
+  {
+    "id": "10-exchange",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 0,
+      "z": 24
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.00009134577694025481,
+      "z": -47
+    },
+    "camera": {
+      "yaw": 0,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        0,
+        2.7353513569771506,
+        -51.21809221376423
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-10-exchange-medium.png",
+    "errors": []
+  },
+  {
+    "id": "11-inner-arrival",
+    "phase": "before",
+    "world": "inner",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 0,
+      "z": -7
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.008249990414249897,
+      "z": -7
+    },
+    "camera": {
+      "yaw": 0.45,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        -1.8205457892579435,
+        2.73164535267556,
+        -10.768816267218257
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-11-inner-arrival-medium.png",
+    "errors": []
+  },
+  {
+    "id": "11-inner-arrival",
+    "phase": "before",
+    "world": "inner",
+    "quality": "low",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 0,
+      "z": -7
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.0054149170848849515,
+      "z": -7
+    },
+    "camera": {
+      "yaw": 0.45,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        -1.8205457892579435,
+        2.7288102793461952,
+        -10.768816267218257
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-11-inner-arrival-low.png",
+    "errors": []
+  },
+  {
+    "id": "11-inner-arrival",
+    "angle": "reverse",
+    "phase": "before",
+    "world": "inner",
+    "viewport": "1280x720 desktop",
+    "quality": "low",
+    "camera": {
+      "yaw": 3.5915927124023432,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        2.5341505052791584,
+        3.321144792400659,
+        -1.7539104646088868
+      ]
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.0006199037815135533,
+      "z": -7
+    },
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-11-inner-arrival-reverse.png",
+    "errors": []
+  },
+  {
+    "id": "11-inner-arrival",
+    "angle": "corner",
+    "phase": "before",
+    "world": "inner",
+    "viewport": "1280x720 desktop",
+    "quality": "low",
+    "camera": {
+      "yaw": 2.0207963943481464,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        -5.2460895132408645,
+        3.3287749022766633,
+        -4.465849448866348
+      ]
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.008250013657517208,
+      "z": -7
+    },
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-11-inner-arrival-corner.png",
+    "errors": []
+  },
+  {
+    "id": "12-inner-source",
+    "phase": "before",
+    "world": "inner",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": -3,
+      "z": -3
+    },
+    "actualPosition": {
+      "x": -3,
+      "y": 0.00825000763304018,
+      "z": -3
+    },
+    "camera": {
+      "yaw": 0.49999999999999983,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        -5.79317837322461,
+        3.328774896252186,
+        -8.112878716740411
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-12-inner-source-medium.png",
+    "errors": []
+  },
+  {
+    "id": "13-inner-package",
+    "phase": "before",
+    "world": "inner",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 4,
+      "z": -3
+    },
+    "actualPosition": {
+      "x": 4,
+      "y": 0.00824997722057852,
+      "z": -3
+    },
+    "camera": {
+      "yaw": 0.45,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        1.4658498032567486,
+        3.3287748658397245,
+        -8.246089684430958
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-13-inner-package-medium.png",
+    "errors": []
+  },
+  {
+    "id": "14-inner-beetle",
+    "phase": "before",
+    "world": "inner",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 5.5,
+      "z": -2.4
+    },
+    "actualPosition": {
+      "x": 5.5,
+      "y": 0.005923483256319084,
+      "z": -2.4
+    },
+    "camera": {
+      "yaw": 0.45,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        2.9658498032567486,
+        3.3264483718754647,
+        -7.646089684430958
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-14-inner-beetle-medium.png",
+    "errors": []
+  },
+  {
+    "id": "15-boundary-west",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": -33,
+      "z": 0
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.000749966568526661,
+      "z": -47
+    },
+    "camera": {
+      "yaw": -1.5707963562011718,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        5.8260942488726295,
+        3.3212748551876725,
+        -46.999999828676266
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-15-boundary-west-medium.png",
+    "errors": []
+  },
+  {
+    "id": "15-boundary-east",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 38,
+      "z": 12
+    },
+    "actualPosition": {
+      "x": 38,
+      "y": -0.008249936997907215,
+      "z": 12
+    },
+    "camera": {
+      "yaw": 1.570796356201172,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        36.08190778623577,
+        1.8898785353900385,
+        12.000000056403948
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-15-boundary-east-medium.png",
+    "errors": []
+  },
+  {
+    "id": "15-boundary-north",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 12,
+      "z": 44
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.00824998959033918,
+      "z": -47
+    },
+    "camera": {
+      "yaw": 0,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        0,
+        2.7435100007905495,
+        -51.21809221376423
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-15-boundary-north-medium.png",
+    "errors": []
+  },
+  {
+    "id": "15-boundary-south",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "1280x720 desktop",
+    "requestedPosition": {
+      "x": 0,
+      "z": -49
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.008250023864315947,
+      "z": -49
+    },
+    "camera": {
+      "yaw": 3.141592712402344,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        3.426474634352133e-7,
+        3.328774912483462,
+        -43.17390575112738
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/desktop-15-boundary-south-medium.png",
+    "errors": []
+  },
+  {
+    "id": "03-square-wide",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "390x844 touch browser",
+    "requestedPosition": {
+      "x": 0,
+      "z": -12
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.0006198544224297331,
+      "z": -12
+    },
+    "camera": {
+      "yaw": 0,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        0,
+        3.3211447430415757,
+        -17.826094248872632
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/touch390-03-square-wide-medium.png",
+    "errors": []
+  },
+  {
+    "id": "03-square-wide",
+    "phase": "before",
+    "world": "outer",
+    "quality": "low",
+    "viewport": "390x844 touch browser",
+    "requestedPosition": {
+      "x": 0,
+      "z": -12
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.00824998436054658,
+      "z": -12
+    },
+    "camera": {
+      "yaw": 0,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        0,
+        3.328774872979692,
+        -17.826094248872632
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/touch390-03-square-wide-low.png",
+    "errors": []
+  },
+  {
+    "id": "04-tree-close",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "390x844 touch browser",
+    "requestedPosition": {
+      "x": 0,
+      "z": -3.8
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.008250004120463839,
+      "z": -3.8
+    },
+    "camera": {
+      "yaw": 0,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        0,
+        3.3287748927396095,
+        -9.626094248872633
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/touch390-04-tree-close-medium.png",
+    "errors": []
+  },
+  {
+    "id": "06-market-entry",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "390x844 touch browser",
+    "requestedPosition": {
+      "x": 19,
+      "z": -5
+    },
+    "actualPosition": {
+      "x": 19,
+      "y": 0.005313967935835384,
+      "z": -5
+    },
+    "camera": {
+      "yaw": 0.65,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        15.47412696204536,
+        3.3258388565549812,
+        -9.638059240347333
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/touch390-06-market-entry-medium.png",
+    "errors": []
+  },
+  {
+    "id": "07-market-counter",
+    "phase": "before",
+    "world": "outer",
+    "quality": "medium",
+    "viewport": "390x844 touch browser",
+    "requestedPosition": {
+      "x": 25,
+      "z": -1.5
+    },
+    "actualPosition": {
+      "x": 25,
+      "y": 0.008249979914357164,
+      "z": -1.5
+    },
+    "camera": {
+      "yaw": 0.5499999999999999,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        21.954774941567912,
+        3.328774868533503,
+        -6.4668882149937765
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/touch390-07-market-counter-medium.png",
+    "errors": []
+  },
+  {
+    "id": "07-market-counter",
+    "phase": "before",
+    "world": "outer",
+    "quality": "low",
+    "viewport": "390x844 touch browser",
+    "requestedPosition": {
+      "x": 25,
+      "z": -1.5
+    },
+    "actualPosition": {
+      "x": 25,
+      "y": 0.0004766681665780981,
+      "z": -1.5
+    },
+    "camera": {
+      "yaw": 0.5499999999999999,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        21.954774941567912,
+        3.321001556785724,
+        -6.4668882149937765
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/touch390-07-market-counter-low.png",
+    "errors": []
+  },
+  {
+    "id": "11-inner-arrival",
+    "phase": "before",
+    "world": "inner",
+    "quality": "medium",
+    "viewport": "390x844 touch browser",
+    "requestedPosition": {
+      "x": 0,
+      "z": -7
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.0004756777008001478,
+      "z": -7
+    },
+    "camera": {
+      "yaw": 0.45,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        -1.8205457892579435,
+        2.7238710399621104,
+        -10.768816267218257
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/touch390-11-inner-arrival-medium.png",
+    "errors": []
+  },
+  {
+    "id": "11-inner-arrival",
+    "phase": "before",
+    "world": "inner",
+    "quality": "low",
+    "viewport": "390x844 touch browser",
+    "requestedPosition": {
+      "x": 0,
+      "z": -7
+    },
+    "actualPosition": {
+      "x": 0,
+      "y": 0.008249982429801128,
+      "z": -7
+    },
+    "camera": {
+      "yaw": 0.45,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        -1.8205457892579435,
+        2.7316453446911115,
+        -10.768816267218257
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/touch390-11-inner-arrival-low.png",
+    "errors": []
+  },
+  {
+    "id": "13-inner-package",
+    "phase": "before",
+    "world": "inner",
+    "quality": "medium",
+    "viewport": "390x844 touch browser",
+    "requestedPosition": {
+      "x": 4,
+      "z": -3
+    },
+    "actualPosition": {
+      "x": 4,
+      "y": 0.008249999803251917,
+      "z": -3
+    },
+    "camera": {
+      "yaw": 0.45,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        1.4658498032567486,
+        3.328774888422398,
+        -8.246089684430958
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/touch390-13-inner-package-medium.png",
+    "errors": []
+  },
+  {
+    "id": "14-inner-beetle",
+    "phase": "before",
+    "world": "inner",
+    "quality": "medium",
+    "viewport": "390x844 touch browser",
+    "requestedPosition": {
+      "x": 5.5,
+      "z": -2.4
+    },
+    "actualPosition": {
+      "x": 5.5,
+      "y": 0.005071533839476672,
+      "z": -2.4
+    },
+    "camera": {
+      "yaw": 0.45,
+      "pitch": 0.3490658503988659,
+      "distance": 6.2,
+      "position": [
+        2.9658498032567486,
+        3.3255964224586227,
+        -7.646089684430958
+      ]
+    },
+    "state": [
+      "PACKAGE_RECEIVED",
+      "CITY_ENTERED",
+      "TREE_DISCOVERED",
+      "INNER_WORLD_ENTERED",
+      "MONEY_REFLECTION_SAVED",
+      "MARKET_VISITED",
+      "ATTACHMENT_TRIGGERED",
+      "ATTACHMENT_SEEN"
+    ],
+    "renderer": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "file": "before/touch390-14-inner-beetle-medium.png",
+    "errors": []
+  }
+]
