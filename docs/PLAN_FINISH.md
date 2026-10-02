@@ -109,3 +109,11 @@ Wave 3: 36            → lead merge → 38 → 37 → user phone check (D1, D2)
 - Lead: the outer carry chain in `src/app/sceneManager.ts` still uses the code torus. Switch it to the new link.
 - Lead: kit parts keep their X offset from the file. WP-33 resets it in its code. Decide in the WP-32 merge if the loader centers parts.
 - Open: the chain ends at the beetle head. The beetle file has no anchor node.
+
+## Lead notes after WP-31 and WP-32 merge
+
+- Merged WP-31 and WP-32. The lead removed the inner X reset because the loader now centres kit parts.
+- `main` checks: type check, lint, 83 tests and build pass.
+- Full e2e on `main` (port 5230): first run 4 of 6 pass. Both "normal assets" journeys failed once.
+- A rerun of each failed journey passes (desktop 1 of 1, mobile 2 of 2). Likely cause: the first Vite start after `npm install` re-bundles dependencies and reloads the page. WP-38 must run the full suite twice and report any repeat failure.
+- WP-36 input: the desktop spawn view shows 296,408 triangles at 25 FPS (frames per second) on the first frames. The city view shows 244,262. Phone-size views are lower, but this needs LOD or distance culling for houses.
