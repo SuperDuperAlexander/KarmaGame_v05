@@ -24,7 +24,8 @@ void main(){
   float ripple=pow(max(0.0,w1),9.0)*0.55+pow(max(0.0,w2),14.0)*0.35;
   vec3 c=mix(deep,shallow,clamp(centre*0.75+ripple*0.35,0.0,1.0))+foam*ripple*0.55+foam*glow*centre*0.35+vec3(tension*0.05,0.0,0.0);
   float ends=smoothstep(0.0,0.9,a)*smoothstep(len,len-3.0,a);
-  gl_FragColor=vec4(c,edge*ends*(0.62+ripple*0.3)*(1.0-glow*0.2));
+  float hi=step(0.5,glow); // inner water only: brighter and a little more solid
+  gl_FragColor=vec4(c*(1.0+hi*0.45),edge*ends*(0.62+ripple*0.3+hi*0.22)*(1.0-glow*0.2+hi*0.1));
 }`;
 function spline(points:[number,number,number][],steps:number){
   const out:{x:number;z:number;w:number}[]=[];
@@ -52,7 +53,8 @@ export function sourceWater(scene:Scene,inner:boolean){
   shader.backFaceCulling=false;shader.zOffset=-4;shader.alphaMode=Constants.ALPHA_COMBINE;
   const c=(r:number,g:number,b:number)=>new Color3(r,g,b);
   shader.setFloat('len',along);shader.setFloat('glow',inner?1:.25);
-  shader.setColor3('deep',inner?c(.05,.36,.58):c(.1,.5,.66));shader.setColor3('shallow',inner?c(.25,.8,.95):c(.35,.85,.9));shader.setColor3('foam',inner?c(.55,.95,1):c(.9,.97,.95));
+  shader.setColor3('deep',inner?c(.06,.5,.85):c(.1,.5,.66));shader.setColor3('shallow',inner?c(.3,.95,1.1):c(.35,.85,.9));shader.setColor3('foam',inner?c(.7,1.05,1.2):c(.9,.97,.95));
+  if(inner)water.metadata={...water.metadata,glow:true};
   water.material=shader;water.renderingGroupId=0;water.alphaIndex=10;
   let time=0;
   const place=(out:Vector3)=>{const p=line[(Math.random()*(line.length-1))|0];out.set(p.x+(Math.random()-.5)*p.w*.7,y+.05+Math.random()*.25,p.z+(Math.random()-.5)*p.w*.7);};
