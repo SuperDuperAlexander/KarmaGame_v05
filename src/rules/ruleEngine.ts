@@ -27,13 +27,14 @@ export function createRuleEngine(store: WorldStore, rules: readonly Rule[], onEf
         if (rule.once) draft.firedRules.push(rule.id);
         for (const effect of rule.effects) {
           if (effect.kind === 'fact') draft.facts.push(effect.fact);
-          if (effect.kind === 'trait') draft.traits[effect.trait] += effect.delta;
+          if (effect.kind === 'trait') draft.traits[effect.trait] = Math.max(0, Math.min(1, draft.traits[effect.trait] + effect.delta));
+          if (effect.kind === 'counter') draft.counters[effect.counter] = Math.max(0, (draft.counters[effect.counter] ?? 0) + effect.delta);
         }
         // Reserve IDs before save effects. Reload cannot repeat an emitted wave.
         draft.waveIds.push(...freshWaves);
       });
       for (const effect of rule.effects) {
-        if (effect.kind === 'fact' || effect.kind === 'trait') continue;
+        if (effect.kind === 'fact' || effect.kind === 'trait' || effect.kind === 'counter') continue;
         if (effect.kind === 'wave') {
           if (!freshWaves.delete(effect.id)) continue;
         }

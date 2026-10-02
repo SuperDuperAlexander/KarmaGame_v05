@@ -1,6 +1,16 @@
 import type {Fact, Position, Trait, WorldState, WorldStore} from '../contracts/state';
 
-export const FACTS: readonly Fact[] = ['PACKAGE_RECEIVED', 'CITY_ENTERED', 'TREE_DISCOVERED', 'INNER_WORLD_ENTERED', 'MONEY_REFLECTION_SAVED', 'MARKET_VISITED', 'ATTACHMENT_TRIGGERED', 'ATTACHMENT_SEEN'];
+export const FACTS: readonly Fact[] = [
+  'PACKAGE_RECEIVED', 'CITY_ENTERED', 'TREE_DISCOVERED', 'INNER_WORLD_ENTERED', 'MONEY_REFLECTION_SAVED', 'MARKET_VISITED', 'ATTACHMENT_TRIGGERED', 'ATTACHMENT_SEEN',
+  'FEAR_TRIGGERED', 'FEAR_SEEN', 'SERVICE_OFFERED', 'GIVE_COMPLETED', 'RECEIVE_COMPLETED', 'EXCHANGE_UNDERSTOOD', 'ATTACHMENT_TRANSFORMED', 'FINANCE_MVP_COMPLETE',
+  'MERCHANT_MET', 'CRATE_CARRIED', 'GIFT_OFFERED', 'GIFT_ACCEPTED', 'GIFT_DECLINED',
+  'CHILD_MET', 'COIN_SEARCHED', 'COIN_FOUND', 'CHILD_LISTENED', 'CHILD_GIVEN',
+  'DARK_MET', 'DARK_LISTENED', 'GIVER_MET', 'GIVER_RESTED', 'GIVER_GIFT_ACCEPTED',
+  'RECEIVER_MET', 'RECEIVER_ACCEPTED', 'EXCHANGE_HOUSE_ENTERED', 'GUIDE_MET', 'GUIDE_TEA_ACCEPTED',
+  'BEETLE_OBSERVED', 'BEETLE_RELEASED', 'FINALE_SEEN', 'ENOUGH_REFLECTION_SAVED',
+];
+/** Counters every state has. Old saves without them load with 0. */
+export const COUNTERS = ['serviceActs', 'giveCount', 'receiveCount'] as const;
 export const TRAITS: readonly Trait[] = ['attachment', 'fear', 'trust', 'contentment'];
 export const MAX_REFLECTION_LENGTH = 2000;
 export const MAX_SAVE_LENGTH = 131072;
@@ -9,7 +19,7 @@ const safeKey = /^[a-zA-Z0-9][a-zA-Z0-9_.:-]{0,79}$/;
 export function createInitialState(): WorldState {
   return {
     schemaVersion: 1, facts: [], firedRules: [],
-    traits: {attachment: 0, fear: 0, trust: 0, contentment: 0}, counters: {},
+    traits: {attachment: 0, fear: 0, trust: 0, contentment: 0}, counters: {serviceActs: 0, giveCount: 0, receiveCount: 0},
     world: 'outer', positions: {outer: {x: 0, y: 0, z: -47}, inner: {x: 0, y: 0, z: -7}},
     reflections: {}, waveIds: [],
   };
@@ -59,6 +69,7 @@ export function validateWorldState(value: unknown): WorldState {
     if (!Number.isInteger(number)) throw new Error('Invalid counter');
     result.counters[key] = number;
   }
+  for (const name of COUNTERS) result.counters[name] ??= 0;
   for (const [key, text] of Object.entries(reflections)) {
     if (!validKey(key) || typeof text !== 'string' || text.length > MAX_REFLECTION_LENGTH) throw new Error('Invalid reflection');
     result.reflections[key] = text;
