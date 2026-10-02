@@ -24,10 +24,14 @@ const gold=new Color3(1,.68,.2),dim=new Color3(.62,.68,.8);
 export function treeGlow(tree:TransformNode){
   const attach=split(tree,/root_attachment_/),fear=split(tree,/root_fear_/);let t=0;
   for(const m of attach)if(m.albedoTexture&&!m.emissiveTexture)m.emissiveTexture=m.albedoTexture;
+  // Every other root, the trunk and the branches glow a little from inside, cool and blue, so the roots read as a canopy and not as a black ceiling.
+  const own=new Set<Material>([...attach,...fear].map(m=>m as unknown as Material));
+  for(const mesh of tree.getChildMeshes(false)){const target=mesh instanceof InstancedMesh?mesh.sourceMesh:mesh;const m=target.material as unknown as Glow|null;
+    if(!m||own.has(m as unknown as Material))continue;own.add(m as unknown as Material);m.emissiveColor=new Color3(.06,.13,.23);}
   // The file already paints fear roots cold. Only dim them a little, no glow.
-  for(const m of fear)if(m.albedoColor)m.albedoColor=dim;
+  for(const m of fear){if(m.albedoColor)m.albedoColor=dim;if(m.albedoTexture&&!m.emissiveTexture)m.emissiveTexture=m.albedoTexture;m.emissiveColor=new Color3(.1,.2,.38);}
   return (state:Readonly<WorldState>,dt:number)=>{
-    t+=dt;const level=.25+Math.min(1,state.traits.attachment)*1.3+Math.sin(t*1.6)*.07;
+    t+=dt;const level=.6+Math.min(1,state.traits.attachment)*1.2+Math.sin(t*1.6)*.08;
     for(const m of attach)if(m.emissiveColor)m.emissiveColor=gold.scale(level);
   };
 }

@@ -6,7 +6,7 @@ import type {AssetService,WorldFactory,WorldView,WaveService} from '../contracts
 import type {WorldId,WorldStore} from '../contracts/state';
 import {createCharacterMotor} from '../player/characterMotor';
 import {createFollowCamera} from '../camera/followCamera';
-import {createChain} from '../props/chain';
+import {createInnerChain} from '../props/chain';
 export async function createSceneManager(engine:Engine,assets:AssetService,factory:WorldFactory,store:WorldStore,makeWaves:(scene:Scene)=>WaveService) {
   type Entry={world:WorldView;player:ReturnType<typeof createCharacterMotor>;camera:ReturnType<typeof createFollowCamera>;waves:WaveService;carry:TransformNode;chainLoose:TransformNode;chainTense:TransformNode};
   const entries=new Map<WorldId,Entry>();
@@ -28,8 +28,10 @@ export async function createSceneManager(engine:Engine,assets:AssetService,facto
     const carry=(await assets.create('FinancePackage',scene,socket??root)).root;
     carry.position.copyFromFloats(socket?0:.5,socket?-.10:1.0,socket?.15:.1);
     carry.scaling.scaleInPlace(.85);
-    const chainLoose=createChain(scene,new Vector3(-.38,.7,.05),new Vector3(-.12,.45,-.12));chainLoose.parent=root;
-    const chainTense=createChain(scene,new Vector3(-.38,.7,.05),new Vector3(0,.8,-.2));chainTense.parent=root;
+    // Real chain link from the registry, with the code chain as placeholder fallback. Built at double size and scaled back, so the link pitch fits the short carry chain.
+    const carryChain=async(end:Vector3,sag:number)=>{const c=await createInnerChain(scene,assets,new Vector3(-.38,.7,.05).scale(2),end.scale(2),sag*2);c.scaling.setAll(.5);c.parent=root;return c;};
+    const chainLoose=await carryChain(new Vector3(-.12,.45,-.12),.13);
+    const chainTense=await carryChain(new Vector3(0,.8,-.2),.05);
     chainLoose.setEnabled(false);chainTense.setEnabled(false);
     const entry={world,player,camera,waves,carry,chainLoose,chainTense};entries.set(id,entry);return entry;
   }
