@@ -6,7 +6,7 @@ const page=await browser.newPage({viewport:{width:1280,height:720}});
 const errors=[];const logs=[];
 page.on('pageerror',e=>errors.push(e.message));
 page.on('console',m=>{if(m.type()==='error')errors.push(m.text());if(m.type()==='warning')logs.push(m.text());});
-await page.goto('http://127.0.0.1:5186/?test&debug');
+await page.goto(`http://127.0.0.1:${process.env.LW_PORT??'5186'}/?test&debug`);
 try {
   await page.waitForFunction(()=>window.__lw?.read().ready,{timeout:30000});
   const before=await page.evaluate(()=>window.__lw.read());
