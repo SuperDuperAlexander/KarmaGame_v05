@@ -7,13 +7,19 @@ export interface QualityPreset {
   imageProcessing:boolean;
   /** Share of the particles that stay alive. */
   particles:number;
+  /** Glow layer. Null is off. */
+  glow:GlowPreset|null;
 }
+/** Texture size as a share of the screen, blur width and strength of the glow layer. */
+export interface GlowPreset {ratio:number;kernel:number;intensity:number}
+const PHONE=(scene:Scene)=>scene.getEngine().getRenderWidth()<=800;
 const WIDE=(scene:Scene)=>scene.getEngine().getRenderWidth()>800;
-/** Presets. Low is the Simple mode and ?safe: no shadow, no image processing, half the particles. */
+/** Presets. Low is the Simple mode and ?safe: no shadow, no image processing, no glow, half the particles.
+ *  Medium is the default, also on touch: small glow. High: full glow. */
 export function preset(scene:Scene,quality:PresentationQuality):QualityPreset{
-  if(quality==='low')return {shadow:0,imageProcessing:false,particles:.5};
-  if(quality==='medium')return {shadow:WIDE(scene)?1024:512,imageProcessing:true,particles:1};
-  return {shadow:1024,imageProcessing:true,particles:1};
+  if(quality==='low')return {shadow:0,imageProcessing:false,particles:.5,glow:null};
+  if(quality==='medium')return {shadow:WIDE(scene)?1024:512,imageProcessing:true,particles:1,glow:PHONE(scene)?{ratio:.25,kernel:16,intensity:.45}:{ratio:.35,kernel:24,intensity:.5}};
+  return {shadow:1024,imageProcessing:true,particles:1,glow:{ratio:.5,kernel:32,intensity:.65}};
 }
 const handlers=new WeakMap<Scene,Set<(q:PresentationQuality)=>void>>();
 const current=new WeakMap<Scene,PresentationQuality>();
