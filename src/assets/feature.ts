@@ -9,7 +9,7 @@ import {placeholder} from './placeholders';
 export function createAssetService(forcePlaceholder=false):AssetService {
   const cache=new WeakMap<Scene,Map<string,Promise<AssetContainer>>>();const failed=new Set<AssetId>();
   return {status:()=>Object.entries(registry).map(([id,e])=>({id:id as AssetId,status:failed.has(id as AssetId)?'placeholder':forcePlaceholder?'placeholder':e.status,file:e.file})),
-    async create(id,scene,parent){
+    async create(id,scene,parent,part){
       const e=registry[id];if(forcePlaceholder||!e.file||failed.has(id))return placeholder(id,scene,parent);
       try{
         let files=cache.get(scene);if(!files){files=new Map();cache.set(scene,files);scene.onDisposeObservable.add(()=>{files!.forEach(async p=>(await p.catch(()=>null))?.dispose());});}
@@ -19,9 +19,14 @@ export function createAssetService(forcePlaceholder=false):AssetService {
         const root=new TransformNode(id+'-visual',scene);root.metadata={assetId:id,status:e.status,missingClips:[],missingNodes:[]};
         const adjust=new TransformNode(id+'-axis',scene);adjust.parent=root;adjust.rotation.set(...e.rotation);adjust.scaling.setAll(e.scale);
         for(const node of instance.rootNodes)node.parent=adjust;
+        if(part){const names=e.parts?.[part]??[];const keep=adjust.getDescendants(false).find(n=>names.some(name=>n.name===id+'-'+name));
+          if(!keep)root.metadata.missingNodes.push('part.'+part);
+          // Keep one kit part. Hide mesh ancestors; dispose every other branch.
+          else for(const m of adjust.getChildMeshes(false)){if(m===keep||m.isDescendantOf(keep))continue;if(keep.isDescendantOf(m)){m.isVisible=false;continue;}if(!m.isDisposed())m.dispose();}
+        }
         adjust.computeWorldMatrix(true);
-        const bounds=adjust.getHierarchyBoundingVectors(true);const size=bounds.max.subtract(bounds.min);
-        if(e.normalize){const s=e.normalize.height?e.normalize.height/size.y:e.normalize.width?e.normalize.width/size.x:1;adjust.scaling.scaleInPlace(s);adjust.computeWorldMatrix(true);const b=adjust.getHierarchyBoundingVectors(true);adjust.position.set(-(b.min.x+b.max.x)/2,e.normalize.ground?-b.min.y:-(b.min.y+b.max.y)/2,-(b.min.z+b.max.z)/2);}
+        const visible=(m:{isVisible:boolean})=>m.isVisible;const bounds=adjust.getHierarchyBoundingVectors(true,visible);const size=bounds.max.subtract(bounds.min);
+        if(e.normalize){const s=e.normalize.height?e.normalize.height/size.y:e.normalize.width?e.normalize.width/size.x:1;adjust.scaling.scaleInPlace(s);adjust.computeWorldMatrix(true);const b=adjust.getHierarchyBoundingVectors(true,visible);adjust.position.set(-(b.min.x+b.max.x)/2,e.normalize.ground?-b.min.y:-(b.min.y+b.max.y)/2,-(b.min.z+b.max.z)/2);}
         adjust.position.addInPlace(Vector3.FromArray(e.offset));root.parent=parent??null;
         const sockets=new Map<string,TransformNode>();
         for(const [logical,names]of Object.entries(e.nodes)){

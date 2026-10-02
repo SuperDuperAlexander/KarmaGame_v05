@@ -28,7 +28,7 @@ export function placeholder(id:AssetId,scene:Scene,parent?:TransformNode):Visual
     const m=CreateCylinder(name,{height:h,diameterTop:diameter*.7,diameterBottom:diameter,tessellation:7},scene);m.position.set(x,y,z);m.material=material(scene,c);parts.push(m);return m;
   };
   const sockets=new Map<string,TransformNode>();
-  if(id==='Player'||id==='Merchant'||id==='Citizen'){
+  if(id==='Player'||id==='Merchant'||id==='Citizen'||id==='CitizenMale'||id==='FearChild'||id==='DarkNpc'||id==='ExchangeGuide'){
     box('tunic',0,.95,0,.5,.7,.3,id==='Merchant'?'#BD7556':'#E8DFC8');
     ball('head',0,1.5,0,.34,.39,.34,'#D7A27F');ball('hair',0,1.65,-.05,.36,.22,.32,'#4A3027');
     for(const s of [-1,1]){box('leg',s*.13,.36,0,.18,.68,.21,'#354F65');box('arm',s*.36,.94,0,.15,.62,.15,'#D7A27F');box('boot',s*.13,.08,.08,.21,.16,.34,'#60402F');}
@@ -47,12 +47,13 @@ export function placeholder(id:AssetId,scene:Scene,parent?:TransformNode):Visual
     box('counter',0,.65,0,3,1.3,1,'#9F774F');box('canopy',0,2.35,0,3.7,.16,2.5,id==='MarketStallA'?'#CB776B':'#759DA2');for(const s of [-1,1]) box('post',s*1.55,1.2,0,.13,2.4,.13,'#634D38');
   }else if(id==='CityGate'){
     for(const s of [-1,1]){box('gateTower',s*3.6,3,0,3.2,6,3,'#B2A083');box('cap',s*3.6,6.2,0,3.5,.5,3.3,'#C5B693');}box('lintel',0,5.15,0,4,1.3,2.7,'#B2A083');
-  }else if(id==='CityBuilding'){
+  }else if(id==='CityBuilding'||id==='ExchangeHouse'){
     box('house',0,2.5,0,5,5,4,'#D4B993');trunk('roof',0,5.5,0,1.2,6.5,'#A16B59');
   }else if(id==='CityWall'){box('wall',0,1.6,0,4,3.2,.6,'#B2A083');
   }else if(id==='Crystal'){trunk('crystal',0,.6,0,1.2,.6,'#78BAC0');
   }else if(id==='Vegetation'){ball('bush',0,.35,0,1,.7,1,'#6D8650');
   }else if(id==='InnerPlatform'){trunk('platform',0,-.45,0,.9,4,'#617986');
+  }else if(id==='MarketProps'){box('crate',0,.25,0,.5,.5,.5,'#9F774F');
   }else if(id==='Rock'){ball('rock',0,.45,0,1.4,.9,1.1,'#657D86');
   }else {box('link',0,0,0,.1,.1,.25,'#BA9A63');}
   // Join each color into one mesh. Keep material count low on small devices.
