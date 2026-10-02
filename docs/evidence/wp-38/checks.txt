@@ -1,0 +1,27 @@
+﻿=== TYPECHECK ===
+
+> typecheck
+> tsc --noEmit
+
+
+=== LINT ===
+
+> lint
+> eslint src tests && node tools/lint-guards.mjs
+
+Code guards passed.
+
+=== TEST ===
+ Test Files  18 passed (18)
+      Tests  93 passed (93)
+   Start at  15:04:30
+   Duration  28.84s (transform 5.88s, setup 0ms, import 23.03s, tests 41.53s, environment 15ms)
+
+
+=== BUILD ===
+(!) Some chunks are larger than 1000 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: 
+https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 2m 22s
