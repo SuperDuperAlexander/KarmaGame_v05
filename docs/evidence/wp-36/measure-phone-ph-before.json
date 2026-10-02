@@ -1,0 +1,95 @@
+{
+ "name": "phone-ph",
+ "tag": "before",
+ "load": {
+  "start": {
+   "total": 4764648,
+   "assets": 0
+  }
+ },
+ "spawn": {
+  "fps": 59.97600959625082,
+  "drawCalls": 53,
+  "meshes": 41,
+  "triangles": 4636,
+  "textures": 7,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0,
+   "y": 0.008250006689265565,
+   "z": -47
+  }
+ },
+ "gate": {
+  "fps": 59.90415335476639,
+  "drawCalls": 67,
+  "meshes": 52,
+  "triangles": 6638,
+  "textures": 7,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0.013851665710814257,
+   "y": 0.00825001388637403,
+   "z": -29.376839147361455
+  }
+ },
+ "square": {
+  "fps": 60.02400960375224,
+  "drawCalls": 45,
+  "meshes": 30,
+  "triangles": 5234,
+  "textures": 7,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0.00003750479276846513,
+   "y": 0.00004068476451879466,
+   "z": -8.417159694618944
+  }
+ },
+ "tree": {
+  "fps": 60.084117764781254,
+  "drawCalls": 43,
+  "meshes": 28,
+  "triangles": 5210,
+  "textures": 7,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0.0000011676112744444245,
+   "y": 0.008249987995694541,
+   "z": -3.9456359459977044
+  }
+ },
+ "inner_load": {
+  "start": {
+   "total": 4764648,
+   "assets": 0
+  }
+ },
+ "inner-spawn": {
+  "fps": 60.06006006006018,
+  "drawCalls": 26,
+  "meshes": 23,
+  "triangles": 5388,
+  "textures": 5,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0,
+   "y": 0.00824997483847989,
+   "z": -7
+  }
+ },
+ "inner-package": {
+  "fps": 60.13229104024397,
+  "drawCalls": 24,
+  "meshes": 21,
+  "triangles": 5148,
+  "textures": 5,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 3.6927977301291848,
+   "y": 0.00825002080168924,
+   "z": -3.3072024851753317
+  }
+ },
+ "bytes": 0
+}

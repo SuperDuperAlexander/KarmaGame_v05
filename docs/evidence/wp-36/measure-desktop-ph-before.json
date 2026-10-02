@@ -1,0 +1,95 @@
+{
+ "name": "desktop-ph",
+ "tag": "before",
+ "load": {
+  "start": {
+   "total": 4764648,
+   "assets": 0
+  }
+ },
+ "spawn": {
+  "fps": 60.1202404809619,
+  "drawCalls": 74,
+  "meshes": 62,
+  "triangles": 6056,
+  "textures": 7,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0,
+   "y": 0.005579217448551166,
+   "z": -47
+  }
+ },
+ "gate": {
+  "fps": 59.91611743567919,
+  "drawCalls": 88,
+  "meshes": 73,
+  "triangles": 8058,
+  "textures": 7,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": -0.09994140648891578,
+   "y": 0.005313937092320198,
+   "z": -29.33028933799161
+  }
+ },
+ "square": {
+  "fps": 60.13229104046806,
+  "drawCalls": 67,
+  "meshes": 52,
+  "triangles": 6634,
+  "textures": 7,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": -0.09994140648891578,
+   "y": 0.0055140725925075795,
+   "z": -8.452362942214014
+  }
+ },
+ "tree": {
+  "fps": 59.952038369259775,
+  "drawCalls": 54,
+  "meshes": 39,
+  "triangles": 5674,
+  "textures": 7,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": -0.09994140648891578,
+   "y": 0.008250015883391693,
+   "z": -3.967847876686668
+  }
+ },
+ "inner_load": {
+  "start": {
+   "total": 4764648,
+   "assets": 0
+  }
+ },
+ "inner-spawn": {
+  "fps": 59.96402158718158,
+  "drawCalls": 34,
+  "meshes": 31,
+  "triangles": 6752,
+  "textures": 5,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0,
+   "y": 0.008250005749054434,
+   "z": -7
+  }
+ },
+ "inner-package": {
+  "fps": 60.01200240065877,
+  "drawCalls": 32,
+  "meshes": 29,
+  "triangles": 6468,
+  "textures": 5,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 3.737186950124477,
+   "y": 0.005611496278867922,
+   "z": -3.3555475261820593
+  }
+ },
+ "bytes": 0
+}

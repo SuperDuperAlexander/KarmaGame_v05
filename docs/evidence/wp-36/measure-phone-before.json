@@ -1,0 +1,103 @@
+{
+ "name": "phone",
+ "tag": "before",
+ "load": {
+  "start": {
+   "total": 16957930,
+   "assets": 11389815
+  }
+ },
+ "spawn": {
+  "fps": 59.94005994005997,
+  "drawCalls": 50,
+  "meshes": 64,
+  "triangles": 152091,
+  "textures": 17,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0,
+   "y": 0.00825001832812533,
+   "z": -47
+  }
+ },
+ "gate": {
+  "fps": 59.90415335454355,
+  "drawCalls": 48,
+  "meshes": 52,
+  "triangles": 143049,
+  "textures": 17,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0.013217792018129833,
+   "y": 0.008250029344087029,
+   "z": -29.3622741604562
+  }
+ },
+ "square": {
+  "fps": 60.024009603975806,
+  "drawCalls": 39,
+  "meshes": 36,
+  "triangles": 99350,
+  "textures": 17,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0.00004077134085287805,
+   "y": 0.00048050173355329573,
+   "z": -8.486852257487248
+  }
+ },
+ "tree": {
+  "fps": 60.1926163723466,
+  "drawCalls": 38,
+  "meshes": 35,
+  "triangles": 99338,
+  "textures": 17,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0.0000017732591938568375,
+   "y": 0.0005228333374859284,
+   "z": -4.005246925568774
+  }
+ },
+ "inner_load": {
+  "start": {
+   "total": 16957930,
+   "assets": 11389815
+  },
+  "after-ready": {
+   "total": 322933,
+   "assets": 0
+  },
+  "look-within": {
+   "total": 4019960,
+   "assets": 4019960
+  }
+ },
+ "inner-spawn": {
+  "fps": 60.04803843056534,
+  "drawCalls": 27,
+  "meshes": 26,
+  "triangles": 85092,
+  "textures": 11,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 0,
+   "y": 0.0004161516159910672,
+   "z": -7
+  }
+ },
+ "inner-package": {
+  "fps": 59.94005994005981,
+  "drawCalls": 26,
+  "meshes": 24,
+  "triangles": 87808,
+  "textures": 11,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "pos": {
+   "x": 3.8231512742257276,
+   "y": 0.005738657362902577,
+   "z": -3.1768490400750546
+  }
+ },
+ "bytes": 0
+}

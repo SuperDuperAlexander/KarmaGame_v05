@@ -8,6 +8,7 @@ import type {AnimationGroup} from '@babylonjs/core/Animations/animationGroup';
 import type {AssetId,AssetService,Visual} from '../contracts/visual';
 import {registry} from './registry';
 import {placeholder} from './placeholders';
+import {addLods,LOD_DEFAULTS,FADE_DEFAULTS} from './lod';
 // Kit files share one vertex buffer, so mesh and sub mesh bounds cover the whole kit. Read the used vertices instead.
 const usedBounds=new WeakMap<AbstractMesh,{min:Vector3;max:Vector3}|null>();
 function usedVertexBounds(mesh:AbstractMesh){
@@ -68,6 +69,9 @@ export function createAssetService(forcePlaceholder=false):AssetService {
           else root.metadata.missingNodes.push(logical);
         }
         for(const node of adjust.getDescendants()){if(e.hideNodes.some(n=>node.name===id+'-'+n)&&node instanceof TransformNode)node.setEnabled(false);}
+        // Far detail (spec 15.2) and the fade tag for parts that may hide the player (spec 11.2).
+        const shown=adjust.getChildMeshes(false);const lod=e.lod??LOD_DEFAULTS[id];if(lod)addLods(shown,scene,lod);
+        const fade=e.fade??FADE_DEFAULTS[id];if(fade)for(const m of shown){if(fade===true||fade.includes(m.name.replace(id+'-',''))||fade.includes(m.name))m.metadata={...(m.metadata??{}),viewFade:true};}
         const groups=new Map<string,AnimationGroup>();
         for(const [logical,clip]of Object.entries(e.clips)){const group=instance.animationGroups.find(g=>clip.names.some(n=>g.name===id+'-'+n||g.name===n));if(group){group.enableBlending=true;group.blendingSpeed=.15;group.start(true,1);group.setWeightForAllAnimatables(0);groups.set(logical,group);}else root.metadata.missingClips.push(logical);}
         const weights=new Map<AnimationGroup,number>();let started=false;
