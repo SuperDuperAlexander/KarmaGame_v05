@@ -14,6 +14,8 @@ function glowMaterials(root:TransformNode){
       // PBR glTF material: let the albedo texture (gold veins) light itself.
       const pbr=copy as unknown as {albedoTexture?:unknown;emissiveTexture?:unknown};if(pbr.albedoTexture&&!pbr.emissiveTexture)pbr.emissiveTexture=pbr.albedoTexture;}
     target.material=copy;
+    // Glow contract: the gold veins sit in the texture, so the whole beetle mesh carries the tag. The glow layer only lifts what is bright.
+    m.metadata={...m.metadata,glow:true};target.metadata={...target.metadata,glow:true};
   }
   return list;
 }

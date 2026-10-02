@@ -10,3 +10,4 @@ __pycache__/
 *.mkv
 write_probe_root.txt
 character-rig-test/validation/*.glb
+.vite-cache/
