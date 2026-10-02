@@ -25,3 +25,17 @@ python tools/rig/test_rig_v2.py
 - Short legs need fast steps at these game speeds.
 - A person must check bends, foot slip and package grip in the game.
 - The local check measures exported keys. It does not prove motion between keys in the game.
+
+## Shared rig for other characters (WP-34)
+
+```powershell
+python tools/rig/fit_marks.py --all
+python tools/rig/rig_shared.py --all
+python tools/rig/validate_shared.py --report tools/rig/validation-shared.json
+```
+
+- `fit_marks.py` fits the 17 player marks to each mesh. It writes `tools/rig/marks/<name>.json`.
+- Edit `params` (heights) or `overrides` (single marks) in that file. Run `fit_marks.py` and `rig_shared.py` again.
+- `rig_shared.py` writes `3D Models/assets/characters/<name>_rigged.glb`.
+- Clips keep the player bone rotations. Reach, hip drop and foot lift scale with leg length.
+- A person must still check bends in the game.
