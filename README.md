@@ -60,11 +60,10 @@
 
 ## Known limits
 
-- House textures are dark. WP-35 light can warm them.
 - The beetle file has no anchor node. The chain end meets the head side.
-- The Source Water strip cuts through fear roots at the west. WP-35 must fix it.
-- The inner floor is flat code. Kit platforms are too small to tile it.
-- Phone spawn and gate views show 172k triangles, near the 180k budget. WP-36 should add LOD or far-house culling.
+- Merchant, stalls and citizens appear 1–2 s after the first frame (27 m or more from spawn).
+- The inner scene loads player, package and chain again (not shared cache).
+- LOD build time on a phone has not been measured (estimate 1–1.5 s).
 - Bends at elbows, knees and hips need a human check for all rigged characters.
 - A real phone check has not been done (30 FPS target).
 

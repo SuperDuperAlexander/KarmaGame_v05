@@ -357,7 +357,7 @@
       "wave": "2",
       "needs": "32, 33",
       "model": "Claude Sonnet",
-      "status": "planned",
+      "status": "done",
       "acceptance": "inner roots lit from below; fear roots get cold light; water polish; no console errors",
       "report": "docs/reports/WP-35.md"
     },
@@ -367,7 +367,7 @@
       "wave": "3",
       "needs": "31–35",
       "model": "Claude Sonnet",
-      "status": "planned",
+      "status": "done",
       "acceptance": "phone <120 draw calls; start download ≤12 MB; e2e pass",
       "report": "docs/reports/WP-36.md"
     },
@@ -379,7 +379,7 @@
       "model": "Claude Haiku",
       "status": "done",
       "acceptance": "ASSET_STATUS.md, README.md (Known limits, tools), work-packages.json; json and lint pass",
-      "report": "docs/reports/WP-37.md"
+      "report": "docs/reports/WP-37b.md"
     },
     {
       "id": "38",
@@ -387,7 +387,7 @@
       "wave": "after each wave",
       "needs": "–",
       "model": "Claude Haiku",
-      "status": "planned",
+      "status": "done",
       "acceptance": "e2e twice, screen shots, console clean, no repeat failures",
       "report": "docs/reports/WP-38.md"
     },

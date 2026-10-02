@@ -40,6 +40,8 @@ All assets are `temporary`. A person must check the art on a real phone.
 
 **Totals**: raw 37.32 MB, optimized 19.41 MB.
 
+Far LOD levels are built at load time (WP-36). Start download before the first playable frame is about 7.3 MB (WP-36).
+
 ## Name conflicts
 
 - The game uses logical names such as `handR`, `walk`, `run` and `chain`.
