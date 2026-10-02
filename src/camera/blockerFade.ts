@@ -11,8 +11,9 @@ import type {Scene} from '@babylonjs/core/scene';
  * to the player. A mesh that stands in that cone fades to a see-through level. It comes back when the cone is clear.
  * Instances cannot hold an own alpha, so a faded instance swaps to a plain clone while it is not solid.
  */
-// Low enough that glowing inner roots do not leave a pale band across a phone screen.
-const SEE_THROUGH=.06,SPEED=5,CONE=.7,RAYS=10,NEAR=1,AXES=6;
+// A blocker fades to nothing, then it is switched off. A faint left-over alpha draws as a big dark or pale shape on screen
+// (WP-42: the inner package view). Fully off is the only level that stays clean.
+const SEE_THROUGH=0,GONE=.02,SPEED=5,CONE=.7,RAYS=10,NEAR=1,AXES=6;
 
 interface Item {mesh:AbstractMesh;source:Mesh|null;clone:Mesh|null;alpha:number;hiding:boolean}
 
@@ -38,10 +39,10 @@ export function createBlockerFade(scene:Scene){
   }
   function apply(item:Item){
     if(item.source){
-      const solid=item.alpha>=.999;const clone=solid?item.clone:ensureClone(item);
+      const solid=item.alpha>=.999;const gone=item.alpha<=GONE;const clone=solid?item.clone:ensureClone(item);
       if(!clone){item.mesh.setEnabled(true);return;}
-      if(solid){clone.setEnabled(false);item.mesh.setEnabled(true);}else{clone.visibility=item.alpha;clone.setEnabled(true);item.mesh.setEnabled(false);}
-    }else item.mesh.visibility=item.alpha;
+      if(solid){clone.setEnabled(false);item.mesh.setEnabled(true);}else{clone.visibility=item.alpha;clone.setEnabled(!gone);item.mesh.setEnabled(false);}
+    }else{item.mesh.visibility=item.alpha;item.mesh.isVisible=item.alpha>GONE;}
   }
   return {
     update(camera:Vector3,target:Vector3,dt:number){

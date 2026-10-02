@@ -1,0 +1,155 @@
+{
+ "out": {
+  "spawn": {
+   "stats": {
+    "fps": 24.368450978843693,
+    "drawCalls": 74,
+    "meshes": 114,
+    "triangles": 176833,
+    "textures": 17,
+    "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+   },
+   "cam": {
+    "yaw": 0,
+    "pitch": 0.3490658503988659,
+    "distance": 6.2,
+    "position": [
+     0,
+     2.741183485758301,
+     -51.21809221376423
+    ]
+   },
+   "pos": {
+    "x": 0,
+    "y": 0.0059234745580908355,
+    "z": -47
+   }
+  },
+  "gate": {
+   "stats": {
+    "fps": 60.02400960375203,
+    "drawCalls": 72,
+    "meshes": 99,
+    "triangles": 196276,
+    "textures": 17,
+    "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+   },
+   "cam": {
+    "yaw": 0,
+    "pitch": 0.3490658503988659,
+    "distance": 6.2,
+    "position": [
+     -0.0828572917846924,
+     3.328774917986672,
+     -29.325933535909513
+    ]
+   },
+   "pos": {
+    "x": -0.0828572917846924,
+    "y": 0.00825002936752628,
+    "z": -23.49983928703688
+   }
+  },
+  "square": {
+   "stats": {
+    "fps": 59.86828976234438,
+    "drawCalls": 51,
+    "meshes": 63,
+    "triangles": 152199,
+    "textures": 17,
+    "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+   },
+   "cam": {
+    "yaw": 0,
+    "pitch": 0.3490658503988659,
+    "distance": 6.2,
+    "position": [
+     -0.0828572917846924,
+     3.328774887767961,
+     -9.67922242189563
+    ]
+   },
+   "pos": {
+    "x": -0.0828572917846924,
+    "y": 0.00824999914881508,
+    "z": -3.8531281730229976
+   }
+  },
+  "inner-package": {
+   "stats": {
+    "fps": 59.92808629626588,
+    "drawCalls": 45,
+    "meshes": 37,
+    "triangles": 94009,
+    "textures": 18,
+    "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+   },
+   "cam": {
+    "yaw": 0.45,
+    "pitch": 0.3490658503988659,
+    "distance": 6.2,
+    "position": [
+     1.3823933042980268,
+     3.328774866404281,
+     -8.523905806135472
+    ]
+   },
+   "pos": {
+    "x": 3.916543501041278,
+    "y": 0.008249977785135254,
+    "z": -3.277816121704514
+   }
+  },
+  "market": {
+   "stats": {
+    "fps": 60.03602161305725,
+    "drawCalls": 46,
+    "meshes": 62,
+    "triangles": 158111,
+    "textures": 17,
+    "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+   },
+   "cam": {
+    "yaw": 0,
+    "pitch": 0.3490658503988659,
+    "distance": 6.2,
+    "position": [
+     24.606962597997388,
+     3.328774908015129,
+     -7.266587180120237
+    ]
+   },
+   "pos": {
+    "x": 24.606962597997388,
+    "y": 0.008250019395983021,
+    "z": -1.4404929312476051
+   }
+  },
+  "beetle": {
+   "stats": {
+    "fps": 59.940059940059776,
+    "drawCalls": 46,
+    "meshes": 68,
+    "triangles": 131523,
+    "textures": 18,
+    "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+   },
+   "cam": {
+    "yaw": 0.45,
+    "pitch": 0.3490658503988659,
+    "distance": 6.2,
+    "position": [
+     2.7008321576974694,
+     3.3207119588448983,
+     -7.5988340835643085
+    ]
+   },
+   "pos": {
+    "x": 5.234982354440721,
+    "y": 0.00018707022575237264,
+    "z": -2.3527443991333508
+   }
+  }
+ },
+ "errors": []
+}
