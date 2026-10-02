@@ -155,6 +155,8 @@ export function createUiService(root: HTMLElement, commands: UiCommands, input: 
   return {
     prompt(text, isHold = false) { prompt.hidden = text === null; promptText.textContent = text ?? ''; actionKey.hidden = input.isTouch(); hold.hidden = !isHold; hold.style.setProperty('--progress', '0'); },
     hold(progress) { const value = Math.max(0, Math.min(1, progress)); hold.style.setProperty('--progress', String(value)); hold.setAttribute('aria-valuenow', String(Math.round(value * 100))); },
+    // WP-B2 builds the story panel. Until then a story step is ignored.
+    story() {},
     reflection(text) {
       if (modal === 'reflection') return;
       if (modal === 'pause' || modal === 'confirm') commands.pause(false);

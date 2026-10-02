@@ -21,7 +21,7 @@ export function createRuleEngine(store: WorldStore, rules: readonly Rule[], onEf
   function process(signal: Signal) {
     for (const rule of rules) {
       const state = store.get();
-      if (rule.signal !== signal.type || (rule.once && state.firedRules.includes(rule.id)) || !matchesCondition(state, rule.condition)) continue;
+      if (rule.signal !== signal.type || (rule.signalId !== undefined && rule.signalId !== signal.id) || (rule.once && state.firedRules.includes(rule.id)) || !matchesCondition(state, rule.condition)) continue;
       const freshWaves = new Set(rule.effects.filter(effect => effect.kind === 'wave' && !state.waveIds.includes(effect.id)).map(effect => effect.kind === 'wave' ? effect.id : ''));
       store.update(draft => {
         if (rule.once) draft.firedRules.push(rule.id);

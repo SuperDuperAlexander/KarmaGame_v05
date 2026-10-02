@@ -48,6 +48,8 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
   function closeReflection() {ui.closeReflection();reflectionRelease?.();reflectionRelease=undefined;}
   const ui=createUiService(uiRoot,{
     saveReflection(text) {saveReflection(store,text);closeReflection();rules.dispatch({type:'reflection-done'});ui.hint(strings.savedHelp);},
+    choose(choiceId) {rules.dispatch({type:'choice',id:choiceId});},
+    leaveStory() {rules.dispatch({type:'story-closed'});},
     skipReflection() {skipReflection(store);closeReflection();rules.dispatch({type:'reflection-done'});ui.hint(strings.skippedHelp);},
     deleteReflections() {deleteReflections(store);try{localStorage.removeItem(RECOVERY_KEY);}catch{/* The game also works without storage. */}save.request();},
     newGame() {frameReady=false;store.reset();save.clear();location.reload();},
