@@ -10,11 +10,10 @@ import {selectors} from '../../state/selectors';
 import {treeGlow} from './treeGlow';
 
 interface Place{x:number;y?:number;z:number;s?:number;ry?:number}
-/** Put one kit part at a place. Kit parts sit in a row along X in the file, so the row offset is reset. */
+/** Put one kit part at a place. The asset service centres kit parts and sets them on the ground. */
 async function part(scene:Scene,assets:AssetService,id:AssetId,name:string,at:Place){
   const node=entity(scene,`${id.toLowerCase()}-${name}`,at.x,at.z);node.position.y=at.y??0;node.scaling.setAll(at.s??1);node.rotation.y=at.ry??0;
-  const visual=await assets.create(id,scene,node,name);
-  if(visual.root.metadata?.status!=='placeholder')for(const m of visual.root.getChildMeshes(false))m.position.x=0;
+  await assets.create(id,scene,node,name);
   return node;
 }
 export async function createInnerWorld(scene:Scene,assets:AssetService):Promise<WorldView>{
