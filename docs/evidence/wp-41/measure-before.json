@@ -1,0 +1,116 @@
+{
+ "desktop-arrival": {
+  "world": "inner",
+  "pos": {
+   "x": 0,
+   "y": 0.008249987509796441,
+   "z": -7
+  },
+  "stats": {
+   "fps": 59.630292188255105,
+   "drawCalls": 38,
+   "meshes": 40,
+   "triangles": 68841,
+   "textures": 10,
+   "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "errs": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+ },
+ "desktop-package": {
+  "world": "inner",
+  "pos": {
+   "x": 4,
+   "y": 0.008249981938423856,
+   "z": -3.4
+  },
+  "stats": {
+   "fps": 59.417706476266915,
+   "drawCalls": 36,
+   "meshes": 36,
+   "triangles": 60877,
+   "textures": 10,
+   "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "errs": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+ },
+ "desktop-beetle": {
+  "world": "inner",
+  "pos": {
+   "x": 5.6,
+   "y": 0.008249984141812439,
+   "z": -2.2
+  },
+  "stats": {
+   "fps": 59.88023952095811,
+   "drawCalls": 36,
+   "meshes": 66,
+   "triangles": 96924,
+   "textures": 10,
+   "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "errs": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+ },
+ "phone-arrival": {
+  "world": "inner",
+  "pos": {
+   "x": 0,
+   "y": 0.008249995941144728,
+   "z": -7
+  },
+  "stats": {
+   "fps": 60.144346431794766,
+   "drawCalls": 31,
+   "meshes": 30,
+   "triangles": 51385,
+   "textures": 10,
+   "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "errs": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+ },
+ "phone-package": {
+  "world": "inner",
+  "pos": {
+   "x": 4,
+   "y": 0.008250020198014019,
+   "z": -3.4
+  },
+  "stats": {
+   "fps": 59.820538384845534,
+   "drawCalls": 30,
+   "meshes": 28,
+   "triangles": 54101,
+   "textures": 10,
+   "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "errs": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+ },
+ "phone-beetle": {
+  "world": "inner",
+  "pos": {
+   "x": 5.6,
+   "y": 0.00020658207476142998,
+   "z": -2.2
+  },
+  "stats": {
+   "fps": 59.91611743567933,
+   "drawCalls": 32,
+   "meshes": 60,
+   "triangles": 90870,
+   "textures": 10,
+   "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "errs": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+ }
+}

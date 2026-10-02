@@ -10,6 +10,10 @@ import {beetleMotion} from '../../creatures/beetle';
 import {selectors} from '../../state/selectors';
 import {treeGlow} from './treeGlow';
 import {freezeStatic} from '../freeze';
+import {innerBackdrop} from '../../presentation/innerBackdrop';
+import {innerWaterfalls} from '../../presentation/innerWaterfalls';
+import {innerFloor} from '../../presentation/innerFloor';
+import {glowCrystals} from './crystalGlow';
 
 interface Place{x:number;y?:number;z:number;s?:number;ry?:number}
 /** Put one kit part at a place. The asset service centres kit parts and sets them on the ground. */
@@ -20,7 +24,7 @@ async function part(scene:Scene,assets:AssetService,id:AssetId,name:string,at:Pl
   return node;
 }
 export async function createInnerWorld(scene:Scene,assets:AssetService):Promise<WorldView>{
-  scene.collisionsEnabled=true;const light=atmosphere(scene,'inner');const water=sourceWater(scene,true);
+  scene.collisionsEnabled=true;const light=atmosphere(scene,'inner');const water=sourceWater(scene,true);const backdrop=innerBackdrop(scene),falls=innerWaterfalls(scene),floor=innerFloor(scene);
   const ground=solid(scene,'inner-ground',new Vector3(0,-.25,0),new Vector3(24,.5,24));ground.metadata={cameraBlocker:false};disk(scene,'inner-platform',0,0,11,'#4F6670');paintInnerGround(scene);
   for(let i=0;i<24;i++){const a=i*Math.PI*2/24;const blocker=solid(scene,'inner-ring',new Vector3(Math.cos(a)*11.65,1.5,Math.sin(a)*11.65),new Vector3(3,3,1));blocker.rotation.y=-a+Math.PI/2;}
   // The glTF loader turns the file X axis. Mirror X so attachment roots lie east, fear roots west. Scale 1.2 and turn -40 degrees: the root feet form a wall at the ring and leave arrival, package, return spot and beetle free.
@@ -38,13 +42,13 @@ export async function createInnerWorld(scene:Scene,assets:AssetService):Promise<
   await part(scene,assets,'InnerPlatform','medium',{x:-4,y:-2.2,z:-21,s:1.3});
   await part(scene,assets,'InnerPlatform','small',{x:-15,y:-1.2,z:-13,s:1.3});
   await part(scene,assets,'InnerPlatform','round',{x:19,y:-1.4,z:5,s:1.4});
-  const returnSpot=disk(scene,'return-spot',0,-3.4,.9,'#AEC7B6',.003);returnSpot.metadata={interaction:'return'};
-  const packageRoot=entity(scene,'reflection-package',4,-2);packageRoot.position.y=.75;await assets.create('FinancePackage',scene,packageRoot);disk(scene,'package-root',4,-2,1.3,'#8E9D87',-.045);packageRoot.metadata={interaction:'reflect'};
+  const returnSpot=disk(scene,'return-spot',0,-3.4,.9,'#7fd0e0',.003);returnSpot.visibility=.3;returnSpot.metadata={interaction:'return'};
+  const packageRoot=entity(scene,'reflection-package',4,-2);packageRoot.position.y=.75;await assets.create('FinancePackage',scene,packageRoot);const packageSpot=disk(scene,'package-root',4,-2,1.3,'#e6c37a',-.045);packageSpot.visibility=.28;packageRoot.metadata={interaction:'reflect'};
   const beetle=entity(scene,'attachment-beetle',7.5,-.5);const beetleVisual=await assets.create('AttachmentBeetle',scene,beetle);
   // Model faces +Z. Turn it so the chain anchor side looks to the package.
-  const yaw=Math.atan2(4-7.5,-2+.5);const motion=beetleMotion(beetle,yaw,beetleVisual.root);disk(scene,'beetle-zone',7.5,-.5,1.8,'#888E72',-.043);
+  const yaw=Math.atan2(4-7.5,-2+.5);const motion=beetleMotion(beetle,yaw,beetleVisual.root);const beetleSpot=disk(scene,'beetle-zone',7.5,-.5,1.8,'#d9a45a',-.043);beetleSpot.visibility=.25;
   const chain=await createInnerChain(scene,assets,new Vector3(4,.58,-2),new Vector3(7,.34,-.5));
   const crystals:[string,number,number,number][]=[['cluster',-7,-4,1.4],['medium',-8,2,1.6],['tall',-5,7,.45],['cluster',6,7,1.4],['medium',9,4,1.6]];
-  for(const [name,x,z,s] of crystals)await part(scene,assets,'Crystal',name,{x,z,s});
-  return {scene,spawn:new Vector3(0,0,-7),gate:null,beetle,packageRoot,update(state,dt,_player){light.update(state);water.update(dt,state.traits.attachment);glow(state,dt);motion(state,dt);chain.setEnabled(selectors.chainState(state)==='attached');returnSpot.scaling.setAll(selectors.reflectionDone(state)?1:.85);},dispose(){light.dispose();water.dispose();}};
+  const crystalNodes=[];for(const [name,x,z,s] of crystals)crystalNodes.push(await part(scene,assets,'Crystal',name,{x,z,s}));glowCrystals(crystalNodes);
+  return {scene,spawn:new Vector3(0,0,-7),gate:null,beetle,packageRoot,update(state,dt,_player){light.update(state);water.update(dt,state.traits.attachment);backdrop.update(dt);falls.update(dt);floor.update(dt);glow(state,dt);motion(state,dt);chain.setEnabled(selectors.chainState(state)==='attached');returnSpot.scaling.setAll(selectors.reflectionDone(state)?1:.85);},dispose(){light.dispose();water.dispose();backdrop.dispose();falls.dispose();floor.dispose();}};
 }
