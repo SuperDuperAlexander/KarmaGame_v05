@@ -23,3 +23,12 @@ export class WaveLedger {
 export function waveOpacity(age: number): number {
   return Math.max(0, Math.min(1, age / 0.4, (WAVE_SECONDS - age) / 0.8));
 }
+
+/** Spec 10.2: attachment warm gold, fear cold blue-violet, service soft green, calm warm white. */
+export type WaveTone = 'attachment' | 'fear' | 'service' | 'calm';
+export const waveTones: Record<WaveTone, { rgb: [number, number, number]; border: string }> = {
+  attachment: { rgb: [0.94, 0.76, 0.42], border: '#f1d49570' },
+  fear: { rgb: [0.5, 0.48, 0.93], border: '#a9a6f270' },
+  service: { rgb: [0.55, 0.84, 0.6], border: '#a8e0ae70' },
+  calm: { rgb: [1, 0.95, 0.84], border: '#fff1d670' },
+};
