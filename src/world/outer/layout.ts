@@ -33,4 +33,11 @@ export const HEDGES:[number,number][]=[
   [-29,-50.5],[-20.5,-50.5],[-12,-50.5],[12,-50.5],[20.5,-50.5],[29,-50.5],[37,-50.5],
   [-30.5,-44],[-30.5,-35],[38.5,-44],[38.5,-35],
 ];
-export const LAMPS:[number,number][]=[[-3.6,-42],[3.6,-42],[-3.6,-31],[3.6,-31],[-9.5,-8.5],[9.5,-8.5],[-9.5,8.5],[9.5,8.5],[19,3.8],[19,-3.8]];
+export const LAMPS:[number,number][]=[[-3.6,-42],[3.6,-42],[-3.6,-31],[3.6,-31],[-9.5,-8.5],[9.5,-8.5],[-9.5,8.5],[9.5,8.5],[19,3.8],[19,-3.8],[-10.6,-1.2],[10.6,-3.2]];
+// Cloth banners on poles. yaw 0 shows the cloth to the south. Colour index: 0 red, 1 blue, 2 orange. Off the walk lines.
+export const BANNERS:{x:number;z:number;yaw:number;color:0|1|2;height?:number}[]=[
+  {x:-6.4,z:-29,yaw:0,color:0,height:5.2},{x:6.4,z:-29,yaw:0,color:1,height:5.2},{x:-6,z:-13,yaw:0,color:2},{x:6,z:-13,yaw:0,color:0},
+  {x:-12.5,z:2.5,yaw:Math.PI/2,color:1},{x:17.5,z:-6.5,yaw:Math.PI/2,color:2},
+];
+// Planter pots on the square. Keep |x| above 3.3 near the walk line and off the market path.
+export const PLANTERS:[number,number][]=[[-4.8,-11.5],[4.8,-11.5],[-12.6,-6],[12.6,-8],[-11,11.5],[11.5,11.5],[-4.6,-18.5],[4.6,-18.5]];

@@ -54,27 +54,42 @@ function earthStrip(scene:Scene,across:'u'|'v'){
     c.globalCompositeOperation='destination-in';c.fillStyle=g;c.fillRect(0,0,w,h);c.globalCompositeOperation='source-over';
   },true);
 }
-/** Paving for the square: stone rows, a ring and a fading rim. UV 0..1 covers the whole disk. */
+/** Paving for the square: irregular stones in warm colours, a worn centre, dirt and moss at the rim. UV 0..1 covers the whole disk. */
 function paving(scene:Scene){
   return make(scene,'paint-paving',1024,1024,(c,w,h)=>{
     const r=rng(37);const cx=w/2,cy=h/2,R=w/2;
-    c.fillStyle='#b9a98a';c.fillRect(0,0,w,h);
-    // Square stone rows, about 1.1 m (37 px at 34 px per m).
-    const s=34;
-    for(let row=0;row*s<h;row++){const off=(row%2)*s/2;
-      for(let x=-s;x<w+s;x+=s){const px=x+off,py=row*s;const k=r();
-        c.fillStyle=rgba(176+k*34,158+k*30,125+k*26);c.fillRect(px+1.5,py+1.5,s-3,s-3);
-        if(r()<.3)blob(c,px+s/2,py+s/2,s*.7,rgba(120,105,80),.18);
-      }}
-    
-    // Ring of darker stone around the tree and a warm light pool in the centre.
-    c.lineWidth=14;c.strokeStyle='rgba(110,92,70,.5)';c.beginPath();c.arc(cx,cy,R*.34,0,6.3);c.stroke();
-    c.lineWidth=7;c.strokeStyle='rgba(225,205,160,.45)';c.beginPath();c.arc(cx,cy,R*.62,0,6.3);c.stroke();
-    blob(c,cx,cy,R*.5,'rgba(255,230,170,1)',.22);
-    for(let i=0;i<50;i++)blob(c,r()*w,r()*h,25+r()*50,rgba(105,90,70),.12);
-    // Moss between the stones near the rim, then the soft rim.
-    for(let i=0;i<90;i++){const a=r()*6.3,d=R*(.72+r()*.25);blob(c,cx+Math.cos(a)*d,cy+Math.sin(a)*d,14+r()*26,rgba(110,140,70),.28);}
-    const g=c.createRadialGradient(cx,cy,R*.7,cx,cy,R);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.7,'rgba(0,0,0,.85)');g.addColorStop(1,'rgba(0,0,0,0)');
+    c.fillStyle='#8f7c5c';c.fillRect(0,0,w,h);
+    // Stones: rows of changing height, stones of changing width, each with its own warm or cool tone and a soft bevel.
+    const tones:[number,number,number][]=[[222,200,160],[212,182,138],[216,180,148],[200,192,176],[226,206,166],[204,170,124]];
+    let py=0;
+    while(py<h){
+      const rowH=18+r()*16;let px=-r()*40;
+      while(px<w){
+        const sw=20+r()*30;const t=tones[(r()*tones.length)|0];const k=.92+r()*.18;
+        const x=px+1.3,y=py+1.3,ww=sw-2.6,hh=rowH-2.6;
+        c.fillStyle=rgba(t[0]*k,t[1]*k,t[2]*k);c.fillRect(x,y,ww,hh);
+        c.fillStyle='rgba(255,245,215,.22)';c.fillRect(x,y,ww,2);c.fillRect(x,y,2,hh);
+        c.fillStyle='rgba(70,50,30,.2)';c.fillRect(x,y+hh-2.4,ww,2.4);c.fillRect(x+ww-2.4,y,2.4,hh);
+        if(r()<.3)blob(c,x+ww/2,y+hh/2,Math.max(ww,hh)*.7,rgba(110,92,66),.2);
+        if(r()<.08){c.strokeStyle='rgba(80,60,40,.35)';c.lineWidth=1;c.beginPath();c.moveTo(x+ww*r(),y);c.lineTo(x+ww*r(),y+hh);c.stroke();}
+        px+=sw;
+      }
+      py+=rowH;
+    }
+    // Soft colour patches break the repeat of the stones.
+    for(let i=0;i<34;i++){const a=r()*6.3,d=Math.sqrt(r())*R;const col=[rgba(214,128,80),rgba(235,190,90),rgba(120,150,170),rgba(150,120,90)][(r()*4)|0];blob(c,cx+Math.cos(a)*d,cy+Math.sin(a)*d,50+r()*110,col,.07+r()*.08);}
+    // Rings around the tree and a warm, worn centre.
+    c.lineWidth=14;c.strokeStyle='rgba(112,86,60,.55)';c.beginPath();c.arc(cx,cy,R*.34,0,6.3);c.stroke();
+    c.lineWidth=7;c.strokeStyle='rgba(240,214,150,.5)';c.beginPath();c.arc(cx,cy,R*.62,0,6.3);c.stroke();
+    blob(c,cx,cy,R*.55,'rgba(255,226,160,1)',.3);blob(c,cx,cy,R*.22,'rgba(255,240,200,1)',.25);
+    // Walk lines from the gate (south, down in the texture) and to the market (east) are worn paler.
+    for(const [dx,dy,len] of [[0,1,R],[1,0,R]] as const){
+      const steps=26;for(let i=0;i<steps;i++){const d=(i/steps)*len;blob(c,cx+dx*d,cy+dy*d,46+r()*10,'rgba(236,214,164,1)',.2);}
+    }
+    // Dirt and moss near the rim.
+    for(let i=0;i<130;i++){const a=r()*6.3,d=R*(.7+r()*.3);blob(c,cx+Math.cos(a)*d,cy+Math.sin(a)*d,18+r()*40,r()<.55?rgba(120,96,66):rgba(112,142,66),.22+r()*.2);}
+    for(let i=0;i<40;i++)blob(c,r()*w,r()*h,25+r()*50,rgba(105,90,70),.1);
+    const g=c.createRadialGradient(cx,cy,R*.72,cx,cy,R);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.7,'rgba(0,0,0,.85)');g.addColorStop(1,'rgba(0,0,0,0)');
     c.globalCompositeOperation='destination-in';c.fillStyle=g;c.fillRect(0,0,w,h);c.globalCompositeOperation='source-over';
   },true);
 }
@@ -136,4 +151,98 @@ export function paintInnerGround(scene:Scene){
   const {color,glow}=carvedStone(scene);
   const m=new StandardMaterial('ground-carved',scene);m.diffuseTexture=color;m.emissiveTexture=glow;glow.level=.85;m.useEmissiveAsIllumination=true;m.specularColor=new Color3(.08,.12,.14);m.specularPower=40;
   platform.material=m;platform.receiveShadows=true;
+}
+
+// ---- WP-40 outer look: sky clouds, far backdrop, grass tufts, banner cloth ----
+/** Soft clouds for the outer sky dome. 1024x256. The left edge matches the right edge. Canvas top = high in the sky. */
+export function skyClouds(scene:Scene){
+  const tex=make(scene,'paint-sky-clouds',1024,256,(c,w,h)=>{
+    const r=rng(71);c.clearRect(0,0,w,h);
+    const puff=(x:number,y:number,rx:number,ry:number,color:string,a:number)=>{
+      for(const dx of [-w,0,w]){if(x+dx<-rx||x+dx>w+rx)continue;c.save();c.translate(x+dx,y);c.scale(rx/ry,1);blob(c,0,0,ry,color,a);c.restore();}
+    };
+    // y runs top (high) to bottom (horizon). Clouds sit in the lower two thirds and stretch along the horizon.
+    for(let i=0;i<26;i++){
+      const cx=r()*w,cy=h*(.3+r()*.62),size=34+r()*62,low=cy/h;
+      for(let j=0;j<7;j++){
+        const ox=(r()-.5)*size*3.2,oy=(r()-.5)*size*.35;
+        puff(cx+ox,cy+oy+size*.22,size*1.8,size*.5,low>.6?'rgba(255,170,110,1)':'rgba(255,200,170,1)',.5);
+        puff(cx+ox,cy+oy,size*1.5,size*.55,low>.6?'rgba(255,232,196,1)':'rgba(255,250,240,1)',.9);
+        puff(cx+ox-size*.2,cy+oy-size*.2,size*.9,size*.32,'rgba(255,255,252,1)',.55);
+      }
+    }
+  },true);
+  tex.wrapU=Texture.WRAP_ADDRESSMODE;tex.wrapV=Texture.CLAMP_ADDRESSMODE;return tex;
+}
+/** Far hills, mountains and towers as one strip for a ring behind the city. 1024x256, repeats twice around. */
+export function backdropStrip(scene:Scene){
+  const tex=make(scene,'paint-backdrop',1024,256,(c,w,h)=>{
+    const r=rng(83);c.clearRect(0,0,w,h);
+    const ridge=(base:number,amp:number,seed:number,color:string,haze:string)=>{
+      const q=rng(seed);const ph=[q()*6.3,q()*6.3,q()*6.3,q()*6.3];
+      const y=(x:number)=>base-amp*(.5+.5*Math.sin(x/w*6.283*3+ph[0])*.5+.25*Math.sin(x/w*6.283*7+ph[1])+.15*Math.sin(x/w*6.283*17+ph[2])+.1*Math.sin(x/w*6.283*31+ph[3]));
+      const g=c.createLinearGradient(0,base-amp*1.4,0,h);g.addColorStop(0,color);g.addColorStop(1,haze);
+      c.fillStyle=g;c.beginPath();c.moveTo(0,h);for(let x=0;x<=w;x+=4)c.lineTo(x,y(x));c.lineTo(w,h);c.closePath();c.fill();
+      return y;
+    };
+    // Far mountains are warm violet in the golden haze.
+    ridge(h*.55,h*.34,3,'rgb(150,150,196)','rgb(222,200,180)');
+    const mid=ridge(h*.66,h*.18,5,'rgb(128,140,150)','rgb(200,188,150)');
+    // Towers and a castle on the middle hills. Each cluster is a silhouette with a few lit windows.
+    const tower=(x:number,w0:number,hh:number,roof:number,col:string)=>{
+      const base=mid(x);c.fillStyle=col;c.fillRect(x-w0/2,base-hh,w0,hh+6);
+      c.beginPath();c.moveTo(x-w0/2-1.5,base-hh);c.lineTo(x,base-hh-roof);c.lineTo(x+w0/2+1.5,base-hh);c.closePath();c.fill();
+      if(hh>16&&r()<.9){c.fillStyle='rgba(255,214,120,.95)';c.fillRect(x-1,base-hh*.6,2,3);}
+    };
+    for(const [cx,scale] of [[250,1],[760,.8]] as const){
+      const col='rgb(112,112,128)';
+      tower(cx,13*scale,46*scale,24*scale,col);tower(cx-20*scale,9*scale,30*scale,16*scale,col);tower(cx+20*scale,9*scale,34*scale,18*scale,col);
+      tower(cx-36*scale,7*scale,20*scale,12*scale,col);tower(cx+38*scale,7*scale,24*scale,14*scale,col);
+      const base=mid(cx);c.fillStyle=col;c.fillRect(cx-30*scale,base-14*scale,60*scale,20*scale);
+      for(let i=-4;i<=4;i++)c.fillRect(cx+i*7*scale-2,base-18*scale,4,4);
+    }
+    // A far town: many small roofs along the hills.
+    for(let x=470;x<640;x+=11+r()*7)tower(x,8+r()*5,8+r()*10,5+r()*5,'rgb(150,126,128)');
+    for(let x=880;x<1000;x+=12+r()*8)tower(x,8+r()*4,7+r()*9,5+r()*4,'rgb(150,126,128)');
+    ridge(h*.78,h*.12,9,'rgb(122,140,92)','rgb(186,176,112)');
+    // Fade the top edge so peaks sit softly in the sky.
+    const g=c.createLinearGradient(0,0,0,h*.2);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,1)');
+    c.globalCompositeOperation='destination-in';c.fillStyle=g;c.fillRect(0,0,w,h);c.globalCompositeOperation='source-over';
+  },true);
+  tex.wrapU=Texture.WRAP_ADDRESSMODE;tex.wrapV=Texture.CLAMP_ADDRESSMODE;return tex;
+}
+/** Crossed-quad grass tuft. With flowers, a few blossoms sit on top. 128x128, transparent. */
+export function tuftTexture(scene:Scene,flowers:boolean){
+  return make(scene,flowers?'paint-tuft-flowers':'paint-tuft-grass',128,128,(c,w,h)=>{
+    const r=rng(flowers?91:89);c.clearRect(0,0,w,h);c.lineCap='round';
+    const blades=flowers?16:30;
+    for(let i=0;i<blades;i++){
+      const x=w*(.18+r()*.64),tip=h*(.1+r()*.45),lean=(r()-.5)*34,l=1.8+r()*2.2;
+      const g=c.createLinearGradient(0,h,0,tip);g.addColorStop(0,rgba(46+r()*20,98+r()*30,30+r()*20));g.addColorStop(.7,rgba(110+r()*40,160+r()*30,50+r()*20));g.addColorStop(1,rgba(224,214,110));
+      c.strokeStyle=g;c.lineWidth=l;c.beginPath();c.moveTo(x,h);c.quadraticCurveTo(x+lean*.2,h*.55,x+lean,tip);c.stroke();
+    }
+    if(flowers){
+      const cols=['rgb(246,110,150)','rgb(255,206,70)','rgb(252,250,240)','rgb(170,120,230)','rgb(255,140,70)'];
+      for(let i=0;i<7;i++){
+        const x=w*(.2+r()*.6),y=h*(.12+r()*.4);c.strokeStyle='rgb(70,130,40)';c.lineWidth=1.6;c.beginPath();c.moveTo(x,h);c.lineTo(x,y);c.stroke();
+        c.fillStyle=cols[(r()*cols.length)|0];for(let p=0;p<5;p++){const a=p*1.257;c.beginPath();c.arc(x+Math.cos(a)*3.4,y+Math.sin(a)*3.4,3,0,6.3);c.fill();}
+        c.fillStyle='rgb(255,236,140)';c.beginPath();c.arc(x,y,2,0,6.3);c.fill();
+      }
+    }
+  },true);
+}
+/** Cloth for banners and stall awnings: a strong colour, a gold border and a simple sign. 128x256. */
+export function clothTexture(scene:Scene,name:string,main:string,trim:string,sign:'sun'|'tree'|'stripe'){
+  return make(scene,name,128,256,(c,w,h)=>{
+    c.fillStyle=main;c.fillRect(0,0,w,h);
+    for(let i=0;i<w;i+=6){c.fillStyle='rgba(255,255,255,.05)';c.fillRect(i,0,3,h);}
+    blob(c,w/2,h*.45,w*.7,'rgba(255,255,255,1)',.12);
+    c.strokeStyle=trim;c.lineWidth=7;c.strokeRect(5,5,w-10,h-10);c.lineWidth=2;c.strokeRect(14,14,w-28,h-28);
+    c.fillStyle=trim;
+    if(sign==='sun'){c.beginPath();c.arc(w/2,h*.42,22,0,6.3);c.fill();for(let i=0;i<12;i++){const a=i*Math.PI/6;c.beginPath();c.moveTo(w/2+Math.cos(a-.1)*28,h*.42+Math.sin(a-.1)*28);c.lineTo(w/2+Math.cos(a)*42,h*.42+Math.sin(a)*42);c.lineTo(w/2+Math.cos(a+.1)*28,h*.42+Math.sin(a+.1)*28);c.fill();}}
+    else if(sign==='tree'){c.fillRect(w/2-4,h*.5,8,h*.2);for(const [dx,dy,rr] of [[0,.34,26],[-18,.42,18],[18,.42,18]] as const){c.beginPath();c.arc(w/2+dx,h*dy,rr,0,6.3);c.fill();}}
+    else for(let i=0;i<5;i++)c.fillRect(20,50+i*34,w-40,12);
+    // Two swallow-tail points at the bottom are cut by alpha.
+    c.globalCompositeOperation='destination-out';c.beginPath();c.moveTo(w/2-30,h);c.lineTo(w/2,h-34);c.lineTo(w/2+30,h);c.closePath();c.fill();c.globalCompositeOperation='source-over';
+  },true);
 }
