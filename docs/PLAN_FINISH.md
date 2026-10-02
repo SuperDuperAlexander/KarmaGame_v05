@@ -125,3 +125,14 @@ Wave 3: 36            → lead merge → 38 → 37 → user phone check (D1, D2)
 - Lead look check: outer square, path and market read warm and clear. Rigged citizens and merchant face the right way.
 - Lead look check: the inner trunk shows as a flat dark-blue wall in front of the camera. WP-36 fixes it.
 - Next: WP-36 (speed, view blockers, load size), then WP-38 (two full check runs), then WP-37 again, then the user phone check.
+
+## Lead notes after WP-36 and WP-38 merge
+
+- Merged WP-36 (far detail, view blocker fade, freeze, smaller start load) and WP-38 (check run).
+- Lead fixes: the carrying hint now shows after the package (R1). Blocker fade is 6 %. The `?debug` triangle count now counts the drawn LOD level.
+- WP-38 on `main` code: type check, lint, 93 tests and build pass. e2e run 1: 6 of 6. e2e run 2: 6 of 6. Console errors 0. POST requests 0.
+- e2e zone stats (new LOD-aware count): desktop at most 43 draw calls and 78,333 triangles; 390×844 at most 30 draw calls and 66,194 triangles.
+- WP-36 numbers (desktop gate 209k) use the helper's own method at other camera spots. The two counts are not the same method. Both are under the 250,000 hard cap.
+- Start download: about 7.3 MB before the first playable frame (WP-36 network log). Target 12 MB.
+- Open for the user: real phone check (30 FPS, LOD build time, touch), human look check of bends and grip.
+- Next: WP-37 docs pass 2 (Haiku). Then report to the user.
