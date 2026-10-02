@@ -11,7 +11,8 @@ import {merchantMotion} from '../../npc/merchant';
 import {createPlacer} from './decor';
 import {freezeStatic,mergeStatic} from '../freeze';
 import {citizenIdle} from './citizens';
-import {HOUSES,HEDGES,LAMPS} from './layout';
+import {HOUSES,HEDGES,LAMPS,BANNERS,PLANTERS} from './layout';
+import {createBackdrop,warmKits,createLampGlow,createWindowLights,createBanners,createTufts,createPlanters} from './look';
 export async function createOuterWorld(scene:Scene,assets:AssetService):Promise<WorldView>{
   scene.collisionsEnabled=true;const light=atmosphere(scene,'outer');const water=sourceWater(scene,false);
   const {place,queue,flush}=createPlacer(scene,assets);
@@ -63,7 +64,8 @@ export async function createOuterWorld(scene:Scene,assets:AssetService):Promise<
   ];
   for(const [part,x,z,yaw,s] of props)later.push(()=>place('MarketProps',part,x,z,{yaw:part==='sign'?yaw:yaw+x,scale:s,decor:true}));
   // Street furniture.
-  for(const [x,z] of LAMPS)queue(place('CityWall','lamp',x,z,{scale:1.3,decor:true}));
+  const lampGlow=createLampGlow(scene);(window as any).__sc=scene;
+  for(const [x,z] of LAMPS)queue(place('CityWall','lamp',x,z,{scale:1.3,decor:true}).then(v=>{if(!v)return;const b=v.root.getHierarchyBoundingVectors(true);lampGlow.add(x,b.max.y*.82,z,1.3);}));
   for(const [x,z] of [[-9,0],[9,-2]])queue(place('CityWall','bench',x,z,{scale:.8,yaw:Math.atan2(-x,-z)+Math.PI,decor:true}));
   queue(place('CityWall','fountain',-8,7,{scale:1.7,decor:true}));solid(scene,'fountain-blocker',new Vector3(-8,.7,7),new Vector3(4.6,1.4,4.6));
   queue(place('CityWall','banner',19,4.9,{scale:1.2,decor:true}));
@@ -74,6 +76,7 @@ export async function createOuterWorld(scene:Scene,assets:AssetService):Promise<
     ['flowerSmall',.5,-44.7,2],['mushroomSmall',2.4,-44.1,2],['grass',-.4,-42.9,1.4],['flowerCluster',-12,-12,2],['fern',12.5,-12.5,1.8],['bushSmall',-15,12,1.4],['bushSmall',16,13,1.4],['flowerCluster',12,12.5,2],
   ];
   for(const [part,x,z,s] of plants)queue(place('Vegetation',part,x,z,{scale:s,yaw:x*2.3,decor:true}));
+  for(const [x,z] of PLANTERS)queue(place('Vegetation',(x*7+z)%2?'flowerCluster':'bushSmall',x,z,{y:.66,scale:1.1,yaw:x*2.1,decor:true}));
   // Two citizens talk on the square. Static mesh with a light code idle. No story, no interaction.
   const folks:[string,'Citizen'|'CitizenMale',number,number,number,number][]=[['citizen-a','Citizen',-6.8,-7.2,.5,0],['citizen-b','CitizenMale',-5.4,-6.2,-2.4,1.7]];
   const idles:((dt:number,player:Vector3)=>void)[]=[];
@@ -82,9 +85,11 @@ export async function createOuterWorld(scene:Scene,assets:AssetService):Promise<
     solid(scene,name+'-blocker',new Vector3(x,.85,z),new Vector3(.5,1.7,.5));
   }
   await flush();
+  warmKits(scene);const backdrop=createBackdrop(scene);if(realKit){createWindowLights(scene,HOUSES);createTufts(scene,HOUSES);}
+  const banners=createBanners(scene,realKit?BANNERS:[]);createPlanters(scene,realKit?PLANTERS:[]);
   // Only the code placeholders: the houses are many small boxes. Real houses are instances already.
   if(!realKit)mergeStatic(scene,/^CityBuilding\./);
   // The scene renders its first frame only when the game is ready. Then the far files start to load.
   scene.onAfterRenderObservable.addOnce(()=>{void Promise.all(later.map(load=>load().catch(error=>console.warn('Late asset failed.',error))));});
-  return {scene,spawn:new Vector3(0,0,-47),gate,beetle:null,packageRoot,update(state,dt,player){const owned=state.facts.includes('PACKAGE_RECEIVED');gate.setEnabled(!owned);packageRoot.setEnabled(!owned);light.update(state);water.update(dt,state.traits.attachment);move(dt,player);for(const idle of idles)idle(dt,player);desire.rotation.y+=dt*.3;spot.scaling.setAll(state.facts.includes('TREE_DISCOVERED')?1:.85);},dispose(){light.dispose();water.dispose();}};
+  return {scene,spawn:new Vector3(0,0,-47),gate,beetle:null,packageRoot,update(state,dt,player){const owned=state.facts.includes('PACKAGE_RECEIVED');gate.setEnabled(!owned);packageRoot.setEnabled(!owned);light.update(state);water.update(dt,state.traits.attachment);move(dt,player);banners.update(dt);for(const idle of idles)idle(dt,player);desire.rotation.y+=dt*.3;spot.scaling.setAll(state.facts.includes('TREE_DISCOVERED')?1:.85);},dispose(){backdrop?.dispose();lampGlow.dispose();banners.dispose();light.dispose();water.dispose();}};
 }
