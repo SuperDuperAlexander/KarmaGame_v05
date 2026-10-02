@@ -13,7 +13,7 @@ export function createAssetService(forcePlaceholder=false):AssetService {
       const e=registry[id];if(forcePlaceholder||!e.file||failed.has(id))return placeholder(id,scene,parent);
       try{
         let files=cache.get(scene);if(!files){files=new Map();cache.set(scene,files);scene.onDisposeObservable.add(()=>{files!.forEach(async p=>(await p.catch(()=>null))?.dispose());});}
-        let pending=files.get(e.file);if(!pending){pending=(async()=>{await import('@babylonjs/loaders/glTF/2.0/glTFLoader');const {LoadAssetContainerAsync}=await import('@babylonjs/core/Loading/sceneLoader');return LoadAssetContainerAsync(e.file!,scene);})();files.set(e.file,pending);}
+        let pending=files.get(e.file);if(!pending){pending=(async()=>{await import('@babylonjs/loaders/glTF/2.0/glTFLoader');(await import('@babylonjs/loaders/glTF/2.0/Extensions/dynamic')).registerBuiltInGLTFExtensions();const {LoadAssetContainerAsync}=await import('@babylonjs/core/Loading/sceneLoader');return LoadAssetContainerAsync(e.file!,scene);})();files.set(e.file,pending);}
         const container=await pending;
         const instance=container.instantiateModelsToScene(n=>id+'-'+n,false,{doNotInstantiate:container.skeletons.length>0});
         const root=new TransformNode(id+'-visual',scene);root.metadata={assetId:id,status:e.status,missingClips:[],missingNodes:[]};
