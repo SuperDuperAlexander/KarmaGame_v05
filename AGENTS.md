@@ -1,6 +1,6 @@
 # Work rules
 
-- Use only ChatGPT models. The lead runs the work and checks each hand-off.
+- The lead runs the work and checks each hand-off.
 - Work only inside `D:\MyDrive\ALEXANDER\PROJEKTE\KarmaGame_v05`.
 - Do not copy code from another project. Local rig code and npm packages are allowed.
 - Read `GAME_MASTER_SPEC.md`, `Begin Vertical Slice v0.1.md`, `docs/PLAN.md`, and `docs/3D_ASSET_GENERATION_MASTER.md`.

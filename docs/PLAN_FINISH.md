@@ -14,7 +14,8 @@
 - Code and visual helpers: Claude Sonnet.
 - Docs and check runs: Claude Haiku.
 - ChatGPT/Codex: the user can start a brief from `docs/wp/` in Codex. The briefs do not depend on one tool.
-- Note: the model line in `AGENTS.md` still says ChatGPT only. The user must update that line.
+- The user updated `AGENTS.md` and `CLAUDE.md` on 2026-10-02.
+- User decision 2026-10-02: all characters use the test rig skeleton and clips (WP-34).
 - All other `AGENTS.md` rules stay: worktrees, owned files, checks, reports, three workers or fewer.
 
 ## What the new files contain (lead check, 2026-10-02)
@@ -61,7 +62,7 @@
 | 31 | Asset optimizer (size, textures) | Sonnet | 1 | 30 | `tools/assets/`, devDependencies for glTF-Transform |
 | 32 | Outer world with real art | Sonnet | 1 | 30 | `src/world/outer/`, `registry/outer.ts`, Citizen entries in `registry/characters.ts`, kit-part fixes in `src/assets/feature.ts` |
 | 33 | Inner world, beetle and chain with real art | Sonnet | 1 | 30 | `src/world/inner/`, `registry/inner.ts`, `registry/core.ts`, `src/creatures/`, `src/props/` |
-| 34 | NPC rig: merchant and two citizens | Sonnet | 2 | 32 | `tools/rig/`, `registry/characters.ts`, `src/npc/` |
+| 34 | Shared rig and clips for all six characters | Sonnet | 2 (first free slot) | 30 | `tools/rig/`, `registry/characters.ts`, `src/npc/` |
 | 35 | Light, fog, tree state glow, water polish | Sonnet | 2 | 32, 33 | `src/presentation/` |
 | 36 | Speed: LOD, freeze, lazy load, budgets | Sonnet | 3 | 31–35 | `tools/assets/`, `src/assets/` (load), scene freeze calls via report |
 | 37 | Docs and asset status | Haiku | after each wave | – | `docs/assets/ASSET_STATUS.md`, `README.md` (known limits), `docs/work-packages.json` |
