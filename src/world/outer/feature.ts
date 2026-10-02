@@ -6,6 +6,7 @@ import {solid,disk,entity} from '../shared';
 import {material} from '../../assets/placeholders';
 import {atmosphere} from '../../presentation/atmosphere';
 import {sourceWater} from '../../presentation/sourceWater';
+import {paintOuterGround} from '../../presentation/paint';
 import {merchantMotion} from '../../npc/merchant';
 import {createPlacer} from './decor';
 import {citizenIdle} from './citizens';
@@ -18,8 +19,8 @@ export async function createOuterWorld(scene:Scene,assets:AssetService):Promise<
   const probeTree=await assets.create('CentralTreeOuter',scene);const realTree=probeTree.root.metadata?.status!=='placeholder';probeTree.dispose();
   const box=(color:string)=>realKit?undefined:color;
   solid(scene,'outer-ground',new Vector3(4,-.15,-14),new Vector3(72,.3,76),'#819577');
-  const arrivalPath=solid(scene,'arrival-path',new Vector3(0,-.028,-36),new Vector3(5,.08,30),'#C4B492');arrivalPath.checkCollisions=false;arrivalPath.metadata={cameraBlocker:false};
-  disk(scene,'central-square',0,0,15,'#C7B99C');const marketPath=solid(scene,'market-path',new Vector3(23,-.024,0),new Vector3(30,.08,6),'#C7B99C');marketPath.checkCollisions=false;marketPath.metadata={cameraBlocker:false};
+  const arrivalPath=solid(scene,'arrival-path',new Vector3(0,-.028,-33),new Vector3(5,.08,36),'#C4B492');arrivalPath.checkCollisions=false;arrivalPath.metadata={cameraBlocker:false};
+  disk(scene,'central-square',0,0,15,'#C7B99C');const marketPath=solid(scene,'market-path',new Vector3(23,-.024,0),new Vector3(30,.08,6),'#C7B99C');marketPath.checkCollisions=false;marketPath.metadata={cameraBlocker:false};paintOuterGround(scene);
   // World edges are invisible blockers. Hedges and houses hide them.
   for(const [x,z,w,d] of [[-32,-14,1,76],[40,-14,1,76],[4,-52,72,1],[4,24,72,1]])solid(scene,'world-edge',new Vector3(x,3,z),new Vector3(w,6,d),box('#87987A'));
   // City wall: invisible blockers (z -26, gate opening 4 m) with wall pieces on top.

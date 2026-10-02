@@ -4,6 +4,7 @@ import type {AssetId,AssetService,WorldView} from '../../contracts/visual';
 import {solid,disk,entity} from '../shared';
 import {atmosphere} from '../../presentation/atmosphere';
 import {sourceWater} from '../../presentation/sourceWater';
+import {paintInnerGround} from '../../presentation/paint';
 import {createInnerChain} from '../../props/chain';
 import {beetleMotion} from '../../creatures/beetle';
 import {selectors} from '../../state/selectors';
@@ -18,7 +19,7 @@ async function part(scene:Scene,assets:AssetService,id:AssetId,name:string,at:Pl
 }
 export async function createInnerWorld(scene:Scene,assets:AssetService):Promise<WorldView>{
   scene.collisionsEnabled=true;const light=atmosphere(scene,'inner');const water=sourceWater(scene,true);
-  const ground=solid(scene,'inner-ground',new Vector3(0,-.25,0),new Vector3(24,.5,24));ground.metadata={cameraBlocker:false};disk(scene,'inner-platform',0,0,11,'#4F6670');
+  const ground=solid(scene,'inner-ground',new Vector3(0,-.25,0),new Vector3(24,.5,24));ground.metadata={cameraBlocker:false};disk(scene,'inner-platform',0,0,11,'#4F6670');paintInnerGround(scene);
   for(let i=0;i<24;i++){const a=i*Math.PI*2/24;const blocker=solid(scene,'inner-ring',new Vector3(Math.cos(a)*11.65,1.5,Math.sin(a)*11.65),new Vector3(3,3,1));blocker.rotation.y=-a+Math.PI/2;}
   // The glTF loader turns the file X axis. Mirror X so attachment roots lie east, fear roots west. Scale 1.2 and turn -40 degrees: the root feet form a wall at the ring and leave arrival, package, return spot and beetle free.
   const tree=entity(scene,'inner-tree',0,0);tree.scaling.set(-1.2,1.2,1.2);tree.rotation.y=-40*Math.PI/180;await assets.create('CentralTreeInner',scene,tree);solid(scene,'inner-trunk',new Vector3(0,5,0),new Vector3(2.7,10,2.7));
