@@ -20,7 +20,7 @@ export const strings = {
   innerHelp:'Go to the package by the root. Press Reflect.',
   savedHelp:'Your words are saved. Hold at the light by the trunk to return.',
   skippedHelp:'You can return at the light by the trunk.',
-  quality:'View detail', simple:'Simple', full:'Full',
+  quality:'View detail', simple:'Simple', full:'Full', high:'High',
   storageNotice:'This device cannot save your game. Keep this tab open.',
   actionKey:'E',
 };

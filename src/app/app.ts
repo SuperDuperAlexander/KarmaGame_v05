@@ -58,12 +58,20 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
     const layer=document.createElement('div');layer.dataset.scene=String(scene.uniqueId);waveRoot.append(layer);
     return createWaveService(scene,layer);
   });
+  // One hint source for scene changes and for a reload in either world.
+  function hintFor(world:'outer'|'inner') {
+    const facts=store.get().facts;
+    if(facts.includes('ATTACHMENT_SEEN'))return strings.end;
+    if(world==='inner')return strings.innerHelp;
+    if(facts.includes('INNER_WORLD_ENTERED'))return facts.includes('ATTACHMENT_TRIGGERED')?strings.nextInner:strings.nextMarket;
+    return facts.includes('PACKAGE_RECEIVED')?strings.carrying:strings.welcome;
+  }
   const interaction=createInteraction(ui,signal=>dispatch(signal));
   const transition=createTransition({
     lock:()=>input.lock('transition'),veil:on=>ui.loading(on,strings.loading),save:flushSave,
     async prepare(id) {frameReady=false;await manager.activate(id);setPresentationQuality(manager.current.world.scene,quality);},
     switch(id) {store.update(state=>{state.world=id;});interaction.reset();ui.world(id==='outer'?strings.outer:strings.inner);},
-    activated(id) {frameReady=true;save.request();if(id==='inner')dispatch('inner-active');ui.hint(store.get().facts.includes('ATTACHMENT_SEEN')?strings.end:id==='inner'?strings.innerHelp:store.get().facts.includes('ATTACHMENT_TRIGGERED')?strings.nextInner:strings.nextMarket);},
+    activated(id) {frameReady=true;save.request();if(id==='inner')dispatch('inner-active');ui.hint(hintFor(id));},
     reset:()=>interaction.reset()
   });
   function onEffect(effect:Effect) {
@@ -87,13 +95,13 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
   setPresentationQuality(manager.current.world.scene,quality);
   const qualityControl=document.createElement('select');qualityControl.setAttribute('aria-label',strings.quality);
   qualityControl.style.cssText='pointer-events:auto;min-height:48px;max-width:110px;color:#fff7e8;background:#182727b8;border:1px solid #fff5d650;border-radius:10px;padding:8px;font:inherit';
-  for(const [value,label] of [['low',strings.simple],['medium',strings.full],['high','High']]) {const option=document.createElement('option');option.value=value;option.textContent=label;qualityControl.append(option);}
+  for(const [value,label] of [['low',strings.simple],['medium',strings.full],['high',strings.high]]) {const option=document.createElement('option');option.value=value;option.textContent=label;qualityControl.append(option);}
   qualityControl.value=quality;
   qualityControl.addEventListener('change',()=>{quality=qualityControl.value as PresentationQuality;engine.setHardwareScalingLevel(quality==='low'?1.3:1);for(const entry of manager.entries.values())setPresentationQuality(entry.world.scene,quality);});
   uiRoot.querySelector('.lw-top')?.insertBefore(qualityControl,uiRoot.querySelector('.lw-top button'));
   if(store.get().world==='inner')dispatch('inner-active');
   ui.world(store.get().world==='outer'?strings.outer:strings.inner);
-  ui.hint(store.get().facts.includes('ATTACHMENT_SEEN')?strings.end:store.get().facts.includes('PACKAGE_RECEIVED')?strings.carrying:strings.welcome);
+  ui.hint(hintFor(store.get().world));
   ui.loading(false);bootRelease();
   let saveClock=0;
   engine.runRenderLoop(()=>{
