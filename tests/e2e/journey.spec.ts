@@ -105,7 +105,7 @@ for (const placeholder of [false, true]) {
       expect(final.transitions.slice(0, 8).map(log => log.step)).toEqual(steps);
       expect(final.transitions.slice(8, 16).map(log => log.step)).toEqual(steps);
       expect(final.transitions[15].time - final.transitions[8].time).toBeLessThanOrEqual(2000);
-      await expect(page.locator('.lw-hint')).toContainText('end of this first part');
+      await expect(page.locator('.lw-hint')).toContainText('You have met the beetle');
       await page.screenshot({ path: testInfo.outputPath('attached-beetle.png') });
       const statePath = testInfo.outputPath('final-read.json');
       const zonesPath = testInfo.outputPath('zone-stats.json');
