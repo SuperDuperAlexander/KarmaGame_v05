@@ -300,10 +300,110 @@
       "status": "deferred_until_final_art_exists",
       "acceptance": "diff = one registry entry + one GLB",
       "report": "docs/reports/WP-A4.md"
+    },
+    {
+      "id": "30",
+      "name": "Lead base for real art (registry split, kit loader, new asset ids)",
+      "wave": "prep",
+      "needs": "–",
+      "model": "Claude Opus",
+      "status": "done",
+      "acceptance": "registry split by owner; AssetService.create takes kit part; checks pass",
+      "report": "docs/reports/WP-30.md"
+    },
+    {
+      "id": "31",
+      "name": "Asset optimizer (size, textures)",
+      "wave": "1",
+      "needs": "30",
+      "model": "Claude Sonnet",
+      "status": "done",
+      "acceptance": "npm run assets:sync optimizes; npm run assets:check works; e2e 6 of 6 pass",
+      "report": "docs/reports/WP-31.md"
+    },
+    {
+      "id": "32",
+      "name": "Outer world with real art",
+      "wave": "1",
+      "needs": "30",
+      "model": "Claude Sonnet",
+      "status": "done",
+      "acceptance": "citizens idle sway; kit parts batch; 6 of 6 e2e pass; phone budget met",
+      "report": "docs/reports/WP-32.md"
+    },
+    {
+      "id": "33",
+      "name": "Inner world, beetle and chain with real art",
+      "wave": "1",
+      "needs": "30",
+      "model": "Claude Sonnet",
+      "status": "done",
+      "acceptance": "inner kits load; chain link instances; beetle emissive on veins; 6 of 6 e2e pass",
+      "report": "docs/reports/WP-33.md"
+    },
+    {
+      "id": "34",
+      "name": "Shared rig and clips for all six characters",
+      "wave": "2",
+      "needs": "30",
+      "model": "Claude Sonnet",
+      "status": "done",
+      "acceptance": "all six characters use 17-bone rig and five clips; validate_shared passes; e2e 6 of 6 pass",
+      "report": "docs/reports/WP-34.md"
+    },
+    {
+      "id": "35",
+      "name": "Light, fog, tree state glow, water polish",
+      "wave": "2",
+      "needs": "32, 33",
+      "model": "Claude Sonnet",
+      "status": "planned",
+      "acceptance": "inner roots lit from below; fear roots get cold light; water polish; no console errors",
+      "report": "docs/reports/WP-35.md"
+    },
+    {
+      "id": "36",
+      "name": "Speed: LOD, freeze, lazy load, budgets",
+      "wave": "3",
+      "needs": "31–35",
+      "model": "Claude Sonnet",
+      "status": "planned",
+      "acceptance": "phone <120 draw calls; start download ≤12 MB; e2e pass",
+      "report": "docs/reports/WP-36.md"
+    },
+    {
+      "id": "37",
+      "name": "Docs and asset status",
+      "wave": "after each wave",
+      "needs": "–",
+      "model": "Claude Haiku",
+      "status": "done",
+      "acceptance": "ASSET_STATUS.md, README.md (Known limits, tools), work-packages.json; json and lint pass",
+      "report": "docs/reports/WP-37.md"
+    },
+    {
+      "id": "38",
+      "name": "Full check run and evidence",
+      "wave": "after each wave",
+      "needs": "–",
+      "model": "Claude Haiku",
+      "status": "planned",
+      "acceptance": "e2e twice, screen shots, console clean, no repeat failures",
+      "report": "docs/reports/WP-38.md"
+    },
+    {
+      "id": "39",
+      "name": "Merge, look review, DEVELOPMENT_DECISIONS.md",
+      "wave": "each wave",
+      "needs": "–",
+      "model": "Claude Opus",
+      "status": "planned",
+      "acceptance": "merge main; all checks pass; look check on device; decisions recorded",
+      "report": "docs/reports/WP-39.md"
     }
   ],
   "updated": "2026-10-02",
-  "milestoneStatus": "code_checks_pass; real_phone_and_human_rig_review_pending",
+  "milestoneStatus": "WP-31/32/33/34 done; WP-35/36 planned; real_phone_and_human_rig_review_pending",
   "report": "docs/reports/WP-22.md",
   "deviceChecks": {
     "D1": "real_phone_pending",
