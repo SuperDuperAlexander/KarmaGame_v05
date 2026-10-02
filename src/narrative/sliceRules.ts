@@ -5,7 +5,7 @@ const fact = (name: Fact, value = true): Condition => ({kind: 'fact', fact: name
 const all = (...conditions: Condition[]): Condition => ({kind: 'all', conditions});
 
 export const sliceRules: readonly Rule[] = [
-  {id: 'R1-package', signal: 'waystone', condition: fact('PACKAGE_RECEIVED', false), once: true, effects: [{kind: 'fact', fact: 'PACKAGE_RECEIVED'}, {kind: 'trait', trait: 'attachment', delta: .10}, {kind: 'save'}]},
+  {id: 'R1-package', signal: 'waystone', condition: fact('PACKAGE_RECEIVED', false), once: true, effects: [{kind: 'fact', fact: 'PACKAGE_RECEIVED'}, {kind: 'trait', trait: 'attachment', delta: .10}, {kind: 'save'}, {kind: 'hint', text: strings.carrying}]},
   {id: 'R2-city', signal: 'city-enter', condition: fact('PACKAGE_RECEIVED'), once: true, effects: [{kind: 'fact', fact: 'CITY_ENTERED'}, {kind: 'save'}]},
   {id: 'R3-tree', signal: 'tree-enter', condition: fact('CITY_ENTERED'), once: true, effects: [{kind: 'fact', fact: 'TREE_DISCOVERED'}, {kind: 'save'}]},
   {id: 'R4-look', signal: 'look-within', condition: fact('TREE_DISCOVERED'), once: false, effects: [{kind: 'transition', world: 'inner'}]},

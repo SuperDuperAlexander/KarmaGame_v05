@@ -7,7 +7,7 @@ describe('slice content boundaries', () => {
   it('keeps wave and end text in the text source', () => {
     const waves = sliceRules.flatMap(rule => rule.effects).filter(effect => effect.kind === 'wave');
     expect(waves).toHaveLength(1); expect(waves[0].text).toBe(strings.wave); expect(waves[0].text.length).toBeLessThanOrEqual(64);
-    expect(sliceRules.flatMap(rule => rule.effects).filter(effect => effect.kind === 'hint').map(effect => effect.text)).toEqual([strings.end]);
+    expect(sliceRules.flatMap(rule => rule.effects).filter(effect => effect.kind === 'hint').map(effect => effect.text)).toEqual([strings.carrying, strings.end]);
   });
   it('does not change traits from saved or skipped answers', () => {
     const rules = sliceRules.filter(rule => ['reflect', 'reflection-done'].includes(rule.signal));

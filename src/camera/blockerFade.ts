@@ -11,7 +11,8 @@ import type {Scene} from '@babylonjs/core/scene';
  * to the player. A mesh that stands in that cone fades to a see-through level. It comes back when the cone is clear.
  * Instances cannot hold an own alpha, so a faded instance swaps to a plain clone while it is not solid.
  */
-const SEE_THROUGH=.2,SPEED=5,CONE=.7,RAYS=10,NEAR=1,AXES=6;
+// Low enough that glowing inner roots do not leave a pale band across a phone screen.
+const SEE_THROUGH=.06,SPEED=5,CONE=.7,RAYS=10,NEAR=1,AXES=6;
 
 interface Item {mesh:AbstractMesh;source:Mesh|null;clone:Mesh|null;alpha:number;hiding:boolean}
 

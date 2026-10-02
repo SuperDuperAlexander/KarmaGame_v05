@@ -3,7 +3,9 @@ import type {Engine} from '@babylonjs/core/Engines/engine';
 import type {Scene} from '@babylonjs/core/scene';
 export function sceneStats(engine:Engine,scene:Scene,instrumentation:SceneInstrumentation) {
   const active=scene.getActiveMeshes();let triangles=0;
-  for(let i=0;i<active.length;i++) triangles+=active.data[i].getTotalIndices()/3;
+  // Count the level that is drawn. A far level can be a simpler mesh or nothing.
+  const camera=scene.activeCamera;
+  for(let i=0;i<active.length;i++){const m=active.data[i];const source=(m as {sourceMesh?:typeof m}).sourceMesh??m;const drawn=camera&&'getLOD' in source?(source as unknown as {getLOD(c:typeof camera,s:unknown):typeof m|null}).getLOD(camera,m.getBoundingInfo().boundingSphere):m;if(drawn)triangles+=drawn.getTotalIndices()/3;}
   return {fps:engine.getFps(),drawCalls:instrumentation.drawCallsCounter.current,meshes:active.length,triangles,textures:scene.textures.length,gpu:String(engine.getGlInfo().renderer)};
 }
 export function createDebug(engine:Engine,enabled:boolean) {
