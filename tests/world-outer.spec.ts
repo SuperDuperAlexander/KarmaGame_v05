@@ -40,7 +40,7 @@ describe('Outer world registry',()=>{
     for(const id of ['CityGate','CityWall','CityBuilding','MarketProps','Vegetation'] as const){expect(registry[id].status).toBe('temporary');expect(Object.keys(registry[id].parts??{}).length).toBeGreaterThan(0);}
     for(const part of ['small','medium','corner','tower'])expect(registry.CityBuilding.parts?.[part]).toBeTruthy();
     expect(registry.CityGate.parts?.gate).toEqual(['city_gate']);
-    expect(registry.Citizen.file).toBe('/assets/characters/citizen_female.glb');expect(registry.CitizenMale.file).toBe('/assets/characters/citizen_male.glb');
+    expect(registry.Citizen.file).toBe('/assets/characters/citizen_female_rigged.glb');expect(registry.CitizenMale.file).toBe('/assets/characters/citizen_male_rigged.glb');
     expect(Object.keys(registry.CentralTreeOuter.nodes)).toEqual(expect.arrayContaining(['leaves','trunk','roots']));
   });
 });
