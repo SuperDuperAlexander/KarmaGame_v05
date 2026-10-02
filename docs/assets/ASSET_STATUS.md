@@ -11,7 +11,7 @@
 
 All assets are `temporary`. A person must check the art on a real phone.
 
-| Asset id | File | Raw MB | Opt MB | Triangles | Status | Checks open |
+| No. | File | Raw MB | Opt MB | Triangles | Status | Checks open |
 |---|---|---|---|---|---|---|
 | 01 | player_rigged_v2.glb | 2.64 | 2.34 | 34,315 | temporary | Gait and grips; 17-bone v2 rig has 5 clips |
 | 02 | central_tree_outer.glb | 4.66 | 1.75 | 34,936 | temporary | Art look, stone and fence color; separate meshes for glow |
@@ -35,7 +35,7 @@ All assets are `temporary`. A person must check the art on a real phone.
 | 20 | inner_crystal_kit.glb | 0.70 | 0.41 | 2,726 | temporary | Art look; 4 kit parts (crystal_small/medium/cluster/tall), heights 0.4–4.0 m |
 | 21 | vegetation_kit.glb | 1.02 | 0.57 | 9,315 | temporary | Art look; 9 kit parts (grass, flowers, fern, bushes, vine, mushrooms) |
 | 22 | package_chain.glb | 0.10 | 0.05 | 1,500 | temporary | One link, flat ring, Y axis 0.64 m, X width 0.44 m, Z thin 0.12 m |
-| test | player_rigged_test.glb | 2.55 | 2.55 | 34,315 | temporary | Test rig, 17 bones, 2 clips (Idle, Walk); fallback for Phase B |
+| test | player_rigged_test.glb | 2.55 | 2.55 | 34,315 | temporary | Test rig, 17 bones, 2 clips (Idle, Walk); source for the v2 rig only, not loaded by the game |
 | v2 | player_rigged_v2.glb | 2.64 | 2.34 | 34,315 | temporary | Main rig, 17 bones, 5 clips (Idle, Walk, Run, Interact, LookAround) |
 
 **Totals**: raw 37.32 MB, optimized 19.41 MB.

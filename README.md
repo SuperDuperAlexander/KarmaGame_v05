@@ -61,7 +61,6 @@
 ## Known limits
 
 - House textures are dark. WP-35 light can warm them.
-- The merchant mesh front is -Z (yaw π offset). It may turn its back to the player.
 - The beetle file has no anchor node. The chain end meets the head side.
 - The Source Water strip cuts through fear roots at the west. WP-35 must fix it.
 - The inner floor is flat code. Kit platforms are too small to tile it.
