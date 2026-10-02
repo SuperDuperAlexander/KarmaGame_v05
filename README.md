@@ -58,6 +58,17 @@
 - Set `$env:LW_SOFTWARE='1'` before a browser test to use software graphics.
 - Software speed is not phone speed.
 
+## Known limits
+
+- House textures are dark. WP-35 light can warm them.
+- The merchant mesh front is -Z (yaw π offset). It may turn its back to the player.
+- The beetle file has no anchor node. The chain end meets the head side.
+- The Source Water strip cuts through fear roots at the west. WP-35 must fix it.
+- The inner floor is flat code. Kit platforms are too small to tile it.
+- Phone spawn and gate views show 172k triangles, near the 180k budget. WP-36 should add LOD or far-house culling.
+- Bends at elbows, knees and hips need a human check for all rigged characters.
+- A real phone check has not been done (30 FPS target).
+
 ## Phone check still needed
 
 - Use the same Wi-Fi as this PC.
@@ -82,10 +93,15 @@
 - `?test` adds the read-only hook in the dev build.
 - The production build has no test hook.
 - Drop model files in `3D Models/assets/`.
-- Change the matching entry in `src/assets/registry/index.ts`.
-- Run `npm run assets:sync` after a model change.
-- `python tools/rig/generate_rig_v2.py` rebuilds the local rig.
+- Change the matching entry in `src/assets/registry/*.ts`.
+- `npm run assets:sync` copies files to `public/assets/` and optimizes them (dedup, prune, weld, quantize, WebP textures).
+- `npm run assets:check` prints the asset table (raw MB, opt MB, triangles, status, clips, missing nodes).
+- Rig tools: `python tools/rig/generate_rig_v2.py` rebuilds the local rig.
 - `python tools/rig/validate_rig_v2.py` checks that rig.
+- `python tools/rig/rig_shared.py` creates shared rigs for all characters from marks.
+- `python tools/rig/validate_shared.py` checks all shared rigs.
+- Marks: `tools/rig/marks/<name>.json`. A person can edit marks and run the tools again.
+- `LW_PORT=<port>` sets the dev server port (default 5186) for browser tests.
 
 ## Work record
 
