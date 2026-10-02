@@ -29,7 +29,7 @@ describe('local save', () => {
   it('throttles requests and flush, while keeping the newest changes', () => {
     const {storage, values} = memoryStorage(); const write = vi.spyOn(storage, 'setItem'); const store = createWorldStore();
     const save = createSaveService(store, storage); save.request(); vi.advanceTimersByTime(0); expect(write).toHaveBeenCalledTimes(1);
-    store.update(s => { s.positions.outer.x = 1; }); expect(save.flush()).toBe(false);
+    store.update(s => { s.positions.outer.x = 1; }); expect(save.flush()).toBe(true); expect(write).toHaveBeenCalledTimes(1);
     vi.advanceTimersByTime(500); store.update(s => { s.positions.outer.x = 2; }); save.request();
     vi.advanceTimersByTime(499); expect(write).toHaveBeenCalledTimes(1);
     vi.advanceTimersByTime(1); expect(write).toHaveBeenCalledTimes(2); expect(JSON.parse(values.get(SAVE_KEY)!).positions.outer.x).toBe(2);

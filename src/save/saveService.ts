@@ -68,7 +68,8 @@ export function createSaveService(store: WorldStore, storage: SaveStorage | unde
       }
     },
     request() { if (!disposed) { pending = true; schedule(); } },
-    flush() { pending = true; return write(false); },
+    // A write inside the one-second limit is only delayed, not lost. Report false only when storage fails.
+    flush() { pending = true; if (Date.now() - lastWrite < 1000) { schedule(); return true; } return write(false); },
     dispose() {
       if (disposed) return;
       if (pending) write(true);
