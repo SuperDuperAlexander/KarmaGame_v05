@@ -14,6 +14,11 @@ html,body{margin:0;overflow:hidden;overscroll-behavior:none}
 .lw-panel h1{font-size:24px;font-weight:500;line-height:1.3;margin:0 0 16px}.lw-panel p{font-size:14px;color:#d7dece;margin:0 0 16px}.lw-panel textarea{display:block;width:100%;min-height:145px;max-height:30vh;resize:vertical;padding:12px;background:#102323;color:#fff7e8;border:1px solid #b5b69880;border-radius:8px}
 .lw-count{display:block;text-align:right;font-size:12px;margin:6px 0 16px;color:#ccd4c3}.lw-buttons{display:flex;flex-wrap:wrap;gap:10px}.lw-menu{display:grid;gap:12px}.lw-ui .lw-muted{background:#192b2b}
 .lw-loading{position:absolute;inset:0;z-index:4;display:grid;place-content:center;gap:16px;text-align:center;background:#102222;pointer-events:auto;padding:24px}.lw-spinner{width:40px;height:40px;margin:auto;border:2px solid #ffffff30;border-top-color:#f1cb7c;border-radius:50%;animation:lw-spin 1s linear infinite}@keyframes lw-spin{to{transform:rotate(360deg)}}
+.lw-modal-backdrop.lw-story{align-items:flex-start;background:linear-gradient(#091413a0,#09141300 70%);padding-top:calc(76px + env(safe-area-inset-top));padding-bottom:calc(170px + env(safe-area-inset-bottom))}
+.lw-modal-backdrop.lw-story .lw-panel{max-width:520px;padding:20px 22px}.lw-story .lw-panel h1{font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#f1cb7c;margin-bottom:10px}
+.lw-story-line{font-size:17px!important;color:#fff7e8!important;margin:0 0 10px!important}.lw-story-choices{display:grid;gap:10px;margin-top:14px}.lw-story-choices button{text-align:left;display:flex;gap:10px;align-items:center}
+.lw-key{border:1px solid #fff5d650;border-radius:5px;padding:0 7px;font:600 13px system-ui;flex-shrink:0}
+@media(prefers-reduced-motion:no-preference){.lw-modal-backdrop.lw-story .lw-panel{animation:lw-rise .25s ease-out}@keyframes lw-rise{from{transform:translateY(-10px);opacity:0}}}
 @media(max-width:480px){.lw-panel{padding:20px}.lw-panel h1{font-size:21px}.lw-prompt{font-size:15px}.lw-hint{font-size:13px}}
 @media(max-height:500px){.lw-prompt{bottom:calc(136px + env(safe-area-inset-bottom))}.lw-hint{top:68px;max-width:380px}.lw-panel{padding:16px}.lw-panel textarea{min-height:75px}}
 @media(prefers-reduced-motion:reduce){.lw-spinner{animation:none}}

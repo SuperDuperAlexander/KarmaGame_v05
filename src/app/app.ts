@@ -2,11 +2,13 @@ import {Engine} from '@babylonjs/core/Engines/engine';
 import {createWorldStore} from '../state';
 import {createSaveService,RECOVERY_KEY} from '../save';
 import {createRuleEngine} from '../rules';
-import {sliceRules} from '../narrative';
-import {saveReflection,skipReflection,deleteReflections} from '../reflection';
+import {allRules,stories,speakerNames,nextHint} from '../narrative';
+import {deleteReflections} from '../reflection';
+import {MAX_REFLECTION_LENGTH} from '../state/worldStore';
 import {createInputService} from '../input';
 import {createUiService} from '../ui';
-import {createWaveService} from '../thought-waves';
+import {runStoryEffect,wavePosition} from '../ui/storyEffects';
+import {createWaveService,type ToneWaveService} from '../thought-waves';
 import {createAssetService} from '../assets/feature';
 import {createWorldFactory} from '../world/feature';
 import {createSceneManager} from './sceneManager';
@@ -15,7 +17,10 @@ import {createTransition} from '../transition/transition';
 import {createDebug} from '../debug/debug';
 import {strings} from '../content/strings.en';
 import {setPresentationQuality,type PresentationQuality} from '../presentation/quality';
-import type {Effect,SignalType} from '../contracts/state';
+import type {Effect,ReflectionPrompt,Signal,SignalType} from '../contracts/state';
+
+/** Text that WP-B1 may add to strings.en.ts. Until then these labels are used. */
+const label=(key:string,fallback:string)=>(strings as Record<string,string>)[key]??fallback;
 
 export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
   const params=new URLSearchParams(location.search);
@@ -32,6 +37,8 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
   let frameReady=false;let failed=false;let busyEffects=0;
   let quality:PresentationQuality=params.has('safe')?'low':'medium';
   let storageWarning=false;
+  // Open story id and open reflection prompt. Used to route leave, save and skip.
+  let storyId:string|null=null;let reflectionPrompt:ReflectionPrompt='money';
   let queue=Promise.resolve();
   const wavesShown:string[]=[];
   function positionToStore() {
@@ -46,11 +53,20 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
     if(!save.flush()&&!storageWarning){storageWarning=true;ui.hint(strings.storageNotice);}
   }
   function closeReflection() {ui.closeReflection();reflectionRelease?.();reflectionRelease=undefined;}
+  function storeReflection(prompt:ReflectionPrompt,answer:string|null) {
+    if(answer!==null&&answer.length>MAX_REFLECTION_LENGTH)throw new Error('Reflection exceeds limit');
+    store.update(draft=>{if(answer===null)delete draft.reflections[prompt];else draft.reflections[prompt]=answer;});
+  }
+  function finishReflection(answer:string|null) {
+    const prompt=reflectionPrompt;storeReflection(prompt,answer);closeReflection();
+    dispatch({type:'reflection-done',id:prompt});
+    if(prompt==='money')ui.hint(answer===null?strings.skippedHelp:strings.savedHelp);
+  }
   const ui=createUiService(uiRoot,{
-    saveReflection(text) {saveReflection(store,text);closeReflection();rules.dispatch({type:'reflection-done'});ui.hint(strings.savedHelp);},
-    choose(choiceId) {rules.dispatch({type:'choice',id:choiceId});},
-    leaveStory() {rules.dispatch({type:'story-closed'});},
-    skipReflection() {skipReflection(store);closeReflection();rules.dispatch({type:'reflection-done'});ui.hint(strings.skippedHelp);},
+    saveReflection(text) {finishReflection(text);},
+    choose(choiceId) {dispatch({type:'choice',id:choiceId});},
+    leaveStory() {const id=storyId;storyId=null;dispatch(id===null?{type:'story-closed'}:{type:'story-closed',id});},
+    skipReflection() {finishReflection(null);},
     deleteReflections() {deleteReflections(store);try{localStorage.removeItem(RECOVERY_KEY);}catch{/* The game also works without storage. */}save.request();},
     newGame() {frameReady=false;store.reset();save.clear();location.reload();},
     pause(paused) {if(paused&&!pauseRelease)pauseRelease=input.lock('pause');if(!paused){pauseRelease?.();pauseRelease=undefined;}if(frameReady)manager.current.world.scene.animationsEnabled=!paused;},
@@ -60,39 +76,39 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
     const layer=document.createElement('div');layer.dataset.scene=String(scene.uniqueId);waveRoot.append(layer);
     return createWaveService(scene,layer);
   });
-  // One hint source for scene changes and for a reload in either world.
-  function hintFor(world:'outer'|'inner') {
-    const facts=store.get().facts;
-    if(facts.includes('ATTACHMENT_SEEN'))return strings.end;
-    if(world==='inner')return strings.innerHelp;
-    if(facts.includes('INNER_WORLD_ENTERED'))return facts.includes('ATTACHMENT_TRIGGERED')?strings.nextInner:strings.nextMarket;
-    return facts.includes('PACKAGE_RECEIVED')?strings.carrying:strings.welcome;
-  }
+  // One hint source for scene changes, reload and every rule run.
+  const hintFor=()=>nextHint(store.get(),store.get().world);
   const interaction=createInteraction(ui,signal=>dispatch(signal));
   const transition=createTransition({
     lock:()=>input.lock('transition'),veil:on=>ui.loading(on,strings.loading),save:flushSave,
     async prepare(id) {frameReady=false;await manager.activate(id);setPresentationQuality(manager.current.world.scene,quality);},
     switch(id) {store.update(state=>{state.world=id;});interaction.reset();ui.world(id==='outer'?strings.outer:strings.inner);},
-    activated(id) {frameReady=true;save.request();if(id==='inner')dispatch('inner-active');ui.hint(hintFor(id));},
+    activated(id) {frameReady=true;save.request();if(id==='inner')dispatch('inner-active');ui.hint(hintFor());},
     reset:()=>interaction.reset()
   });
   function onEffect(effect:Effect) {
-    if(effect.kind==='fact'||effect.kind==='trait')return;
+    // Facts, traits and counters are applied by the rule engine.
+    if(effect.kind==='fact'||effect.kind==='trait'||effect.kind==='counter')return;
     busyEffects++;
     queue=queue.then(async()=>{
       if(effect.kind==='save') await flushSave();
       if(effect.kind==='transition') await transition.go(effect.world);
-      if(effect.kind==='panel') {reflectionRelease??=input.lock('reflection');ui.reflection(store.get().reflections.money??'');}
+      if(effect.kind==='panel') {
+        reflectionPrompt=effect.prompt??'money';reflectionRelease??=input.lock('reflection');
+        ui.reflection(store.get().reflections[reflectionPrompt]??'',reflectionPrompt==='enough'?label('enoughQuestion','What is enough for you?'):undefined);
+      }
+      if(!(effect.kind==='story'&&reflectionRelease))runStoryEffect(effect,{ui,world:manager.current.world,stories,names:speakerNames,leave:label('leave','Leave'),opened:id=>{storyId=id;}});
       if(effect.kind==='wave') {
         // The rule fact and fired rule are saved before any thought is shown.
         await flushSave();
-        if(manager.current.waves.show(effect.id,effect.text,manager.current.player.position()))wavesShown.push(effect.id);
+        const at=wavePosition(manager.current.world,effect.actor,manager.current.player.position());
+        if((manager.current.waves as ToneWaveService).show(effect.id,effect.text,at,effect.tone))wavesShown.push(effect.id);
       }
       if(effect.kind==='hint')ui.hint(effect.text);
     }).catch(error=>{failed=true;console.error(error);ui.loading(true,strings.bootError);}).finally(()=>busyEffects--);
   }
-  const rules=createRuleEngine(store,sliceRules,onEffect);
-  function dispatch(type:SignalType) {rules.dispatch({type});}
+  const rules=createRuleEngine(store,allRules,onEffect);
+  function dispatch(signal:Signal|SignalType) {rules.dispatch(typeof signal==='string'?{type:signal}:signal);ui.hint(hintFor());}
   await manager.activate(store.get().world);frameReady=true;
   setPresentationQuality(manager.current.world.scene,quality);
   const qualityControl=document.createElement('select');qualityControl.setAttribute('aria-label',strings.quality);
@@ -103,7 +119,7 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
   uiRoot.querySelector('.lw-top')?.insertBefore(qualityControl,uiRoot.querySelector('.lw-top button'));
   if(store.get().world==='inner')dispatch('inner-active');
   ui.world(store.get().world==='outer'?strings.outer:strings.inner);
-  ui.hint(hintFor(store.get().world));
+  ui.hint(hintFor());
   ui.loading(false);bootRelease();
   let saveClock=0;
   engine.runRenderLoop(()=>{
@@ -119,7 +135,7 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
       current.carry.setEnabled(state.world==='outer'&&state.facts.includes('PACKAGE_RECEIVED'));
       current.chainLoose.setEnabled(state.world==='outer'&&state.facts.includes('PACKAGE_RECEIVED')&&!state.facts.includes('ATTACHMENT_TRIGGERED'));
       current.chainTense.setEnabled(state.world==='outer'&&state.facts.includes('PACKAGE_RECEIVED')&&state.facts.includes('ATTACHMENT_TRIGGERED'));
-      if(!transition.busy&&!reflectionRelease&&!busyEffects)interaction.update(state.world,state,current.player.position().x,current.player.position().z,frame,dt);
+      if(!transition.busy&&!reflectionRelease&&storyId===null&&!busyEffects)interaction.update(state.world,state,current.player.position().x,current.player.position().z,frame,dt);
       current.waves.update(dt,current.player.position());
       saveClock+=dt;if(saveClock>1){saveClock=0;positionToStore();save.request();}
     }

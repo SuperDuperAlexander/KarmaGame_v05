@@ -5,9 +5,11 @@ import { Mesh } from '@babylonjs/core/Meshes/mesh';
 import { CreateRibbon } from '@babylonjs/core/Meshes/Builders/ribbonBuilder';
 import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
 import type { WaveService } from '../contracts/visual';
-import { WaveLedger, WAVE_SECONDS, clampLabel, waveOpacity } from './core';
+import { WaveLedger, WAVE_SECONDS, clampLabel, waveOpacity, waveTones, type WaveTone } from './core';
 
-export function createWaveService(scene: Scene, root: HTMLElement): WaveService {
+/** WaveService with an optional tone. The contract has three arguments; the tone is an extra optional one. */
+export type ToneWaveService = WaveService & { show(id: string, text: string, position: Vector3, tone?: WaveTone): boolean };
+export function createWaveService(scene: Scene, root: HTMLElement): ToneWaveService {
   const ledger = new WaveLedger();
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const layer = document.createElement('div');
@@ -22,12 +24,13 @@ export function createWaveService(scene: Scene, root: HTMLElement): WaveService 
     ledger.finish(wave.id);
   };
   return {
-    show(id, text, position) {
+    show(id, text, position, tone: WaveTone = 'attachment') {
+      const look = waveTones[tone] ?? waveTones.attachment;
       if (disposed || !ledger.accept(id, text)) return false;
       const label = document.createElement('span');
       label.textContent = text;
       label.setAttribute('role', 'status');
-      label.style.cssText = 'position:absolute;left:0;top:0;transform:translate(-50%,-50%);padding:10px 16px;max-width:calc(100vw - 32px);border-radius:24px;border:1px solid #f1d49570;color:#fff4d8;background:#23312dd9;font:500 18px/1.35 system-ui;text-align:center;opacity:0;white-space:normal;text-shadow:0 1px 3px #000';
+      label.style.cssText = `position:absolute;left:0;top:0;transform:translate(-50%,-50%);padding:10px 16px;max-width:calc(100vw - 32px);border-radius:24px;border:1px solid ${look.border};color:#fff4d8;background:#23312dd9;font:500 18px/1.35 system-ui;text-align:center;opacity:0;white-space:normal;text-shadow:0 1px 3px #000`;
       layer.append(label);
       const paths = [-0.06, 0.06].map(edge => Array.from({ length: 17 }, (_, index) => {
         const x = (index / 16 - 0.5) * 2.4;
@@ -40,7 +43,7 @@ export function createWaveService(scene: Scene, root: HTMLElement): WaveService 
       ribbon.position.y += 2.3;
       const material = new StandardMaterial(`thought-material-${id}`, scene);
       material.disableLighting = true;
-      material.emissiveColor = new Color3(0.94, 0.76, 0.42);
+      material.emissiveColor = new Color3(...look.rgb);
       material.alpha = 0;
       material.backFaceCulling = false;
       ribbon.material = material;

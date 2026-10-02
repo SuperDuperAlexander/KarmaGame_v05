@@ -1,5 +1,5 @@
 import type { InputService } from '../contracts/input';
-import type { UiCommands, UiService } from '../contracts/ui';
+import type { StoryView, UiCommands, UiService } from '../contracts/ui';
 import { strings } from '../content/strings.en';
 import { uiStyles } from './styles';
 
@@ -61,7 +61,8 @@ export function createUiService(root: HTMLElement, commands: UiCommands, input: 
   loading.append(spinner, loadingText);
   shell.append(style, top, hint, prompt, backdrop, loading);
   root.append(shell);
-  let modal: 'pause' | 'reflection' | 'confirm' | null = null;
+  let modal: 'pause' | 'reflection' | 'confirm' | 'story' | null = null;
+  let storyChoices: string[] = [];
   let modalRelease: (() => void) | null = null;
   let loadRelease: (() => void) | null = null;
   let previousFocus: HTMLElement | null = null;
@@ -96,11 +97,14 @@ export function createUiService(root: HTMLElement, commands: UiCommands, input: 
     }
     modal = kind;
     backdrop.hidden = false;
+    backdrop.classList.toggle('lw-story', kind === 'story');
     panel.replaceChildren();
   };
   const closeModal = () => {
     const wasPause = modal === 'pause' || modal === 'confirm';
     modal = null;
+    storyChoices = [];
+    backdrop.classList.remove('lw-story');
     backdrop.hidden = true;
     panel.replaceChildren();
     modalRelease?.();
@@ -127,8 +131,40 @@ export function createUiService(root: HTMLElement, commands: UiCommands, input: 
     panel.append(buttons);
     focusFirst();
   };
+  const leaveStory = () => { closeModal(); commands.leaveStory(); };
+  function openStory(view: StoryView) {
+    beginModal('story');
+    heading(view.speaker);
+    for (const line of view.lines.slice(0, 3)) {
+      const text = document.createElement('p');
+      text.className = 'lw-story-line';
+      text.textContent = line;
+      panel.append(text);
+    }
+    const choices = view.choices.slice(0, 3);
+    storyChoices = choices.map(choice => choice.id);
+    const buttons = document.createElement('div');
+    buttons.className = 'lw-story-choices';
+    choices.forEach((choice, index) => {
+      const element = button(choice.label, () => commands.choose(choice.id));
+      element.dataset.choice = choice.id;
+      if (!input.isTouch()) {
+        const key = document.createElement('span');
+        key.className = 'lw-key';
+        key.setAttribute('aria-hidden', 'true');
+        key.textContent = String(index + 1);
+        element.prepend(key);
+      }
+      buttons.append(element);
+    });
+    const leave = button(view.leave, leaveStory, true);
+    leave.dataset.leave = 'true';
+    buttons.append(leave);
+    panel.append(buttons);
+    focusFirst();
+  }
   function openPause() {
-    if (loadRelease || modal === 'reflection') return;
+    if (loadRelease || modal === 'reflection' || modal === 'story') return;
     beginModal('pause');
     commands.pause(true);
     heading(strings.pause);
@@ -141,9 +177,15 @@ export function createUiService(root: HTMLElement, commands: UiCommands, input: 
   window.addEventListener('keydown', event => {
     if (event.code === 'Escape' && !event.repeat) {
       event.preventDefault();
-      if (modal === 'pause') closeModal();
+      if (modal === 'story') leaveStory();
+      else if (modal === 'pause') closeModal();
       else if (modal === 'confirm') openPause();
       else if (modal === null) openPause();
+    }
+    if (modal === 'story' && !event.repeat && !event.ctrlKey && !event.altKey && !event.metaKey) {
+      const index = /^[1-3]$/.test(event.key) ? Number(event.key) - 1 : event.code === 'KeyE' ? 0 : -1;
+      const id = index >= 0 ? storyChoices[index] : undefined;
+      if (id !== undefined) { event.preventDefault(); commands.choose(id); return; }
     }
     if (event.key !== 'Tab' || modal === null) return;
     const items = [...panel.querySelectorAll<HTMLElement>('button,textarea,[tabindex="0"]')].filter(element => !element.hasAttribute('disabled'));
@@ -155,13 +197,17 @@ export function createUiService(root: HTMLElement, commands: UiCommands, input: 
   return {
     prompt(text, isHold = false) { prompt.hidden = text === null; promptText.textContent = text ?? ''; actionKey.hidden = input.isTouch(); hold.hidden = !isHold; hold.style.setProperty('--progress', '0'); },
     hold(progress) { const value = Math.max(0, Math.min(1, progress)); hold.style.setProperty('--progress', String(value)); hold.setAttribute('aria-valuenow', String(Math.round(value * 100))); },
-    // WP-B2 builds the story panel. Until then a story step is ignored.
-    story() {},
-    reflection(text) {
+    story(view) {
+      if (view === null) { if (modal === 'story') closeModal(); return; }
+      // A pause, confirm or reflection panel keeps its place.
+      if (modal !== null && modal !== 'story') return;
+      openStory(view);
+    },
+    reflection(text, question) {
       if (modal === 'reflection') return;
       if (modal === 'pause' || modal === 'confirm') commands.pause(false);
       beginModal('reflection');
-      heading(strings.question);
+      heading(question ?? strings.question);
       const help = document.createElement('p');
       help.id = 'lw-reflection-help';
       help.textContent = strings.reflectionHelp;

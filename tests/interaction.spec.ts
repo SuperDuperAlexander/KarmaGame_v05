@@ -10,13 +10,13 @@ describe('interaction crossings and hold',()=>{
     const interaction=createInteraction(ui,emit);
     interaction.update('outer',state,0,-2.8,frame,.05);
     interaction.update('outer',state,0,-2.8,frame,.05);
-    expect(emit.mock.calls.filter(c=>c[0]==='tree-enter')).toHaveLength(1);
+    expect(emit.mock.calls.filter(c=>c[0].type==='tree-enter')).toHaveLength(1);
     interaction.update('outer',state,0,-2.8,{...frame,held:true},.7);
     interaction.update('outer',state,0,-2.8,frame,.05);
     interaction.update('outer',state,0,-2.8,{...frame,held:true},.7);
-    expect(emit.mock.calls.filter(c=>c[0]==='look-within')).toHaveLength(0);
+    expect(emit.mock.calls.filter(c=>c[0].type==='look-within')).toHaveLength(0);
     interaction.update('outer',state,0,-2.8,{...frame,held:true},.5);
     interaction.update('outer',state,0,-2.8,{...frame,held:true},2);
-    expect(emit.mock.calls.filter(c=>c[0]==='look-within')).toHaveLength(1);
+    expect(emit.mock.calls.filter(c=>c[0].type==='look-within')).toHaveLength(1);
   });
 });
