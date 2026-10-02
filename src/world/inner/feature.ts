@@ -9,12 +9,14 @@ import {createInnerChain} from '../../props/chain';
 import {beetleMotion} from '../../creatures/beetle';
 import {selectors} from '../../state/selectors';
 import {treeGlow} from './treeGlow';
+import {freezeStatic} from '../freeze';
 
 interface Place{x:number;y?:number;z:number;s?:number;ry?:number}
 /** Put one kit part at a place. The asset service centres kit parts and sets them on the ground. */
 async function part(scene:Scene,assets:AssetService,id:AssetId,name:string,at:Place){
   const node=entity(scene,`${id.toLowerCase()}-${name}`,at.x,at.z);node.position.y=at.y??0;node.scaling.setAll(at.s??1);node.rotation.y=at.ry??0;
   await assets.create(id,scene,node,name);
+  freezeStatic(node);
   return node;
 }
 export async function createInnerWorld(scene:Scene,assets:AssetService):Promise<WorldView>{

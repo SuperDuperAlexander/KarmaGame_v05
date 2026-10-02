@@ -9,11 +9,14 @@ import {sourceWater} from '../../presentation/sourceWater';
 import {paintOuterGround} from '../../presentation/paint';
 import {merchantMotion} from '../../npc/merchant';
 import {createPlacer} from './decor';
+import {freezeStatic,mergeStatic} from '../freeze';
 import {citizenIdle} from './citizens';
 import {HOUSES,HEDGES,LAMPS} from './layout';
 export async function createOuterWorld(scene:Scene,assets:AssetService):Promise<WorldView>{
   scene.collisionsEnabled=true;const light=atmosphere(scene,'outer');const water=sourceWater(scene,false);
   const {place,queue,flush}=createPlacer(scene,assets);
+  // Market and citizens sit far from the spawn. Their files load after the first frame so the start download stays small.
+  const later:(()=>Promise<unknown>)[]=[];
   // Probe once: do the real files exist? If not, keep the old colored boxes so the placeholder swap still plays.
   const probe=await assets.create('CityWall',scene,undefined,'straight');const realKit=probe.root.metadata?.status!=='placeholder';probe.dispose();
   const probeTree=await assets.create('CentralTreeOuter',scene);const realTree=probeTree.root.metadata?.status!=='placeholder';probeTree.dispose();
@@ -46,11 +49,11 @@ export async function createOuterWorld(scene:Scene,assets:AssetService):Promise<
   });
   // Market: three stalls, props, merchant, desire object.
   for(const [i,x,z]of [[0,27,4],[1,33,3],[2,32,-4]]){
-    const root=entity(scene,'market-stall-'+i,x,z);root.rotation.y=i===2?Math.PI:i===1?-Math.PI/2:0;queue(assets.create(i===1?'MarketStallB':'MarketStallA',scene,root));
+    const root=entity(scene,'market-stall-'+i,x,z);root.rotation.y=i===2?Math.PI:i===1?-Math.PI/2:0;later.push(()=>assets.create(i===1?'MarketStallB':'MarketStallA',scene,root).then(()=>freezeStatic(root)));
     solid(scene,'stall-counter',new Vector3(x,.7,z),i===1?new Vector3(2.4,1.4,4):new Vector3(3,1.4,2.2));
   }
-  const merchant=entity(scene,'merchant',27.5,2);const visual=await assets.create('Merchant',scene,merchant);const move=merchantMotion(merchant,visual);
-  solid(scene,'desire-table',new Vector3(26,.38,0),new Vector3(.9,.76,.75),box('#9D764F'));queue(place('MarketProps','table',26,0,{scale:1.25,decor:true}));
+  const merchant=entity(scene,'merchant',27.5,2);let move:(dt:number,player:Vector3)=>void=()=>{};later.push(()=>assets.create('Merchant',scene,merchant).then(v=>{move=merchantMotion(merchant,v);}));
+  solid(scene,'desire-table',new Vector3(26,.38,0),new Vector3(.9,.76,.75),box('#9D764F'));later.push(()=>place('MarketProps','table',26,0,{scale:1.25,decor:true}));
   const desire=CreateSphere('desire-object',{diameter:.36,segments:10},scene);desire.position.set(26,1.1,0);desire.material=material(scene,'#D6AC51',.45);desire.metadata={interaction:'desire'};
   // Props along the market. Decor only: no colliders.
   const props:[string,number,number,number,number][]=[
@@ -58,7 +61,7 @@ export async function createOuterWorld(scene:Scene,assets:AssetService):Promise<
     ['barrel',29.5,-4.5,0,1.3],['crate',34.6,-4.7,0,1.5],['jug',35.2,-3.6,0,2],['cloth',29.2,-3.2,0,2.4],['basketSmall',24.8,-2.7,0,2.2],['crate',22.4,3.9,0,1.4],
     ['barrel',36.2,.4,0,1.3],['box',36,1.4,0,1.8],['sign',20.6,3.5,Math.PI/2,1.7],
   ];
-  for(const [part,x,z,yaw,s] of props)queue(place('MarketProps',part,x,z,{yaw:part==='sign'?yaw:yaw+x,scale:s,decor:true}));
+  for(const [part,x,z,yaw,s] of props)later.push(()=>place('MarketProps',part,x,z,{yaw:part==='sign'?yaw:yaw+x,scale:s,decor:true}));
   // Street furniture.
   for(const [x,z] of LAMPS)queue(place('CityWall','lamp',x,z,{scale:1.3,decor:true}));
   for(const [x,z] of [[-9,0],[9,-2]])queue(place('CityWall','bench',x,z,{scale:.8,yaw:Math.atan2(-x,-z)+Math.PI,decor:true}));
@@ -75,9 +78,13 @@ export async function createOuterWorld(scene:Scene,assets:AssetService):Promise<
   const folks:[string,'Citizen'|'CitizenMale',number,number,number,number][]=[['citizen-a','Citizen',-6.8,-7.2,.5,0],['citizen-b','CitizenMale',-5.4,-6.2,-2.4,1.7]];
   const idles:((dt:number,player:Vector3)=>void)[]=[];
   for(const [name,id,x,z,yaw,phase] of folks){
-    const root=entity(scene,name,x,z);root.rotation.y=yaw;queue(assets.create(id,scene,root).then(v=>{idles.push(citizenIdle(root,v,phase));}));
+    const root=entity(scene,name,x,z);root.rotation.y=yaw;later.push(()=>assets.create(id,scene,root).then(v=>{idles.push(citizenIdle(root,v,phase));}));
     solid(scene,name+'-blocker',new Vector3(x,.85,z),new Vector3(.5,1.7,.5));
   }
   await flush();
+  // Only the code placeholders: the houses are many small boxes. Real houses are instances already.
+  if(!realKit)mergeStatic(scene,/^CityBuilding\./);
+  // The scene renders its first frame only when the game is ready. Then the far files start to load.
+  scene.onAfterRenderObservable.addOnce(()=>{void Promise.all(later.map(load=>load().catch(error=>console.warn('Late asset failed.',error))));});
   return {scene,spawn:new Vector3(0,0,-47),gate,beetle:null,packageRoot,update(state,dt,player){const owned=state.facts.includes('PACKAGE_RECEIVED');gate.setEnabled(!owned);packageRoot.setEnabled(!owned);light.update(state);water.update(dt,state.traits.attachment);move(dt,player);for(const idle of idles)idle(dt,player);desire.rotation.y+=dt*.3;spot.scaling.setAll(state.facts.includes('TREE_DISCOVERED')?1:.85);},dispose(){light.dispose();water.dispose();}};
 }

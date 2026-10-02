@@ -1,0 +1,105 @@
+{
+ "name": "phone",
+ "tag": "after",
+ "firstFrame": {
+  "readyAtMs": 3021,
+  "assetsBeforeFirstFrameMB": 6.77,
+  "assetsAfterFirstFrameMB": 4.09,
+  "before": [
+   "city/city_infrastructure.glb",
+   "core/central_tree_outer.glb",
+   "core/finance_package.glb",
+   "city/city_building_kit.glb",
+   "world/vegetation_kit.glb",
+   "characters/player_rigged_v2.glb",
+   "core/package_chain.glb"
+  ],
+  "after": [
+   "market/market_stall_A.glb",
+   "market/market_stall_B.glb",
+   "characters/merchant_rigged.glb",
+   "market/market_props.glb",
+   "characters/citizen_female_rigged.glb",
+   "characters/citizen_male_rigged.glb"
+  ]
+ },
+ "spawn": {
+  "fps": 59.95203836926012,
+  "dc": 54,
+  "tri": 118567,
+  "triNoLod": 152091,
+  "pos": {
+   "x": 0,
+   "y": 0.005176640163698676,
+   "z": -47
+  }
+ },
+ "gate": {
+  "fps": 60.10819475059599,
+  "dc": 49,
+  "tri": 121437,
+  "triNoLod": 141849,
+  "pos": {
+   "x": 0.009410355765054678,
+   "y": 0.0005491483080068971,
+   "z": -29.3153744553233
+  }
+ },
+ "square": {
+  "fps": 60.03602161305741,
+  "dc": 40,
+  "tri": 96380,
+  "triNoLod": 99350,
+  "pos": {
+   "x": 0.000017340277800763736,
+   "y": 0.0052456839908365804,
+   "z": -8.31742748852391
+  }
+ },
+ "tree": {
+  "fps": 59.66587112163009,
+  "dc": 38,
+  "tri": 99338,
+  "triNoLod": 99338,
+  "pos": {
+   "x": 7.379646444276219e-7,
+   "y": 0.008249980497130216,
+   "z": -3.9906937692597024
+  }
+ },
+ "lookWithin": {
+  "MB": 6.53,
+  "files": [
+   "core/central_tree_inner.glb",
+   "inner_world/inner_rock_kit.glb",
+   "inner_world/inner_platform_kit.glb",
+   "core/finance_package.glb",
+   "creatures/attachment_beetle.glb",
+   "core/package_chain.glb",
+   "inner_world/inner_crystal_kit.glb",
+   "characters/player_rigged_v2.glb"
+  ]
+ },
+ "inner-spawn": {
+  "fps": 59.89219405066436,
+  "dc": 27,
+  "tri": 85092,
+  "triNoLod": 85092,
+  "pos": {
+   "x": 0,
+   "y": 0.008250017575016644,
+   "z": -7
+  }
+ },
+ "inner-package": {
+  "fps": 60.03602161305752,
+  "dc": 26,
+  "tri": 87808,
+  "triNoLod": 87808,
+  "pos": {
+   "x": 3.684967859895046,
+   "y": 0.00023522685580512626,
+   "z": -3.3150323589847197
+  }
+ }
+}

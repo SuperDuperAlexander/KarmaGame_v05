@@ -87,7 +87,7 @@ export async function startGame(canvas:HTMLCanvasElement,uiRoot:HTMLElement) {
   setPresentationQuality(manager.current.world.scene,quality);
   const qualityControl=document.createElement('select');qualityControl.setAttribute('aria-label',strings.quality);
   qualityControl.style.cssText='pointer-events:auto;min-height:48px;max-width:110px;color:#fff7e8;background:#182727b8;border:1px solid #fff5d650;border-radius:10px;padding:8px;font:inherit';
-  for(const [value,label] of [['low',strings.simple],['medium',strings.full]]) {const option=document.createElement('option');option.value=value;option.textContent=label;qualityControl.append(option);}
+  for(const [value,label] of [['low',strings.simple],['medium',strings.full],['high','High']]) {const option=document.createElement('option');option.value=value;option.textContent=label;qualityControl.append(option);}
   qualityControl.value=quality;
   qualityControl.addEventListener('change',()=>{quality=qualityControl.value as PresentationQuality;engine.setHardwareScalingLevel(quality==='low'?1.3:1);for(const entry of manager.entries.values())setPresentationQuality(entry.world.scene,quality);});
   uiRoot.querySelector('.lw-top')?.insertBefore(qualityControl,uiRoot.querySelector('.lw-top button'));

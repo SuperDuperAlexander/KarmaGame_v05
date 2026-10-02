@@ -1,4 +1,6 @@
 import type {AssetId} from '../../contracts/visual';
+/** Far detail for static meshes. `at`: metres where a simpler copy starts. `ratio`: share of triangles it keeps. `far`: metres where the mesh is hidden. */
+export interface LodSpec {at?:number;ratio?:number;far?:number}
 export interface AssetEntry {
   status:'placeholder'|'temporary'|'final'; file?:string;
   scale:number; rotation:[number,number,number]; offset:[number,number,number];
@@ -7,6 +9,8 @@ export interface AssetEntry {
   nodes:Record<string,string[]>; hideNodes:string[]; placeholder:AssetId;
   // Kit files: logical part -> GLB node names. `create(id,scene,parent,part)` keeps only that subtree.
   parts?:Record<string,string[]>;
+  // Optional (WP-36). `lod`: far detail for static meshes. `fade`: node names (or true for all) that may fade when they hide the player.
+  lod?:LodSpec;fade?:string[]|true;
   collision:{radius:number;height:number}; notes:string[];
 }
 export function entry(id:AssetId,patch:Partial<AssetEntry>={}):AssetEntry {

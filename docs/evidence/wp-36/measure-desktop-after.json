@@ -1,0 +1,105 @@
+{
+ "name": "desktop",
+ "tag": "after",
+ "firstFrame": {
+  "readyAtMs": 1526,
+  "assetsBeforeFirstFrameMB": 6.77,
+  "assetsAfterFirstFrameMB": 4.09,
+  "before": [
+   "city/city_infrastructure.glb",
+   "core/central_tree_outer.glb",
+   "core/finance_package.glb",
+   "city/city_building_kit.glb",
+   "world/vegetation_kit.glb",
+   "characters/player_rigged_v2.glb",
+   "core/package_chain.glb"
+  ],
+  "after": [
+   "market/market_stall_A.glb",
+   "market/market_stall_B.glb",
+   "characters/merchant_rigged.glb",
+   "market/market_props.glb",
+   "characters/citizen_female_rigged.glb",
+   "characters/citizen_male_rigged.glb"
+  ]
+ },
+ "spawn": {
+  "fps": 59.96402158695851,
+  "dc": 73,
+  "tri": 176833,
+  "triNoLod": 276011,
+  "pos": {
+   "x": 0,
+   "y": 0.005448184541577139,
+   "z": -47
+  }
+ },
+ "gate": {
+  "fps": 60.024009603752106,
+  "dc": 74,
+  "tri": 209027,
+  "triNoLod": 282315,
+  "pos": {
+   "x": -0.10894675544563955,
+   "y": 0.008249990142052965,
+   "z": -29.327425542396238
+  }
+ },
+ "square": {
+  "fps": 60.07208650398384,
+  "dc": 51,
+  "tri": 154291,
+  "triNoLod": 169610,
+  "pos": {
+   "x": -0.10894675544563955,
+   "y": 0.005448176966885265,
+   "z": -8.272139449371837
+  }
+ },
+ "tree": {
+  "fps": 60.03602161305738,
+  "dc": 48,
+  "tri": 140178,
+  "triNoLod": 148462,
+  "pos": {
+   "x": -0.10894675544563955,
+   "y": 0.008249985346450384,
+   "z": -4.079945553072604
+  }
+ },
+ "lookWithin": {
+  "MB": 6.53,
+  "files": [
+   "core/central_tree_inner.glb",
+   "inner_world/inner_rock_kit.glb",
+   "inner_world/inner_platform_kit.glb",
+   "core/finance_package.glb",
+   "creatures/attachment_beetle.glb",
+   "core/package_chain.glb",
+   "inner_world/inner_crystal_kit.glb",
+   "characters/player_rigged_v2.glb"
+  ]
+ },
+ "inner-spawn": {
+  "fps": 60.08411776500538,
+  "dc": 34,
+  "tri": 102548,
+  "triNoLod": 102548,
+  "pos": {
+   "x": 0,
+   "y": 0.008249987080653387,
+   "z": -7
+  }
+ },
+ "inner-package": {
+  "fps": 59.964021587181804,
+  "dc": 32,
+  "tri": 94584,
+  "triNoLod": 94584,
+  "pos": {
+   "x": 3.7226468160479245,
+   "y": 0.008250009304893724,
+   "z": -3.3242125759672922
+  }
+ }
+}
