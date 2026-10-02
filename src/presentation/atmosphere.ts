@@ -32,10 +32,10 @@ const MAX_CASTERS=12;
 export function atmosphere(scene:Scene,world:WorldId){
   const inner=world==='inner';
   // Outer: golden hour, a warm haze at the horizon. Inner: deep blue-violet.
-  const horizon=inner?c3(.08,.17,.36):c3(.93,.76,.55);const fog=horizon;
+  const horizon=inner?c3(.08,.17,.36):c3(.92,.8,.62);const fog=horizon;
   scene.clearColor=new Color4(horizon.r,horizon.g,horizon.b,1);
   scene.fogMode=3;scene.fogStart=inner?26:48;scene.fogEnd=inner?110:160;scene.fogColor=fog;
-  const sunDir=inner?new Vector3(-.3,-1,.4):new Vector3(.66,-.4,.52);
+  const sunDir=inner?new Vector3(-.3,-1,.4):new Vector3(.45,-.5,-.6);
   const sky=new HemisphericLight('sky',new Vector3(0,1,0),scene);
   // The sky light is the soft blue shadow fill outside and the blue-violet ambient inside. The ground colour is warm bounce outside.
   sky.intensity=inner?1:.66;sky.diffuse=inner?c3(.52,.66,1):c3(.66,.78,1);sky.groundColor=inner?c3(.25,.55,.85):c3(.62,.46,.32);
@@ -85,7 +85,7 @@ export function atmosphere(scene:Scene,world:WorldId){
   let discovered:boolean|null=null;
   onQuality(scene,q=>{
     const p=preset(scene,q);setShadow(p.shadow);ipc.isEnabled=p.imageProcessing;ipc.toneMappingEnabled=p.imageProcessing;ipc.vignetteEnabled=p.imageProcessing;ipc.colorCurvesEnabled=p.imageProcessing;
-    ipc.exposure=p.imageProcessing?(inner?1.7:1.4):1;ipc.contrast=p.imageProcessing?1.15:1;glow.set(p.glow);particles?.scale(p.particles);
+    ipc.exposure=p.imageProcessing?(inner?1.7:1.3):1;ipc.contrast=p.imageProcessing?1.15:1;glow.set(p.glow);particles?.scale(p.particles);
   });
   // Inner rocks and platforms get a faint cool self light from their own texture. They read as blue stone, not black holes.
   let fillWait=0;let filled=0;
