@@ -379,7 +379,7 @@
       "model": "Claude Haiku",
       "status": "done",
       "acceptance": "ASSET_STATUS.md, README.md (Known limits, tools), work-packages.json; json and lint pass",
-      "report": "docs/reports/WP-37b.md"
+      "report": "docs/reports/WP-37.md"
     },
     {
       "id": "38",
@@ -397,7 +397,7 @@
       "wave": "each wave",
       "needs": "–",
       "model": "Claude Opus",
-      "status": "planned",
+      "status": "running",
       "acceptance": "merge main; all checks pass; look check on device; decisions recorded",
       "report": "docs/reports/WP-39.md"
     }
